@@ -16,8 +16,8 @@
   font-display: swap;
 }
 
-div.v-toolbar__title span {
-  font-family: "Cherry Swash";
+div.v-toolbar__title span, h1, h2, h3.headline {
+  font-family: "Cherry Swash" !important;
   font-weight: normal;
   font-style : normal;
 }

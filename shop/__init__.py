@@ -48,6 +48,8 @@ server.register_stylesheet("style.css", STATIC / "css")
 server.register_component("app.js", HERE)
 server.register_component("logo.js", COMPONENTS)
 
+from .pages import welcome, faq, contact
+
 server.config["TEMPLATES_AUTO_RELOAD"] = True
 
 logger.info("✅ shop is ready")

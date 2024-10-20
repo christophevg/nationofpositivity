@@ -10,10 +10,10 @@
 
 [x] basic baseweb setup
 [x] apply styling
-[ ] add informational structure
-  [ ] welcome
-  [ ] FAQ
-  [ ] contact
+[x] add informational structure
+  [x] welcome
+  [x] FAQ
+  [x] contact
 
 [ ] setup MongoDB
 [ ] create local CDN store
