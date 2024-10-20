@@ -1,0 +1,23 @@
+@font-face {
+  font-family: "Cherry Swash";
+  src: url("/app/static/fonts/CherrySwash-Regular.woff2") format("woff2"),
+       url("/app/static/fonts/CherrySwash-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Cherry Swash";
+  src: url("/app/static/fonts/CherrySwash-Bold.woff2") format("woff2"),
+       url("/app/static/fonts/CherrySwash-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+div.v-toolbar__title span {
+  font-family: "Cherry Swash";
+  font-weight: normal;
+  font-style : normal;
+}

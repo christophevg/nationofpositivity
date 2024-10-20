@@ -9,7 +9,7 @@
 [x] clean out repo
 
 [x] basic baseweb setup
-[ ] apply styling
+[x] apply styling
 [ ] add informational structure
   [ ] welcome
   [ ] FAQ

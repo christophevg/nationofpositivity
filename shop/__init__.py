@@ -39,9 +39,15 @@ server = Baseweb("nation-of-positivity")
 
 HERE       = Path(__file__).resolve().parent
 COMPONENTS = HERE / "components"
+STATIC     = HERE / "static"
+
+server.app_static_folder = STATIC
+
+server.register_stylesheet("style.css", STATIC / "css")
 
 server.register_component("app.js", HERE)
+server.register_component("logo.js", COMPONENTS)
 
-server.app_static_folder = HERE / "static"
+server.config["TEMPLATES_AUTO_RELOAD"] = True
 
 logger.info("✅ shop is ready")
