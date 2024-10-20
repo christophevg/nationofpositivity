@@ -1,12 +1,12 @@
 # Nation of Positivity
 
-> a positive website
+> a positive webshop
 
 ## TODO
 
 [x] create CDN (repo + pages setup)
 
-[ ] clean out repo
+[x] clean out repo
 
 [ ] basic baseweb setup
 [ ] apply styling
@@ -22,9 +22,8 @@
 [ ] shop: basket page
 [ ] shop: order page
 [ ] admin: orders
-  [ ] 
 
-[ ] integrate SendGrid (mail )
-[ ] integrate Mollie
+[ ] integrate SendGrid (?)
+[ ] integrate Mollie (?)
 
 [ ] launch 🚀

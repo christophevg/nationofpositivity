@@ -1,10 +1,4 @@
-all: run
-
-run:
-	gunicorn -w 1 --threads 8 web:app
-
-clean:
-	rm -rf $(TRG)
+all:
 
 requirements.txt:
 	@cat $@ | cut -d"=" -f1 | xargs pip uninstall -y
@@ -13,4 +7,3 @@ requirements.txt:
 	pip freeze > $@
 
 .PHONY: requirements.txt
-	
