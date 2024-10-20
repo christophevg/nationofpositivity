@@ -1,4 +1,7 @@
-all:
+all: run
+	
+run:
+	gunicorn -k eventlet -w 1 shop:server
 
 requirements.txt:
 	@cat $@ | cut -d"=" -f1 | xargs pip uninstall -y

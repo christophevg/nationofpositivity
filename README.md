@@ -8,14 +8,15 @@
 
 [x] clean out repo
 
-[ ] basic baseweb setup
+[x] basic baseweb setup
 [ ] apply styling
 [ ] add informational structure
   [ ] welcome
   [ ] FAQ
   [ ] contact
 
-[ ] setup datastore
+[ ] setup MongoDB
+[ ] create local CDN store
 [ ] admin: products
 [ ] shop: products page
 [ ] shop: product page
