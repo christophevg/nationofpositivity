@@ -25,12 +25,16 @@ for module in [
   "gunicorn.error",
   "pymongo.serverSelection",
   "engineio.client", "engineio.server", "socketio.client", "socketio.server",
-  "urllib3"
+  "urllib3",
+  "pymongo.topology", "pymongo.connection", "pymongo.command"
 ]:
   module_logger = logging.getLogger(module)
   module_logger.setLevel(logging.WARN)
   if len(module_logger.handlers) > 0:
     module_logger.handlers[0].setFormatter(formatter)
+
+# setup datastore
+import shop.db
 
 # all set up, now get our server
 

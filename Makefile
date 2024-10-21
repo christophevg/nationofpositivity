@@ -10,3 +10,6 @@ requirements.txt:
 	pip freeze > $@
 
 .PHONY: requirements.txt
+
+ip:
+	nslookup myip.opendns.com resolver1.opendns.com

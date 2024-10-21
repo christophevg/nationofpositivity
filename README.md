@@ -15,7 +15,7 @@
   [x] FAQ
   [x] contact
 
-[ ] setup MongoDB
+[x] setup MongoDB
 [ ] create local CDN store
 [ ] admin: products
 [ ] shop: products page
@@ -23,6 +23,8 @@
 [ ] shop: basket page
 [ ] shop: order page
 [ ] admin: orders
+
+[ ] add products
 
 [ ] integrate SendGrid (?)
 [ ] integrate Mollie (?)
