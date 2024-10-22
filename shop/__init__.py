@@ -72,6 +72,7 @@ server.register_stylesheet("style.css", STATIC / "css")
 # register pages
 from .pages import welcome, faq, contact
 from .pages.shop import products, product
+from .pages.shop import basket
 
 if os.environ.get("ADMIN_MODE") == "yes":
   logger.warn("""

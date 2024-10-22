@@ -36,7 +36,6 @@ Vue.component("ProductConfigurator", {
   </v-card-actions>
 
 </div>
-
 `,
   mounted: function() {
     // generate schema for product
@@ -115,7 +114,7 @@ Vue.component("ProductCard", {
     nolink: Boolean,
     layout: {
       validator(value) {
-        return ["page", "card", "ref"].includes(value)
+        return ["page", "card"].includes(value)
       },
       default() {
         return "card"
@@ -135,13 +134,6 @@ Vue.component("ProductCard", {
 
     <div v-if="product && ! is_error">
   
-      <v-img v-if="ref_layout && header.images.length >= 1" :src="header.images[0]" :aspect-ratio="header.ratio"
-             class="white--text" height="50px" style="text-align:right;">
-        <v-btn flat icon color="white" v-on:click.prevent @click="remove_ref">
-          <v-icon>highlight_off</v-icon>
-        </v-btn>
-      </v-img>
-
       <v-img v-if="(card_layout && header.images.length >= 1) || (page_layout && header.images.length == 1)"
              :src="cdn(header.images[0])"
              :aspect-ratio="header.ratio"
@@ -176,41 +168,23 @@ Vue.component("ProductCard", {
         <v-flex v-bind="info_flex">
 
           <v-card-text primary-title>
-            <div>
-  
-              <h3 v-if="card_layout" class="headline mb-0">{{ product.title }}</h3>
-              <h3 v-if="ref_layout" class="subheading mb-0">{{ product.title }}</h3>
+            <h3 class="headline mb-0">{{ product.title }}</h3>
 
-              <h3 v-if="card_layout">&euro; {{ product.unit_price | fixed2 }}</h3>
+            <h3 v-if="card_layout">&euro; {{ product.unit_price | fixed2 }}</h3>
 
-              <div style="position: relative;" v-if="card_layout || page_layout">
-  
-                <div v-bind="intro_bookmark">
-                  <v-btn absolute right flat icon color="primary" v-on:click.prevent @click="add_ref" v-if="page_layout">
-                    <v-icon>bookmark_border</v-icon>
-                  </v-btn>
+            <p v-html="html_intro"></p>
 
-                  <v-btn absolute right flat icon color="primary" v-on:click.prevent @click="remove_ref" v-if="page_layout">
-                    <v-icon>bookmark</v-icon>
-                  </v-btn>
-  
-                  {{ product.intro }}
-
-                </div>
-
+            <div v-if="page_layout">
+              <p v-html="html_description"></p>
+              <div v-if="product.specifications" class="mb-3">
+                <h3 class="subheading mb-1 mt-3">Eigenschappen</h3>
+                <p>
+                <template v-for="(value, spec) in product.specifications">
+                  {{ spec }}: {{ value }}<br>
+                </template>
+                </p>
               </div>
-
-              <div v-if="page_layout">
-                <p v-html="html_description"></p>
-                <div v-if="product.specifications" class="mb-3">
-                  <h3 class="subheading mb-1 mt-3">Eigenschappen</h3>
-                  <template v-for="(value, spec) in product.specifications">
-                    {{ spec }}: {{ value }}
-                  </template>
-                </div>
-                <v-chip v-for="tag in product.tags" :key="tag" outline color="grey" text-color="black">{{ tag }}</v-chip>
-                    
-              </div>
+              <v-chip v-for="tag in product.tags" :key="tag" outline color="grey" text-color="black">{{ tag }}</v-chip>
             </div>
           </v-card-text>
 
@@ -220,14 +194,6 @@ Vue.component("ProductCard", {
                     
           <v-card-actions style="position: absolute; bottom: 0; right:0; width: 100%;">
 
-            <v-btn flat icon color="primary" v-on:click.prevent @click="add_ref">
-              <v-icon>bookmark_border</v-icon>
-            </v-btn>
-
-            <v-btn flat icon color="primary" v-on:click.prevent @click="remove_ref">
-              <v-icon>bookmark</v-icon>
-            </v-btn>
-            
             <v-spacer></v-spacer>
 
             <v-btn flat color="primary" v-on:click.prevent @click="have_options ? show_configurator() : add()">
@@ -252,6 +218,9 @@ Vue.component("ProductCard", {
     html_description: function() {
       return this.product.description.replaceAll("\n", "<br>\n");
     },
+    html_intro: function() {
+      return this.product.intro.replaceAll("\n", "<br>\n");
+    },
     is_error: function() {
       return this.product && "readyState" in this.product && "status" in this.product;
     },
@@ -263,9 +232,6 @@ Vue.component("ProductCard", {
     },
     card_layout: function() {
       return this.layout == "card";
-    },
-    ref_layout : function() {
-      return this.layout == "ref";
     },
     link_to: function() {
       return this.nolink ? null : "/products/" + this.product.id;
@@ -279,9 +245,6 @@ Vue.component("ProductCard", {
     },
     info_flex: function() {
       return this.page_layout ? { md9: true, xs12 : true, "mb-4" : true } : { xs12: true };
-    },
-    intro_bookmark : function() {
-      return this.page_layout ? { style: "padding-right: 50px;padding-bottom:10px;" } : { style: "padding-bottom:20px;" };
     }
   },
   methods: {
@@ -306,12 +269,6 @@ Vue.component("ProductCard", {
         type:  "success",
         duration: 5000
       });
-    },
-    add_ref: function() {
-      store.commit("add_ref", this.product);
-    },
-    remove_ref: function() {
-      store.commit("remove_ref", this.product);
     }
   },
   data: function() {

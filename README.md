@@ -20,7 +20,7 @@
 [x] admin: products
 [x] shop: products page
 [x] shop: product page
-[ ] shop: clean up product card
+[x] shop: clean up product card
 [ ] shop: basket page
 [ ] shop: order page
 [ ] admin: orders
