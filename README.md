@@ -17,9 +17,9 @@
 
 [x] setup MongoDB
 [x] create local CDN store
-[ ] admin: products
-[ ] shop: products page
+[x] admin: products
 [ ] shop: product page
+[ ] shop: products page
 [ ] shop: basket page
 [ ] shop: order page
 [ ] admin: orders

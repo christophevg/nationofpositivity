@@ -10,11 +10,27 @@ var Content = Vue.component("Content", {
 
 store.registerModule("cdn", {
   state: {
-    index: [],
+    index: {},
+    flat_index: []
   },
   mutations: {
     index: function(state, index) {
-      state.index = index;
+      function flatten(obj, prefix, lst) {
+        for(var key in obj) {
+          if(key == "_files") {
+            for(var file in obj[key]) {
+              lst.push(prefix + "/" + obj[key][file]);
+            }
+          } else {
+            if(typeof obj[key] === 'object') {
+              flatten(obj[key], prefix + "/" + key, lst);
+            }
+          }
+        }
+      }
+      
+      Vue.set(state, "index", index);
+      flatten(index, "", state.flat_index);
     }
   },
   getters: {
@@ -23,6 +39,10 @@ store.registerModule("cdn", {
         var parts = path.split("/"),
             filename = parts.pop(),
             ptr = state.index;
+        if(parts[0] == "") {
+          parts.shift();
+        }
+        parts.push("_files");
         for(var i=0; i<parts.length; i++) {
           var step = parts[i];
           if( step in ptr ) {
@@ -31,11 +51,16 @@ store.registerModule("cdn", {
             break;
           }
         }
-        if(filename in ptr) {
+        if(ptr.includes(filename)) {
           return store.state.config.cdn + "/assets/" + path;
         } else {
           return "/app/static/images/placeholder.png";
         }
+      }
+    },
+    images: function(state) {
+      return function() {
+        return state.flat_index;
       }
     }
   },

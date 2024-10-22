@@ -42,25 +42,46 @@ from baseweb import Baseweb
 server = Baseweb("nation-of-positivity")
 server.config["TEMPLATES_AUTO_RELOAD"] = True
 
+# expose mode
+server.settings["mode"]         = os.environ.get("APP_MODE", "production")
+server.settings["mode_message"] = os.environ.get("APP_MODE_MESSAGE", None)
+
 # expose CDN setting
 cdn_uri = os.environ.get("CDN_URI", None) # might be empty string
 server.settings["cdn"] = cdn_uri if cdn_uri else "http://localhost:4000/"
 
-# register components, stylesheets,...
+# register components
 HERE       = Path(__file__).resolve().parent
 COMPONENTS = HERE / "components"
-STATIC     = HERE / "static"
 
+for component in [
+  "cdn",
+  "ajax",
+  "moment", "moment-timezone", "filters",
+  "logo", "page",
+  "i18n",
+  "product-store", "ProductCard"
+]:
+  server.register_component(f"{component}.js", COMPONENTS)
+
+# setup static hosting and style (which is static ;-))
+STATIC = HERE / "static"
 server.app_static_folder = STATIC
-
 server.register_stylesheet("style.css", STATIC / "css")
-
-server.register_component("cdn.js",  COMPONENTS)
-server.register_component("logo.js", COMPONENTS)
-
-server.register_component("app.js", HERE)
 
 # register pages
 from .pages import welcome, faq, contact
+
+if os.environ.get("ADMIN_MODE") == "yes":
+  logger.warn("""
+     _       _           _         __  __           _      
+    / \   __| |_ __ ___ (_)_ __   |  \/  | ___   __| | ___ 
+   / _ \ / _` | '_ ` _ \| | '_ \  | |\/| |/ _ \ / _` |/ _ \\
+  / ___ \ (_| | | | | | | | | | | | |  | | (_) | (_| |  __/
+ /_/   \_\__,_|_| |_| |_|_|_| |_| |_|  |_|\___/ \__,_|\___|
+                                                             
+""")
+  server.register_component("admin.js", COMPONENTS);
+  from .pages.admin import products
 
 logger.info("✅ shop is ready")
