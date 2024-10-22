@@ -1,11 +1,12 @@
 var Index = {
+  mixins: [ Content ],
   template : `
 <Page>
   <v-layout justify-center row fill-height>
     <v-flex xs12 sm6 md8>
       <v-card>
       <v-img
-        src="https://cdn.nationofpositivity.com/assets/images/new/holiday-season.jpeg"
+        :src="cdn('images/news/holiday-season.jpeg')"
         aspect-ratio="2.75"
       ></v-img>
         <v-card-title primary-title>

@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 
 # load the environment variables for this setup
 load_dotenv(find_dotenv())
-load_dotenv(find_dotenv(".env.local"))
+load_dotenv(find_dotenv(".env.local"), override=True)
 
 # setup logging infrastructure
 
@@ -40,7 +40,13 @@ import shop.db
 
 from baseweb import Baseweb
 server = Baseweb("nation-of-positivity")
+server.config["TEMPLATES_AUTO_RELOAD"] = True
 
+# expose CDN setting
+cdn_uri = os.environ.get("CDN_URI", None) # might be empty string
+server.settings["cdn"] = cdn_uri if cdn_uri else "http://localhost:4000/"
+
+# register components, stylesheets,...
 HERE       = Path(__file__).resolve().parent
 COMPONENTS = HERE / "components"
 STATIC     = HERE / "static"
@@ -49,11 +55,12 @@ server.app_static_folder = STATIC
 
 server.register_stylesheet("style.css", STATIC / "css")
 
-server.register_component("app.js", HERE)
+server.register_component("cdn.js",  COMPONENTS)
 server.register_component("logo.js", COMPONENTS)
 
-from .pages import welcome, faq, contact
+server.register_component("app.js", HERE)
 
-server.config["TEMPLATES_AUTO_RELOAD"] = True
+# register pages
+from .pages import welcome, faq, contact
 
 logger.info("✅ shop is ready")

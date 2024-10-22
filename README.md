@@ -16,7 +16,7 @@
   [x] contact
 
 [x] setup MongoDB
-[ ] create local CDN store
+[x] create local CDN store
 [ ] admin: products
 [ ] shop: products page
 [ ] shop: product page
