@@ -27,7 +27,8 @@ var Faq = {
     section: null, 
     icon:    "question_answer",
     text:    "Vraag & Antwoord", 
-    path:    "/faq"
+    path:    "/faq",
+    index:   4
   },
   data: function() {
     return  {

@@ -16,7 +16,7 @@ var Contact = {
     icon:    "alternate_email",
     text:    "Contact",
     path:    "/contact", 
-    index:   4
+    index:   5
   }
 };
 

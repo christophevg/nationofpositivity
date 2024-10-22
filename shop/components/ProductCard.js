@@ -123,7 +123,7 @@ Vue.component("ProductCard", {
     }
   },
   template: `
-  <v-card tile height="100%" style="margin-right: 3px;">
+  <v-card :to="link_to" tile height="100%" style="margin-right: 3px;">
 
     <div v-if="! product">
       Ok, dit product wordt geladen...
