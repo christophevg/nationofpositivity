@@ -108,26 +108,61 @@ var Basket = {
       </div>
     </v-stepper-content>
 
-    <!-- step 4: summary / confirmation -->
+    <!-- step 4: payment -->
 
-    <v-stepper-step :complete="stage > 4" step="4">
+    <v-stepper-step :complete="stage > 4" step="4" :editable="stage >= 4">
 
-      Jouw bevestiging
+      Betaling
 
       <small>
-  
-        Nog een laatste controle en dan ga ik aan de slag voor jou. Controleer
-        je keuze, je gegevens en de verzending nog een laatste keer. Als je
-        bevestigt wordt je order aangemaakt en word je doorverwezen naar de
-        betaalpagina. Vanaf dit moment koop je met betaalverplichting.
+        
+        Kies hoe je dit graag wil betalen.
   
       </small>
 
     </v-stepper-step>
 
     <v-stepper-content step="4">
+
+      <v-switch v-model="payment" :label="payment ? 'online' : 'overschrijving'"></v-switch>
+
+      <p v-if="payment">
+
+        Je wordt na bevestiging doorgestuurd naar onze betaalpartner Mollie. Je
+        betaalt een online transactiekost van &euro; {{ payment_total }}
+
+      </p>
+
+      <p v-if="!payment">
+        Je betaalt per overschrijving. Betaalinstructies vind je terug in de
+        bevestigingsmail die je ontvangt na bevestiging van je order.
+      </p>
+  
+      <div class="text-xs-center mt-2">
+        <v-btn color="primary" @click="stage = 5">Top, zo betaal ik dat!</v-btn>
+      </div>
+    </v-stepper-content>
+
+    <!-- step 5: summary / confirmation -->
+
+    <v-stepper-step :complete="stage > 5" step="5">
+
+      Jouw bevestiging
+
+      <small>
+  
+        Nog een laatste controle en dan gaan we aan de slag voor jou.
+        Controleer je keuze, je gegevens en de extra's' nog een laatste keer.
+        Als je bevestigt wordt je order aangemaakt. Vanaf dit moment koop je
+        met betaalverplichting.
+  
+      </small>
+
+    </v-stepper-step>
+
+    <v-stepper-content step="5">
       
-      <OrderOverview :order="basket" shipping/>
+      <OrderOverview :order="basket" with-extras/>
 
       <div class="text-xs-center">
         <v-checkbox
@@ -147,8 +182,10 @@ var Basket = {
 
         <br>
         We registreren je order.<br>
+        <span v-if="payment">
         <br>
         Nadien wordt je doorverwezen naar de betaalpartner, Mollie.
+        </span>
         <br><br>
 
         <v-progress-linear indeterminate color="primary" class="mb-0"></v-progress-linear>
@@ -192,6 +229,17 @@ var Basket = {
       return this.shipping.reduce(function(total, item) {
         return total + item.line_total;
       }, 0);
+    },
+    payment_total: function() {
+      return store.getters.payment_total;
+    },
+    payment: {
+      get() {
+        return store.getters.payment_total > 0;
+      },
+      set(value) {
+        store.commit("update_payment", value)
+      }
     }
   },
   methods: {
@@ -227,6 +275,7 @@ var Basket = {
             {
               order    : self.basket,
               contact  : self.contact,
+              payment  : self.payment,
               recaptcha: token
             },
             function( data ) {

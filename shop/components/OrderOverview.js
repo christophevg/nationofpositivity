@@ -1,8 +1,8 @@
 Vue.component("OrderOverview", {
   props: {
-    "order"    : Object,
-    "editable" : Boolean,
-    "shipping" : Boolean
+    "order"       : Object,
+    "editable"    : Boolean,
+    "withExtras" : Boolean
   },
   template: `
 <v-data-table
@@ -37,17 +37,22 @@ Vue.component("OrderOverview", {
         <b>Artikels: &euro; {{ order.total.lines | fixed2 }}</b>
       </td>
     </tr>
-    <tr v-if="shipping">
+    <tr v-if="withExtras">
       <td :colspan="headers.length" class="text-xs-right">
         <b>Verzending: &euro; {{ order.total.shipping | fixed2 }}</b>
       </td>
     </tr>
-    <tr v-if="shipping">
+    <tr v-if="withExtras && order.total.payment > 0">
+      <td :colspan="headers.length" class="text-xs-right">
+        <b>Online Payment: &euro; {{ order.total.payment }}</b>
+      </td>
+    </tr>
+    <tr v-if="withExtras">
       <td :colspan="headers.length" class="text-xs-right">
         <b>Totaal: &euro; {{ order.total.grand | fixed2 }}</b>
       </td>
     </tr>
-    <tr v-if="shipping">
+    <tr v-if="withExtras">
       <td :colspan="headers.length" class="text-xs-right">
         Waarvan 21% BTW: &euro; {{ order.total.tax | fixed2 }}
       </td>

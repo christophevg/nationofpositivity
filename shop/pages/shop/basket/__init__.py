@@ -37,7 +37,8 @@ class Orders(Resource):
 
     response = { "id" : order.id }
 
-    # initiate payment processing
+    extra_info = ""
+
     if order.requires_payment:
       payment = client.payments.create({
         "amount": {
@@ -50,6 +51,18 @@ class Orders(Resource):
       })
       orders.update(order.id, payment=payment.id)
       response["next"] = payment.checkout_url
+    else:
+      order_id = str(order.id)
+      structured = '/'.join((order_id[:2],order_id[3:-5],order_id[-5:]))
+      extra_info = f"""
+<p>
+
+  Je koos voor betaling via overschrijving. Gelieve &euro; {order.total.grand}
+  over te schrijven naar BE14.7370.5585.6683. Gebruik het nummer van je order
+  als gestructureerde mededeling: +++{structured}+++.
+
+</p>
+"""
 
     # send confirmation email
     send(
@@ -57,6 +70,7 @@ class Orders(Resource):
       "Bedankt voor je order...",
       "Je order is goed ontvangen!",
       f"""
+{extra_info}
 <p>
   Zodra ik je betaling ontvangen heb, ga ik aan de slag. Je kan de voortgang van
   je order opvolgen op de <a href="{WEBSITE_URL}/order/{order.id}">website</a>.

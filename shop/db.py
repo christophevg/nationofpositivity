@@ -42,7 +42,6 @@ class Collection():
     self._db                 = new_db
     self.collection          = self.db[self.name]
     self.pageable_collection = Pageable(self.db)[self.name]
-
   
   def create(self, doc=None, **kwargs):
     if doc:
@@ -245,6 +244,7 @@ class OrderTotal:
   tax: float
 
   shipping: float = 0
+  payment: float = 0
 
 @dataclass
 class Order(BaseObject):
@@ -316,6 +316,6 @@ class Order(BaseObject):
   
   @property
   def requires_payment(self):
-    return not self.shipping is None
+    return self.total.payment > 0
 
 orders = Collection(db, "orders",   Order)

@@ -27,16 +27,14 @@
 
 [x] integrate SendGrid
 
-[ ] payment: overschrijving of online
-[ ] shipping uitwerken 
+[x] payment: overschrijving of online
+[ ] shipping herwerken 
 
-[ ] admin: orders vervolledigen
-  [ ] payment
-  [ ] shipping
+[ ] admin: order stages vervolledigen
 
 [ ] add products
 
-[ ] integrate Mollie (?)
+[ ] integrate Mollie
 
 [ ] launch 🚀
 

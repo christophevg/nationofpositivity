@@ -7,6 +7,7 @@ function round2(value) {
 store.registerModule("basket", {
   state: {
     order: [],
+    payment: true,
     badge: {
       visible : false,
       text    : 0,
@@ -49,8 +50,13 @@ store.registerModule("basket", {
         return total + item.line_total; 
       }, 0);
     },
+    payment_total: function(state, getters) {
+      return state.payment ? 0.35 : 0;
+    },
     total: function(state, getters) {
-      return getters.lines_total + getters.shipping_total;
+      return getters.lines_total 
+           + getters.payment_total
+           + getters.shipping_total;
     },
     order : function(state, getters) {
       return {
@@ -59,6 +65,7 @@ store.registerModule("basket", {
         total: {
           lines   : round2(getters.lines_total),
           shipping: round2(getters.shipping_total),
+          payment : round2(getters.payment_total),
           grand   : round2(getters.total),
           tax     : round2(getters.total - (getters.total / 1.21))
         }
@@ -81,6 +88,9 @@ store.registerModule("basket", {
     }
   },
   mutations: {
+    update_payment: function(state, value) {
+      state.payment = value;
+    },
     update_product: function(state, product) {
       var existing = state.order.find(function(item){
         return item.product.id == product.id;
@@ -158,6 +168,7 @@ store.registerModule("basket", {
     },
     clear_basket: function(state) {
       Vue.set(state, "order", []);
+      state.payment = true;
       state.badge.visible = false;
       state.badge.text    = 0;
     }

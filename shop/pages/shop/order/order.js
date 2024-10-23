@@ -13,7 +13,7 @@ var Order = {
 
     </p>
 
-    <OrderOverview :order="model.order" shipping/>
+    <OrderOverview :order="model.order" with-extras/>
       
     <div v-if="have_stages">
 
@@ -32,7 +32,7 @@ var Order = {
         <v-stepper-items>
           <v-stepper-content :step="step_index_of('payment')">
 
-            Ik wacht nog even op bevestiging van de betaalpartner en begin dan
+            Ik wacht nog even op bevestiging van je betaling en begin dan
             snel aan jouw stukje positiviteit te werken!
 
           </v-stepper-content>

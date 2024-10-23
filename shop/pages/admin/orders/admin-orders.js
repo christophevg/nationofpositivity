@@ -14,7 +14,7 @@ var OrderAdmin = {
         <v-tab key="raw">Raw</v-tab>
 
         <v-tab-item key="overview">
-          <OrderOverview :order="model.selected" shipping/>
+          <OrderOverview :order="model.selected" with-extras/>
         </v-tab-item>
 
         <v-tab-item key="payment">
