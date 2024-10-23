@@ -10,53 +10,52 @@ var Order = {
   
       Hieronder vind je een overzicht van je bestelling, als ook een overzicht
       van de stappen die jouw stukje positiviteit tot bij jou brengen.
-
+  
     </p>
 
     <OrderOverview :order="model.order" with-extras/>
       
-    <div v-if="have_stages">
+    <div>
 
       <div class="mt-2 mb-2"><h2>Voortgang</h2></div>
   
-      <v-stepper :value="step_index_of(stage)">
+      <v-stepper :value="step">
 
         <v-stepper-header>
-          <template v-for="(step, i) in model.order.stages">
-            <v-stepper-step :complete="is_completed(step)" :step="i+1">{{ step_title(step) }}</v-stepper-step>
-            <v-divider></v-divider>
-          </template>
-          <v-stepper-step :complete="is_done" complete-icon="favorite" color="success" :step="model.order.stages.length + 1">Jouw Positivity is er!</v-stepper-step>
+          <v-stepper-step :complete="is_paid" :step="1">Jouw betaling</v-stepper-step>
+          <v-divider></v-divider>
+
+          <v-stepper-step :complete="is_produced" :step="2">Productie</v-stepper-step>
+          <v-divider></v-divider>
+
+          <v-stepper-step :complete="is_shipped" :step="3">Verzending</v-stepper-step>
+          <v-divider></v-divider>
+
+          <v-stepper-step :complete="is_done" complete-icon="favorite" color="success" :step="4">Jouw Positivity is er!</v-stepper-step>
         </v-stepper-header>
 
         <v-stepper-items>
-          <v-stepper-content :step="step_index_of('payment')">
+          <v-stepper-content :step="1">
 
             Ik wacht nog even op bevestiging van je betaling en begin dan
             snel aan jouw stukje positiviteit te werken!
 
           </v-stepper-content>
 
-          <v-stepper-content :step="step_index_of('production')">
+          <v-stepper-content :step="2">
 
             Ik ben bezig om jouw stukje positiviteit zo snel mogelijk klaar te krijgen.
 
           </v-stepper-content>
 
-          <v-stepper-content :step="step_index_of('shipment')">
+          <v-stepper-content :step="3">
 
             Hoera, jouw positiviteit is verzonden en komt jouw kant op. Je kan deze
             zending volgen via <a href="">de tracker van de courier</a>.
 
           </v-stepper-content>
 
-          <v-stepper-content :step="step_index_of('pickup')">
-
-            Hoera, jouw positiviteit ligt op jou te wachten.
-
-          </v-stepper-content>
-
-          <v-stepper-content :step="model.order.stages.length + 1">
+          <v-stepper-content :step="4">
 
             Veel plezier met jouw stukje positiviteit!
 
@@ -93,52 +92,29 @@ var Order = {
     });
   },
   computed: {
-    have_stages: function() {
-      return this.model.order.stages.length > 0;
+    step: function() {
+      if(!this.is_paid)      { return 1; }
+      if(!this.is_shipped)   { return 2; }
+      if(!this.is_delivered) { return 3; }
+      return 4;
     },
-    stage: function() {
-      var current = this.model.order.stages.find(function(stage){
-        return ! stage.ts;
-      });
-      return current ? current.id : null;
+    is_paid: function() {
+      return this.model.order.paid_at != null;
     },
-    step_index_of: function() {
-      var self = this;
-      return function(id) {
-        if(id == null) { return self.model.order.stages.length + 1; }
-        return self.model.order.stages.findIndex(function(stage){
-          return stage.id == id;
-        }) + 1;
-      }
+    is_produced: function() {
+      return this.model.order.produced_at != null;
     },
-    is_completed: function() {
-      var self = this;
-      return function(step) {
-        return self.model.order.stages.find(function(stage){
-          return stage.id == step.id;
-        })["ts"] != null;
-      }
-    },
-    step_title: function() {
-      return function(step) {
-        return {
-          "payment"    : "Jouw betaling",
-          "production" : "Productie",
-          "shipment"   : "Verzending",
-          "pickup"     : "Afhalen"
-        }[step.id];
-      }
+    is_shipped: function() {
+      return this.model.order.shipped_at != null;
     },
     is_done: function() {
-      return this.model.order.stages[this.model.order.stages.length-1].ts != null;
+      return this.model.order.status == "done";
     }
   },
   data: function() {
     return {
       model: {
-        order : {
-          stages : []
-        }
+        order : {}
       }
     }
   }

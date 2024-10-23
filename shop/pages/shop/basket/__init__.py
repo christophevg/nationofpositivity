@@ -45,11 +45,11 @@ class Orders(Resource):
           "currency" : "EUR",
           "value"    : str(order.total.grand) 
         },
-        "description": f"Betaling voor Homemade order {order.id}",
+        "description": f"Betaling voor Nation of Positivity order {order.id}",
         "redirectUrl": f"{WEBSITE_URL}/order/{order.id}",
-        "webhookUrl" : f"{WEBSITE_URL}/orders/feedback"
+        "webhookUrl" : f"{WEBSITE_URL}/api/payment/{order.id}"
       })
-      orders.update(order.id, payment=payment.id)
+      orders.update(order.id, payment=payment.id, status=None)
       response["next"] = payment.checkout_url
     else:
       order_id = str(order.id)
@@ -84,3 +84,19 @@ class Orders(Resource):
     return response
 
 server.api.add_resource(Orders, "/api/orders")
+
+class PaymentFeedback(Resource):
+  def post(self, id):
+    logger.info("FEEDBACK")
+    order   = orders.get(id)
+    payment = client.payments.get(request.form["id"])
+    if order.payment == payment.id:
+      logger.info(f"received payment feedback for order {id}: {payment.status}")
+      if payment.is_paid:
+        orders.update(order.id, paid_at=payment.paid_at)
+      else:
+        logger.info("not paid")
+    else:
+      logger.error("received feedback for order {id} with incorrect payment id: {payment.id}")
+
+server.api.add_resource(PaymentFeedback, "/api/payment/<id>")

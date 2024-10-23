@@ -61,9 +61,13 @@ class Collection():
       filters.update(more_filters)
     data = self.collection.find_one(filters, { "_id" : False })
     if data:
-      return self.dataclass(**data)
-    else:
-      return None
+      data = self.dataclass.sanitize(data)
+      if data:
+        obj = self.dataclass(**data)
+        logger.info(obj)
+        return obj
+    logger.warn(f"could not get {self.collection}/{id}")
+    return None
 
   def find(self, sort=None, order=None, start=0, limit=25, more_filters=None, **kwargs):
     filters = {
@@ -93,10 +97,10 @@ class Collection():
     return results
 
   def update(self, id, **kwargs):
-    logger.info(f"update {self.name} : {kwargs}")
     kwargs["id"] = id
     updated = self.dataclass.sanitize(kwargs)
     updated.pop("id", None)
+    logger.info(f"update {self.name}/{id} : {updated}")
     self.collection.update_one({"id" : id}, { "$set" : updated })
 
   def delete(self, id):
@@ -189,19 +193,6 @@ class OrderLine:
     return self.line_total
 
 @dataclass
-class Box:
-  # id : str
-  title: str
-  unit_price: float
-  line_total: float
-  # volume: int
-  amount: int
-  
-  @property
-  def total(self):
-    return self.cost * self.amount
-
-@dataclass
 class Contact:
   name       : str
   address    : str
@@ -250,26 +241,18 @@ class OrderTotal:
 class Order(BaseObject):
   lines   : List[OrderLine]
   contact : Contact
-  stages  : List[Stage]
   total   : OrderTotal
 
   id      : str = field(default_factory=uid)
   created : datetime = field(default_factory=datetime.utcnow)
-  shipping: List[Box] = None
   payment : str = None
+  paid_at : str = None
 
   @classmethod
   def create(cls, **kwargs):
     try:
-      order   = kwargs["order"]    # contains lines, shipping, total
+      order   = kwargs["order"]
       contact = kwargs["contact"]
-
-      # set up default stages, TODO: customize
-      stages = [
-        Stage(id="payment"),
-        Stage(id="production"),
-        Stage(id="shipment")
-      ]
     
       # validate order lines prices
       expected_total = 0
@@ -294,10 +277,8 @@ class Order(BaseObject):
         logger.warn(f"{order['total']['lines']} != {expected_total}")
         raise ValueError("incorrect lines total detected")
       
-      # TODO: shipping, grand and tax
-
       # create
-      return cls(**order, contact=contact, stages=stages)
+      return cls(**order, contact=contact)
     except Exception as ex:
       logger.exception(ex)
       raise ValueError("Sorry, er ging iets mis. Controleer je mandje en probeer opnieuw.")
@@ -307,8 +288,6 @@ class Order(BaseObject):
     self.lines    = [ OrderLine(**line) for line in self.lines ]
     self.total    = OrderTotal(**self.total)
     self.contact  = Contact(**self.contact)
-    if self.shipping:
-      self.shipping = [ Box(**line) for line in self.shipping ]
     super().__post_init__()
 
   def __repr__(self):

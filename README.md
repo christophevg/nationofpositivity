@@ -5,9 +5,7 @@
 ## TODO
 
 - [x] create CDN (repo + pages setup)
-
-- [x] clean out repo
-
+- [x] clean up repo
 - [x] basic baseweb setup
 - [x] apply styling
 - [x] add informational structure
@@ -26,6 +24,7 @@
 - [x] integrate SendGrid
 - [x] payment: overschrijving of online
 - [x] shipping herwerken
+- [x] shop: order page: stages opkuisen
 - [ ] admin: order stages vervolledigen
 - [ ] add products
 - [ ] integrate Mollie
