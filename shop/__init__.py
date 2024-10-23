@@ -110,6 +110,6 @@ if os.environ.get("ADMIN_MODE") == "yes":
                                                              
 """)
   server.register_component("admin.js", COMPONENTS);
-  from .pages.admin import products
+  from .pages.admin import products, orders
 
 logger.info("✅ shop is ready")
