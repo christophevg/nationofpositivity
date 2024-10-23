@@ -7,7 +7,7 @@ import json
 import uuid
 
 import dataclasses
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, fields
 from typing import List, Dict
 from datetime import datetime
 
@@ -95,7 +95,10 @@ class Collection():
 
   def update(self, id, **kwargs):
     logger.info(f"update {self.name} : {kwargs}")
-    self.collection.update_one({"id" : id}, { "$set" : self.dataclass.sanitize(kwargs) })
+    kwargs["id"] = id
+    updated = self.dataclass.sanitize(kwargs)
+    updated.pop("id", None)
+    self.collection.update_one({"id" : id}, { "$set" : updated })
 
   def delete(self, id):
     logger.info(f"delete {self.name}: {id}")
@@ -123,14 +126,28 @@ class BaseObject:
     return cls(**kwargs)
   
   @classmethod
-  def sanitize(cls, product):
-    return {
-      k : v for k, v in product.items()
+  def sanitize(cls, args):
+    # first filter only acceptable fields
+    args = {
+      k : v for k, v in args.items()
       if k in cls.__dict__["__dataclass_fields__"]
     }
+    # next ensure all basic types are converted to their correct type
+    for field in dataclasses.fields(cls):
+      if field.type in [ int, float, str ] and field.name in args:
+        args[field.name] = field.type(args[field.name]) 
+
+    return args
 
   def asdict(self):
     return dataclasses.asdict(self)
+    
+  def __post_init__(self):
+    # ensure all basic types are converted to their correct type
+    for field in dataclasses.fields(self):
+      value = getattr(self, field.name)
+      if field.type in [ int, float, str ] and not isinstance(value, field.type):
+        setattr(self, field.name, field.type(value))
 
 @dataclass
 class Product(BaseObject):
@@ -148,3 +165,145 @@ class Product(BaseObject):
   specifications: Dict[str, str] = field(default_factory=dict)
 
 products = FilteredCollection(db, "products", Product)
+
+@dataclass
+class Option:
+  option: str
+  choice: str
+  cost  : float
+
+@dataclass
+class OrderLine:
+  product: Product
+  amount: int
+  unit_price: float
+  line_total: float
+  
+  options: List[Option] = field(default_factory=list)
+  
+  def __post_init__(self):
+    self.product = Product(**self.product)
+    self.options = [ Option(**option) for option in self.options ]
+  
+  @property
+  def total(self):
+    return self.line_total
+
+@dataclass
+class Box:
+  # id : str
+  title: str
+  unit_price: float
+  line_total: float
+  # volume: int
+  amount: int
+  
+  @property
+  def total(self):
+    return self.cost * self.amount
+
+@dataclass
+class Contact:
+  name       : str
+  address    : str
+  postalcode : int
+  city       : str
+  phone      : str
+  email      : str
+
+  company    : str = None
+  tax        : str = None
+
+def uid():
+  return str(uuid.uuid4())
+
+@dataclass
+class Stage:
+  id: str
+  ts : datetime = None
+
+  @property
+  def completed(self):
+    return not self.ts is None
+
+@dataclass
+class OrderTotal:
+  lines: float
+  grand: float
+  tax: float
+
+  shipping: float = 0
+
+@dataclass
+class Order(BaseObject):
+  lines   : List[OrderLine]
+  contact : Contact
+  stages  : List[Stage]
+  total   : OrderTotal
+
+  id      : str = field(default_factory=uid)
+  created : datetime = field(default_factory=datetime.utcnow)
+  shipping: List[Box] = None
+  payment : str = None
+
+  @classmethod
+  def create(cls, **kwargs):
+    try:
+      order   = kwargs["order"]    # contains lines, shipping, total
+      contact = kwargs["contact"]
+
+      # set up default stages, TODO: customize
+      stages = [
+        Stage(id="payment"),
+        Stage(id="production"),
+        Stage(id="shipment")
+      ]
+    
+      # validate order lines prices
+      expected_total = 0
+      for line in order["lines"]:
+        product = products.get(line["product"]["id"])
+        # TODO: recompute line options from product
+        options_price = sum([ option["cost"] for option in line["options"] ])
+        # unit cost
+        if line["unit_price"] != product.unit_price + options_price:
+          logger.warn(f"{line['product']['id']} = {line['unit_price']} != {product.unit_price}")
+          raise ValueError("incorrect unit price detected")
+        # line cost
+        expected_line_total = (product.unit_price + options_price) * line["amount"]
+        expected_total += expected_line_total
+        if line["line_total"] != expected_line_total:
+          logger.warn(f"{line['product']['id']} = {line['line_total']} != {expected_line_total}")
+          raise ValueError("incorrect line price detected")
+
+      # validate totals
+      expected_total = round(expected_total,2)
+      if order["total"]["lines"] != expected_total:
+        logger.warn(f"{order['total']['lines']} != {expected_total}")
+        raise ValueError("incorrect lines total detected")
+      
+      # TODO: shipping, grand and tax
+
+      # create
+      return cls(**order, contact=contact, stages=stages)
+    except Exception as ex:
+      logger.exception(ex)
+      raise ValueError("Sorry, er ging iets mis. Controleer je mandje en probeer opnieuw.")
+    
+  def __post_init__(self):
+    # further unmarshall nested dicts into objects
+    self.lines    = [ OrderLine(**line) for line in self.lines ]
+    self.total    = OrderTotal(**self.total)
+    self.contact  = Contact(**self.contact)
+    if self.shipping:
+      self.shipping = [ Box(**line) for line in self.shipping ]
+    super().__post_init__()
+
+  def __repr__(self):
+    return f"Order({self.id}, {len(self.lines)} items)"
+  
+  @property
+  def requires_payment(self):
+    return not self.shipping is None
+
+orders = Collection(db, "orders",   Order)

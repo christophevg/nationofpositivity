@@ -3,6 +3,9 @@ baseweb>=0.3.0
 pymongo
 pageable_mongo
 
+requests
+sendgrid
+
 # run
 gunicorn
 eventlet

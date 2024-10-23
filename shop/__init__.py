@@ -50,6 +50,12 @@ server.settings["mode_message"] = os.environ.get("APP_MODE_MESSAGE", None)
 cdn_uri = os.environ.get("CDN_URI", None) # might be empty string
 server.settings["cdn"] = cdn_uri if cdn_uri else "http://localhost:4000/"
 
+# setup recaptcha
+recaptcha_key = os.environ.get("APP_RECAPTCHA_SITE_KEY", None)
+if recaptcha_key:
+  server.settings["recaptcha"] = recaptcha_key
+  server.register_external_script(f"https://www.google.com/recaptcha/api.js?render={recaptcha_key}")
+
 # register components
 HERE       = Path(__file__).resolve().parent
 COMPONENTS = HERE / "components"
@@ -60,7 +66,8 @@ for component in [
   "moment", "moment-timezone", "filters",
   "logo", "page",
   "i18n",
-  "product-store", "ProductCard"
+  "product-store", "basket-store", "contact-store",
+  "ProductCard", "OrderOverview", "ContactCard"
 ]:
   server.register_component(f"{component}.js", COMPONENTS)
 

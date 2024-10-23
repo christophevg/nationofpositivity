@@ -51,7 +51,7 @@ store.registerModule("cdn", {
             break;
           }
         }
-        if(ptr.includes(filename)) {
+        if(ptr && ptr.includes && ptr.includes(filename)) {
           return store.state.config.cdn + "/assets/" + path;
         } else {
           return "/app/static/images/placeholder.png";

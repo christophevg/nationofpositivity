@@ -1,0 +1,276 @@
+var Basket = {
+  template : `
+<Page>
+
+  <h1>Jouw happiness in wording...</h1>
+  
+  <p>
+  
+    Nog enkele stappen en jouw geluk is onderweg...
+  
+  </p>
+  
+  <v-stepper v-model="stage" vertical>
+
+    <!-- step 1: basket -->
+  
+    <v-stepper-step :complete="stage > 1" step="1" editable>
+
+      Jouw selectie
+
+     <small>
+
+       Dit zijn de artikels die je toegevoegd hebt aan je selectie. Je kan ze
+       hier nog bewerken en/of kijk verder in de shop om nog leuke dingen toe
+       te voegen.
+
+      </small>
+
+    </v-stepper-step>
+
+    <v-stepper-content step="1">
+      <OrderOverview :order="basket" editable @on_add="add" @on_remove="remove"/>
+
+      <div class="text-xs-center mt-2">
+        <v-btn :disabled="!this.basket_ok" color="primary" @click="stage = 2">Ja, dat wil ik...</v-btn>
+      </div>
+    </v-stepper-content>
+
+    <!-- step 2: contact info -->
+
+    <v-stepper-step :complete="stage > 2" step="2" :editable="stage >= 2">
+
+      Jouw gegevens
+
+      <small>
+        
+        Vervolledig onderstaande gegevens, zodat we je kunnen bereiken en
+        vooral om je weldra jouw happiness te kunnen opsturen. Je gegevens
+        worden bewaard op deze computer, zodat je ze volgende keer niet meer
+        opnieuw moet invullen.
+  
+      </small>
+
+    </v-stepper-step>
+  
+    <v-stepper-content step="2">
+
+      <ContactCard :contact="contact" @on_update="on_update"/>
+
+      <div class="text-xs-center mt-2">
+        <v-btn color="primary" :disabled="!contact_ok" @click="stage = 3">Prima, dat ben ik...</v-btn>
+      </div>
+    </v-stepper-content>
+    
+
+    <!-- step 3: shipping -->
+
+    <v-stepper-step :complete="stage > 3" step="3" :editable="stage >= 3">
+
+      Verzending
+
+      <small>
+        
+        Na wat puzzelen krijgen we alles zo goed mogelijk kunnen verpakken voor
+        je en kunnen we het verzenden zoals hieronder beschreven.
+  
+      </small>
+
+    </v-stepper-step>
+
+    <v-stepper-content step="3">
+
+      <v-data-table
+        :headers="shipping_headers"
+        :items="shipping"
+        class="elevation-1"
+        hide-actions
+      >
+
+        <template v-slot:items="line">
+          <td>{{ line.item.title }}</td>
+          <td class="text-xs-right">{{ line.item.amount }}</td>
+          <td class="text-xs-right">&euro; {{ line.item.unit_price | fixed2 }}</td>
+          <td class="text-xs-right">&euro; {{ line.item.line_total | fixed2 }}</td>
+        </template>
+        <template v-slot:footer>
+          <tr>
+            <td :colspan="shipping_headers.length" class="text-xs-right">
+              <b>Totaal verzending: &euro; {{ shipping_total | fixed2 }}</b>
+            </td>
+          </tr>
+        </template>
+      </v-data-table>
+
+
+      <div class="text-xs-center mt-2">
+        <v-btn color="primary" @click="stage = 4">Ok, zo mag dat naar mij komen...</v-btn>
+      </div>
+    </v-stepper-content>
+
+    <!-- step 4: summary / confirmation -->
+
+    <v-stepper-step :complete="stage > 4" step="4">
+
+      Jouw bevestiging
+
+      <small>
+  
+        Nog een laatste controle en dan ga ik aan de slag voor jou. Controleer
+        je keuze, je gegevens en de verzending nog een laatste keer. Als je
+        bevestigt wordt je order aangemaakt en word je doorverwezen naar de
+        betaalpagina. Vanaf dit moment koop je met betaalverplichting.
+  
+      </small>
+
+    </v-stepper-step>
+
+    <v-stepper-content step="4">
+      
+      <OrderOverview :order="basket" shipping/>
+
+      <div class="text-xs-center">
+        <v-checkbox
+          v-model="confirmation"
+          value="1"
+          label="Ja, ik begrijp dat ik door deze bevestiging een betaalverplichting heb en dat ik akkoord ga met de algemene verkoopsvoorwaarden en me houd aan een acceptable manier van gebruik van deze website (zie ook 'Mag ik doen en laten wat ik wil?' bij vraag &amp; antwoord)"
+          type="checkbox"
+        ></v-checkbox>
+        <v-btn :disabled="!confirmation" color="primary" @click="submit">Ja, zo is alles goed...</v-btn>
+      </div>
+    </v-stepper-content>
+
+  </v-stepper>
+  <v-dialog v-model="submission_overlay" persistent width="300">
+    <v-card>
+      <v-card-text>
+
+        <br>
+        We registreren je order.<br>
+        <br>
+        Nadien wordt je doorverwezen naar de betaalpartner, Mollie.
+        <br><br>
+
+        <v-progress-linear indeterminate color="primary" class="mb-0"></v-progress-linear>
+      </v-card-text>
+    </v-card>
+  </v-dialog>
+</Page>
+`,
+  navigation: {
+    section: null,
+    icon:    "shopping_cart",
+    text:    "Basket full of Positivity",
+    path:    "/basket",
+    index:   3
+  },
+  mounted: function() {
+    store.dispatch("refresh_basket");
+  },
+  computed: {
+    basket: function() {
+      return store.getters.order;
+    },
+    basket_ok: function() {
+      return this.basket.lines.length > 0;
+    },
+    contact: function() {
+      return store.state.contact;
+    },
+    contact_ok: function() {
+      // store must always be valid, form also to be taken into account when
+      // at least validated once
+      if(this.contact_form_is_validated) {
+        return this.contact_form_is_valid && store.getters.contact_is_valid;
+      }
+      return store.getters.contact_is_valid;
+    },
+    shipping: function() {
+      return store.getters.order.shipping;
+    },
+    shipping_total: function() {
+      return this.shipping.reduce(function(total, item) {
+        return total + item.line_total;
+      }, 0);
+    }
+  },
+  methods: {
+    remove: function(line) {
+      store.commit("remove_from_basket", line);
+    },
+    add: function(line) {
+      store.commit("add_to_basket", line);      
+    },
+    on_update: function(result) {
+      if(result.is_valid) {
+        store.commit("contact", result.contact);
+      }
+      this.contact_form_is_valid = result.is_valid;
+      this.contact_form_is_validated = true;
+    },
+    submit: function() {
+      if(typeof grecaptcha === "undefined" || (!grecaptcha) ) {
+        app.$notify({
+          group: "notifications",
+          title: "Whoops...",
+          text:  "Daar ging iets mis :-(<br><br>\nWe kunnen het internet blijkbaar niet bereiken. Probeer het eens opnieuw en/of ververs je browser even.",
+          type:  "error",
+          duration: 10000
+        });
+        return;
+      }
+      this.submission_overlay = true;
+      var self = this;
+      grecaptcha.ready(function() {
+        grecaptcha.execute(store.state.config.recaptcha, {action: "submit"}).then(function(token) {
+          post( "/api/orders",
+            {
+              order    : self.basket,
+              contact  : self.contact,
+              recaptcha: token
+            },
+            function( data ) {
+              // server responded successfully, so order is registered
+              // clear basket and proceed to the next page
+              // in case provided in response go there, else go to order page
+              store.commit("clear_basket");
+              self.submission_overlay = false;
+              if( data.next ) {
+                window.location = data.next;
+              } else {
+                router.push("/order/" + data.id);
+              }
+            },
+            function( response ) {
+              // something went wrong, ensure a fresh basket and start over with
+              // product/price confirmation.
+              store.dispatch("refresh_basket");
+              self.submission_overlay = false;
+              self.confirmation = false;
+              self.stage = 1;
+            }
+          );
+        })
+      })
+    }
+  },
+  data () {
+    return {
+      stage: 1,
+      submission_overlay: false,
+      confirmation: false,
+      contact_form_is_validated: false,
+      contact_form_is_valid: false,
+      shipping_headers: [
+        { text: "Verpakking", align: "left",  sortable: true,  value: "box.title" },
+        { text: "Aantal",     align: "right", sortable: true,  value: "amount"    },
+        { text: "Prijs",      align: "right", sortable: true,  value: "unit_price" },
+        { text: "Totaal",     align: "right", sortable: true,  value: "line_total" }
+      ]
+    }
+  }
+};
+
+Navigation.add(Basket);
+
+Vue.set(Basket.navigation, "badge", store.state.basket.badge);

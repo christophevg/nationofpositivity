@@ -21,7 +21,7 @@
 [x] shop: products page
 [x] shop: product page
 [x] shop: clean up product card
-[ ] shop: basket page
+[x] shop: basket page
 [ ] shop: order page
 [ ] admin: orders
 
