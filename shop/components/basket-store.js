@@ -35,20 +35,11 @@ store.registerModule("basket", {
         return total + item.line_total;
       }, 0);
     },
-    shipping: function(state) {
-      return [
-        {
-          title     : "shipping",
-          amount    : 1,
-          unit_price: round2(4,99),
-          line_total: round2(4,99)
-        }
-      ];
+    shipping_format: function(state, getters) {
+      return "XS";
     },
     shipping_total: function(state, getters) {
-      return getters.shipping.reduce(function(total, item) {
-        return total + item.line_total; 
-      }, 0);
+      return 5.60;
     },
     payment_total: function(state, getters) {
       return state.payment ? 0.35 : 0;
@@ -61,7 +52,6 @@ store.registerModule("basket", {
     order : function(state, getters) {
       return {
         lines     : getters.lines,
-        shipping  : getters.shipping,
         total: {
           lines   : round2(getters.lines_total),
           shipping: round2(getters.shipping_total),

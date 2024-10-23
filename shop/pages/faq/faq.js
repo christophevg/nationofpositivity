@@ -69,7 +69,7 @@ var Faq = {
             answer: `
             
             <p>We werken samen met GLS om jouw order in ideale omstandigheden
-            tot bij jou te brengen. Hiervoor rekenen we &euro; 4.00 aan.</p>
+            tot bij jou te brengen. Hiervoor rekenen we &euro; 5.60 aan.</p>
             
 `
           },

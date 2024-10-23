@@ -28,7 +28,7 @@
 [x] integrate SendGrid
 
 [x] payment: overschrijving of online
-[ ] shipping herwerken 
+[x] shipping herwerken
 
 [ ] admin: order stages vervolledigen
 
@@ -37,5 +37,3 @@
 [ ] integrate Mollie
 
 [ ] launch 🚀
-
-

@@ -80,28 +80,11 @@ var Basket = {
 
     <v-stepper-content step="3">
 
-      <v-data-table
-        :headers="shipping_headers"
-        :items="shipping"
-        class="elevation-1"
-        hide-actions
-      >
-
-        <template v-slot:items="line">
-          <td>{{ line.item.title }}</td>
-          <td class="text-xs-right">{{ line.item.amount }}</td>
-          <td class="text-xs-right">&euro; {{ line.item.unit_price | fixed2 }}</td>
-          <td class="text-xs-right">&euro; {{ line.item.line_total | fixed2 }}</td>
-        </template>
-        <template v-slot:footer>
-          <tr>
-            <td :colspan="shipping_headers.length" class="text-xs-right">
-              <b>Totaal verzending: &euro; {{ shipping_total | fixed2 }}</b>
-            </td>
-          </tr>
-        </template>
-      </v-data-table>
-
+      <p>We werken met GLS om je order in perfecte omstandigheden tot bij jou
+      te brengen.</p>
+  
+      <p>Voor jouw zending gebruiken we het {{ shipping_format }}
+      pakket-formaat. Dit kost &euro; {{ shipping_total.toFixed(2) }}</p>
 
       <div class="text-xs-center mt-2">
         <v-btn color="primary" @click="stage = 4">Ok, zo mag dat naar mij komen...</v-btn>
@@ -222,13 +205,11 @@ var Basket = {
       }
       return store.getters.contact_is_valid;
     },
-    shipping: function() {
-      return store.getters.order.shipping;
+    shipping_format: function() {
+      return store.getters.shipping_format;
     },
     shipping_total: function() {
-      return this.shipping.reduce(function(total, item) {
-        return total + item.line_total;
-      }, 0);
+      return store.getters.shipping_total;
     },
     payment_total: function() {
       return store.getters.payment_total;
@@ -310,12 +291,6 @@ var Basket = {
       confirmation: false,
       contact_form_is_validated: false,
       contact_form_is_valid: false,
-      shipping_headers: [
-        { text: "Verpakking", align: "left",  sortable: true,  value: "box.title" },
-        { text: "Aantal",     align: "right", sortable: true,  value: "amount"    },
-        { text: "Prijs",      align: "right", sortable: true,  value: "unit_price" },
-        { text: "Totaal",     align: "right", sortable: true,  value: "line_total" }
-      ]
     }
   }
 };
