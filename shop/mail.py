@@ -20,7 +20,7 @@ def create_attachment(content, filename, filetype="application/pdf"):
 
 def send(to, subject, title, body, attachment=None, template=SENDGRID_TEMPLATE):
   message = Mail(
-    from_email = "contact@homemadebycvg.com",
+    from_email = "contact@nationofpositivity.com",
     to_emails  =  to
   )
   message.dynamic_template_data = {
@@ -40,9 +40,3 @@ def send(to, subject, title, body, attachment=None, template=SENDGRID_TEMPLATE):
     logger.info(f"sent mail to {to}: {subject} / {title} / {len(body)} => {code}")
   except Exception as e:
     logger.error(f"while sending mail to {to}: {subject} / {title} / {len(body)} => {e}")
-
-# import base64
-# file_path = "test.pdf"
-# with open(file_path, 'rb') as f:
-#   data = f.read()
-# encoded = base64.b64encode(data).decode()

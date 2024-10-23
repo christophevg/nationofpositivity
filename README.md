@@ -23,12 +23,21 @@
 [x] shop: clean up product card
 [x] shop: basket page
 [x] shop: order page
+[x] admin: orders
+
+[x] integrate SendGrid
+
 [ ] payment: overschrijving of online
 [ ] shipping uitwerken 
-[ ] admin: orders
+
+[ ] admin: orders vervolledigen
+  [ ] payment
+  [ ] shipping
+
 [ ] add products
 
-[ ] integrate SendGrid (?)
 [ ] integrate Mollie (?)
 
 [ ] launch 🚀
+
+
