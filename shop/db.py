@@ -4,7 +4,7 @@ logger = logging.getLogger(__name__)
 import os
 import json
 
-import uuid
+from random import randint
 
 import dataclasses
 from dataclasses import dataclass, field, fields
@@ -215,8 +215,20 @@ class Contact:
   tax        : str = None
 
 def uid():
-  return str(uuid.uuid4())
+  def gen():
+    num = randint(1000000000, 9999999999)
+    mod = num % 97
+    return f"{num}{mod}"
 
+  for _ in range(5):
+    option = gen()
+    if not orders.get(option):
+      return option
+    else:
+      logger.info(f"{option} exists")
+  
+  raise ValueException("could not generate id")
+      
 @dataclass
 class Stage:
   id: str
