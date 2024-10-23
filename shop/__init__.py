@@ -42,6 +42,25 @@ from baseweb import Baseweb
 server = Baseweb("nation-of-positivity")
 server.config["TEMPLATES_AUTO_RELOAD"] = True
 
+# improve json output generation
+import json
+from flask import make_response
+from datetime import datetime
+
+class Encoder(json.JSONEncoder):
+  def default(self, o):
+    if isinstance(o, datetime):
+      return o.isoformat()
+    if isinstance(o, set):
+      return list(o)
+    return super().default(o)
+
+@server.api.representation("application/json")
+def output_json(data, code, headers=None):
+  resp = make_response(json.dumps(data, cls=Encoder), code)
+  resp.headers.extend(headers or {})
+  return resp
+
 # expose mode
 server.settings["mode"]         = os.environ.get("APP_MODE", "production")
 server.settings["mode_message"] = os.environ.get("APP_MODE_MESSAGE", None)
@@ -79,7 +98,7 @@ server.register_stylesheet("style.css", STATIC / "css")
 # register pages
 from .pages import welcome, faq, contact
 from .pages.shop import products, product
-from .pages.shop import basket
+from .pages.shop import basket, order
 
 if os.environ.get("ADMIN_MODE") == "yes":
   logger.warn("""

@@ -22,9 +22,10 @@
 [x] shop: product page
 [x] shop: clean up product card
 [x] shop: basket page
-[ ] shop: order page
+[x] shop: order page
+[ ] payment: overschrijving of online
+[ ] shipping uitwerken 
 [ ] admin: orders
-
 [ ] add products
 
 [ ] integrate SendGrid (?)
