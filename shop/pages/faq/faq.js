@@ -8,7 +8,7 @@ var Faq = {
   
     Hieronder verzamelen we antwoorden op vragen die je mogelijks nog hebt. Als
     je na consultatie ervan nog geen antwoord hebt, neem dan <a
-    href="/contact">contact</a> op.
+    href="/contact" @click.prevent="$router.push('/contact')">contact</a> op.
   
   </p>
   
@@ -120,7 +120,7 @@ var Faq = {
             href="https://2know.be" target="_blank">2Know BV</a>.
             
             Je vind alle contactgegevens op de <a href="/contact"
-            onclick="router.push({path:'/contact'); return false">contact
+            onclick="router.push({path:'/contact'}); return false">contact
             pagina</a>.
 
 ` 
