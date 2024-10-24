@@ -25,7 +25,7 @@
 - [x] payment: overschrijving of online
 - [x] shipping herwerken
 - [x] shop: order page: stages opkuisen
-- [ ] admin: order stages vervolledigen
+- [x] admin: order stages vervolledigen
 - [ ] add products
 - [ ] integrate Mollie
 - [ ] test, test, test && improve, improve, improve

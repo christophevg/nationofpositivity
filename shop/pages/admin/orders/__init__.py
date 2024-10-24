@@ -16,3 +16,11 @@ class Orders(Resource):
     return orders.find(**request.args)
     
 server.api.add_resource(Orders, "/api/admin/orders", endpoint="admin-orders")
+
+class Order(Resource):
+  def patch(self, id):
+    update = request.json
+    update.pop("id", None)
+    orders.update(id, **update)
+
+server.api.add_resource(Order, "/api/admin/orders/<id>", endpoint="admin-order")

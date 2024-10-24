@@ -25,6 +25,21 @@ function put(resource, data, success, error) {
   });
 }
 
+function patch(resource, data, success, error) {
+  console.log(resource, data);
+  $.ajax( {
+    url: resource,
+    type: "PATCH",
+    data: JSON.stringify(data),
+    dataType: "json",
+    contentType: "application/json",
+    success: success,
+    error: function(response) {
+      notify_error(response);
+      if(error) { error(response); }
+    }
+  });
+}
 function post(resource, data, success, error) {
   console.log(resource, data);
   $.ajax( {

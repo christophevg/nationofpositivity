@@ -160,8 +160,8 @@ class Product(BaseObject):
 
   _available: bool = False
   _findable: bool = False
-  intro: str = None
-  description: str = None
+  intro: str = ""
+  description: str = ""
   images: List[str] = field(default_factory=list)
   tags: List[str] = field(default_factory=list)
   options: List[Dict] = field(default_factory=list)
@@ -201,8 +201,8 @@ class Contact:
   phone      : str
   email      : str
 
-  company    : str = None
-  tax        : str = None
+  company    : str = ""
+  tax        : str = ""
 
 def uid():
   def gen():
@@ -218,15 +218,6 @@ def uid():
       logger.info(f"{option} exists")
   
   raise ValueException("could not generate id")
-      
-@dataclass
-class Stage:
-  id: str
-  ts : datetime = None
-
-  @property
-  def completed(self):
-    return not self.ts is None
 
 @dataclass
 class OrderTotal:
@@ -239,14 +230,19 @@ class OrderTotal:
 
 @dataclass
 class Order(BaseObject):
-  lines   : List[OrderLine]
-  contact : Contact
-  total   : OrderTotal
+  lines        : List[OrderLine]
+  contact      : Contact
+  total        : OrderTotal
 
-  id      : str = field(default_factory=uid)
-  created : datetime = field(default_factory=datetime.utcnow)
-  payment : str = None
-  paid_at : str = None
+  id           : str = field(default_factory=uid)
+  created      : datetime = field(default_factory=datetime.now)
+
+  payment      : str = ""   # reference for payment provider
+  paid_at      : str = ""   # timestamps
+
+  shipment     : str = ""   # reference from courier
+  shipped_at   : str = ""
+  delivered_at : str = ""
 
   @classmethod
   def create(cls, **kwargs):

@@ -31,7 +31,7 @@ var Order = {
           <v-stepper-step :complete="is_shipped" :step="3">Verzending</v-stepper-step>
           <v-divider></v-divider>
 
-          <v-stepper-step :complete="is_done" complete-icon="favorite" color="success" :step="4">Jouw Positivity is er!</v-stepper-step>
+          <v-stepper-step :complete="is_delivered" complete-icon="favorite" color="success" :step="4">Jouw Positivity is er!</v-stepper-step>
         </v-stepper-header>
 
         <v-stepper-items>
@@ -50,14 +50,17 @@ var Order = {
 
           <v-stepper-content :step="3">
 
-            Hoera, jouw positiviteit is verzonden en komt jouw kant op. Je kan deze
-            zending volgen via <a href="">de tracker van de courier</a>.
+            Hoera, jouw positiviteit is verzonden en komt jouw kant op.
+      
+            <span v-if="model.order.shipment != ''">Je kan deze zending volgen
+            via <a :href="model.order.shipment" target="_blank">de tracker van de
+            courier</a>.</span>
 
           </v-stepper-content>
 
           <v-stepper-content :step="4">
 
-            Veel plezier met jouw stukje positiviteit!
+            Veel plezier met jouw stukje positiviteit! ❤️
 
           </v-stepper-content>
 
@@ -99,16 +102,16 @@ var Order = {
       return 4;
     },
     is_paid: function() {
-      return this.model.order.paid_at != null;
+      return this.model.order.paid_at != "";
     },
     is_produced: function() {
-      return this.model.order.produced_at != null;
+      return this.model.order.produced_at != "";
     },
     is_shipped: function() {
-      return this.model.order.shipped_at != null;
+      return this.model.order.shipped_at != "";
     },
-    is_done: function() {
-      return this.model.order.status == "done";
+    is_delivered: function() {
+      return this.model.order.delivered_at != "";
     }
   },
   data: function() {
