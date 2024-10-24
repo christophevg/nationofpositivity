@@ -28,4 +28,5 @@
 - [ ] admin: order stages vervolledigen
 - [ ] add products
 - [ ] integrate Mollie
+- [ ] test, test, test && improve, improve, improve
 - [ ] launch 🚀

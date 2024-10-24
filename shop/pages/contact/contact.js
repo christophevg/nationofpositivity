@@ -4,9 +4,29 @@ var Contact = {
   <h1>Contact</h1>
 
   <p>
-    Heb je een vraag die bv. niet beantwoord werd in onze <a href="/faq">vraag &
-    antwoord sectie</a>? Dan kan je ons altijd een mailtje sturen via <a
-    href="mailto:contact@nationofpositivity.com">contact@nationofpositivity.com</a>.
+
+    Heb je een vraag die bv. niet beantwoord werd in onze <a href="/faq"
+    @click.prevent="$router.push({path:'/faq'})">vraag & antwoord sectie</a>?<br>
+    Ben je op een probleempje met de site gebotst?<br>
+    Heb je een idee om Nation of Positivity nog positiever te maken?<br>
+    Vind je nét niet wat je zoekt of wil je iets heel specifiek?
+    
+  </p>
+  
+  <p>
+  
+    Aarzel dan niet om ons te contacteren:
+    
+  </p>
+    
+  <p>
+  
+    Christophe Van Ginneken / 2Know BV<br>
+    Veldonkweg 2A<br>
+    3128 Baal<br>
+    <a href="mailto:contact@nationofpositivity.com">contact@nationofpositivity.com</a><br>
+    BE0865.835.163<br>
+    KBC BE14.7370.5585.6683
   </p>
   
 </Page>  
