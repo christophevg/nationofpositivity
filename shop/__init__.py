@@ -78,6 +78,7 @@ if recaptcha_key:
 # register components
 HERE       = Path(__file__).resolve().parent
 COMPONENTS = HERE / "components"
+PAGES      = HERE / "pages"
 
 for component in [
   "cdn",
@@ -95,11 +96,14 @@ STATIC = HERE / "static"
 server.app_static_folder = STATIC
 server.register_stylesheet("style.css", STATIC / "css")
 
-# register pages
-from .pages import welcome, faq, contact
-from .pages.shop import products, product
-from .pages.shop import basket, order
+# register static pages
+for page in [ "welcome", "faq", "contact" ]:
+  server.register_component(f"{page}.js", PAGES)
 
+# register dynamic pages
+from .pages import products, product, basket, order
+
+# admin mode
 if os.environ.get("ADMIN_MODE") == "yes":
   logger.warn("""
      _       _           _         __  __           _      
