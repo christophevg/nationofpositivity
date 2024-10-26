@@ -144,7 +144,7 @@ Vue.component("ProductCard", {
         </v-btn>
       </v-img>
 
-      <v-carousel :height="header.height" v-if="page_layout && header.images.length >= 2">
+      <v-carousel :height="header.height" v-if="page_layout && header.images.length >= 2" hide-delimiters :cycle="false">
         <v-carousel-item v-for="(item,i) in header.images" :key="i" :src="cdn(item)" @click.native="show_image(item)"/>
       </v-carousel>
 
