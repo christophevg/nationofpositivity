@@ -91,6 +91,9 @@ for component in [
 ]:
   server.register_component(f"{component}.js", COMPONENTS)
 
+
+server.register_component(f"app.js", HERE)
+
 # setup static hosting and style (which is static ;-))
 STATIC = HERE / "static"
 server.app_static_folder = STATIC
