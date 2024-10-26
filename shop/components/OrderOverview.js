@@ -13,8 +13,8 @@ Vue.component("OrderOverview", {
 >
   <template v-slot:no-data>
 
-      Je hebt nog geen artikels toegevoegd aan je order. Ontdek happiness
-      <router-link to="/ontdek">hier</router-link>...
+      Je hebt nog geen spulletjes toegevoegd aan je order. Ontdek positiviteit
+      <router-link to="/shop">in de shop</router-link>...
 
   </template>
 
