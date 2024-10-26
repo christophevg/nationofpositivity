@@ -33,7 +33,7 @@ var Index = {
       model: {
         items: [
           {
-            image: "images/news/holiday-season.jpeg",
+            image: "images/products/holidays-are-coming/collection.jpeg",
             title: "🚀 Stuur dit jaar wensen boordevol positiviteit!",
             date:  "29 oktober 2024",
             body: `
