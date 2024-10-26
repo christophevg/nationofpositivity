@@ -2,7 +2,7 @@ var Catalogue = {
   template : `
 <Page>
 
-  <v-container grid-list-md>
+  <v-container grid-list-md style="padding:0px;">
 
     <!-- introductie -->
 
