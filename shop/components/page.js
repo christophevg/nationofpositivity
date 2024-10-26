@@ -2,7 +2,7 @@ Vue.component("Page", {
   template : `
 <div>
   <v-alert v-model="banner.alert" :dismissible="banner.dismissible" :type="banner.type">{{ banner.message }}</v-alert>
-  <div style="padding:15px">
+  <div style="padding:0px">
     <slot></slot>
   </div>
 </div>
