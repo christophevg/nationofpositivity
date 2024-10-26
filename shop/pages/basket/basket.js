@@ -2,7 +2,7 @@ var Basket = {
   template : `
 <Page>
 
-  <h1>Jouw happiness in wording...</h1>
+  <h1>Jouw positief mandje</h1>
   
   <p>
   
@@ -180,7 +180,7 @@ var Basket = {
   navigation: {
     section: null,
     icon:    "shopping_cart",
-    text:    "Basket full of Positivity",
+    text:    "Jouw positief mandje",
     path:    "/basket",
     index:   3
   },

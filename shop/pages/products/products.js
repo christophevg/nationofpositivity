@@ -11,13 +11,13 @@ var Catalogue = {
       <v-card xs12 key="search">
         <v-card-title primary-title>
           <div>
-            <h3 class="headline mb-0">Shop Positivity</h3>
+            <h3 class="headline mb-0">Shop positiviteit</h3>
             <div>
   
-Hieronder vind je een groeiende collectie aan leuke dingen met een hoge positiviteit-factor<br><br>
+Hieronder vind je een groeiend aantal aan leuke dingen met een hoge positiviteit-factor.<br><br>
 <ul>
   <li>Je kan ze onmiddellijk aan je mandje toevoegen, of in meer detail bestuderen.</li>
-  <li>De meeste kunnen gepersonaliseerd worden. Instructies staan op de product pagina.</li>
+  <li>De meeste kunnen tevens gepersonaliseerd worden. De instructies daarvoor vind je op de product pagina.</li>
 </ul>
             </div>
           </div>
@@ -56,7 +56,7 @@ Hieronder vind je een groeiende collectie aan leuke dingen met een hoge positivi
   navigation: {
     section: null,
     icon:    "search",
-    text:    "Shop Positivity",
+    text:    "Shop positiviteit",
     path:    "/shop",
     index:   2
   },
