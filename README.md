@@ -27,7 +27,7 @@
 - [x] shop: order page: stages opkuisen
 - [x] admin: order stages vervolledigen
 - [x] mail: generate KBC/ING banking QR codes for bank transfer
-- [ ] add products
+- [x] add products
 - [ ] deploy to production in test mode
 - [ ] integrate Mollie
 - [ ] test, test, test && improve, improve, improve
