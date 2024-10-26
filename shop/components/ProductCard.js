@@ -12,7 +12,7 @@ Vue.component("ProductConfigurator", {
       <h3 class="headline mb-0">Prijs: &euro; {{ unit_price | fixed2 }}</h3>
       <span class="grey--text">(inclusief &euro; {{ unit_tax | fixed2 }} BTW)</span>
 
-      <h3 class="subheading mt-2" v-if="have_options">Personaliseer jouw happiness</h3>
+      <h3 class="subheading mt-2" v-if="have_options">Personaliseer jouw positiviteit</h3>
       <vue-form-generator :schema="model.schema" :model="model.options" :options="formOptions"
                           @validated="onValidated"/>
           
@@ -238,7 +238,7 @@ Vue.component("ProductCard", {
     },
     header : function() {
       return {
-        ratio: this.page_layout ? 5 : 2.75,
+        ratio: this.page_layout ? 5 : 2,
         height: 300,
         images: this.product.images
       }
