@@ -40,7 +40,7 @@ var ProductAdmin = {
         </v-tab-item>
 
         <v-tab-item key="page">
-          <ProductCard :product="model.selected" layout="page"/>
+          <ProductCard :product="model.selected" layout="page" nolink/>
         </v-tab-item>
 
         <v-tab-item key="card">
@@ -152,7 +152,7 @@ var ProductAdmin = {
             type       : "textArea",
             label      : "Description",
             model      : "description",
-            max        : 500,
+            max        : 1000,
             rows       : 5
           },
           {
