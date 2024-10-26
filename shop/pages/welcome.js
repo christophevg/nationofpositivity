@@ -5,7 +5,7 @@ var Index = {
   <v-layout justify-center row fill-height>
     <v-flex xs12 sm6 md8>
       <v-card v-for="(item, i) in model.items" :key="i" class="mb-3">
-        <v-img :src="cdn(item.image)" aspect-ratio="2.75"></v-img>
+        <v-img :src="cdn(item.image)" aspect-ratio="2"></v-img>
         <v-card-title primary-title>
           <div>
             <h3 class="headline mb-0">{{ item.title }}</h3>
