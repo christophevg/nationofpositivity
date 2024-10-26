@@ -6,6 +6,9 @@ pageable_mongo
 requests
 sendgrid
 
+qrcode
+pillow
+
 # run
 gunicorn
 eventlet

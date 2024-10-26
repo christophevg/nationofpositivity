@@ -2,7 +2,7 @@
 
 > a positive webshop
 
-## TODO
+## MVP TODO
 
 - [x] create CDN (repo + pages setup)
 - [x] clean up repo
@@ -26,7 +26,21 @@
 - [x] shipping herwerken
 - [x] shop: order page: stages opkuisen
 - [x] admin: order stages vervolledigen
+- [x] mail: generate KBC/ING banking QR codes for bank transfer
 - [ ] add products
+- [ ] deploy to production in test mode
 - [ ] integrate Mollie
 - [ ] test, test, test && improve, improve, improve
 - [ ] launch 🚀
+- [ ] figure out GLS shipping 😇
+
+## Future Features
+
+- [ ] send more emails (100/day free)
+- [ ] more shipping options + dynamic sizing
+- [ ] extend order overview page
+   - [ ] add "chat" function
+     - [ ] with images e.g. for design example sharing + confirmation
+- [ ] font selector
+  - [ ] reference to https://www.fontsquirrel.com/
+  - [ ] local, live generation of text in correct font?

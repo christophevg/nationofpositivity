@@ -10,7 +10,7 @@ server.register_component("basket.js", os.path.dirname(__file__))
 from flask import request, abort
 from flask_restful import Resource
 
-from shop      import recaptcha
+from shop      import recaptcha, qr
 from shop.db   import orders
 from shop.mail import send
 
@@ -60,6 +60,13 @@ class Orders(Resource):
   Je koos voor betaling via overschrijving. Gelieve &euro; {order.total.grand}
   over te schrijven naar BE14.7370.5585.6683. Gebruik het nummer van je order
   als gestructureerde mededeling: +++{structured}+++.
+
+</p>
+
+<p style="text-align:center">
+
+  Je kan ook onderstaande QR code gebruiken in je banking app:<br>
+  {qr.sepa_as_html_image(order.total.grand, structured)}
 
 </p>
 """
