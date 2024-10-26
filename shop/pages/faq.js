@@ -75,7 +75,7 @@ var Faq = {
             answer: `
             
             Je kan kiezen om je order via een bankoverschrijving te betalen. We
-            wachten op jouw betaling en beginnen dan aan je te werken.
+            wachten op jouw betaling en beginnen er dan aan te werken.
             
             Je kan ook kiezen om online te betalen. We verwijzen je dan door
             naar onze betaalpartner, Mollie. Voor het gebruik van hun diensten
