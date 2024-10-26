@@ -14,6 +14,10 @@ server.register_component("admin-orders.js", os.path.dirname(__file__))
 class Orders(Resource):
   def get(self):
     return orders.find(**request.args)
+
+  def delete(self):
+    id = request.args["id"]
+    orders.delete(id)
     
 server.api.add_resource(Orders, "/api/admin/orders", endpoint="admin-orders")
 

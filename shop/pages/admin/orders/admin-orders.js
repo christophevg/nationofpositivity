@@ -4,6 +4,7 @@ var OrderAdmin = {
   <h1>Admin Orders</h1>
     <CollectionView topic="orders" :headers="headers" resource="/api/admin/orders"
                     id="id" :selected="model.selected" @select="select"
+                    actions="delete"
                     sortBy="created">
 
       <v-tabs v-model="model.active">
