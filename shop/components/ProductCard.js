@@ -16,7 +16,8 @@ Vue.component("ProductConfigurator", {
       <vue-form-generator :schema="model.schema" :model="model.options" :options="formOptions"
                           @validated="onValidated"/>
           
-      <h3 class="subheading mt-3 grey--text">Bijkomende kosten voor verzending : &euro; {{ shipping_price | fixed2 }}</h3>
+      <h3 class="subheading mt-3 grey--text">Kosten voor verzending : &euro; {{ shipping_price | fixed2 }}</h3>
+      <span class="grey--text">De exacte leveringskost wordt in je mandje bepaald, op basis van de volledige bestelling.</span> 
     
     </div>
 
@@ -78,7 +79,7 @@ Vue.component("ProductConfigurator", {
       return this.unit_price - this.unit_price / 1.21;
     },
     shipping_price: function() {
-      return "4.99";
+      return store.getters.shipping_costs[0].cost;
     },
     ready_to_add: function() {
       return (! this.have_options ) || this.options_are_valid;

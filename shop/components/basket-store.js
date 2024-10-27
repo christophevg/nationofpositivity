@@ -35,11 +35,32 @@ store.registerModule("basket", {
         return total + item.line_total;
       }, 0);
     },
+    item_count: function(state, getters) {
+      return getters.lines.reduce(function(total, item) {
+        return total + item.amount;
+      }, 0);
+    },
+    shipping_costs: function(state) {
+      return [
+        { format: "XS", cost:  5.60 }, // 1
+        { format: "S",  cost:  6.60 }, // 2
+        { format: "M",  cost:  7.60 }, // 3
+        { format: "L",  cost:  9.30 }, // 4
+        { format: "L",  cost:  9.30 }, // 5
+        { format: "L",  cost:  9.30 }, // 6
+        { format: "XL", cost: 12.90 }  // 7 ...
+      ];
+    },
+    shipping_method: function(state, getters) {
+      var items = getters.item_count;
+      items = items > 7 ? 7 : items;
+      return getters.shipping_costs[items-1];
+    },
     shipping_format: function(state, getters) {
-      return "XS";
+      return getters.shipping_method.format;
     },
     shipping_total: function(state, getters) {
-      return 5.60;
+      return getters.shipping_method.cost;
     },
     payment_total: function(state, getters) {
       return state.payment ? 0.39 : 0;

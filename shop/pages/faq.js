@@ -90,7 +90,9 @@ var Faq = {
             answer: `
             
             We werken samen met GLS om jouw order in ideale omstandigheden tot
-            bij jou te brengen. Hiervoor rekenen we &euro; 5.60 aan.
+            bij jou te brengen. Afhankelijk van de omvang van je order rekenen
+            we de overeenkomstige kost van GLS aan. De basiskost voor de meeste
+            artikels is &euro; 5.60.
             
 `
           },
