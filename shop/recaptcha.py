@@ -12,7 +12,7 @@ def is_valid(token):
   if token and RECAPTCHA_SERVER_KEY:
     result = requests.post(
       "https://www.google.com/recaptcha/api/siteverify",
-      {
+      data={
         "secret": RECAPTCHA_SERVER_KEY,
         "response" : token
       }
