@@ -14,11 +14,22 @@ var Catalogue = {
             <h3 class="headline mb-0">Shop positiviteit</h3>
             <div>
   
-Hieronder vind je een groeiend aantal aan leuke dingen met een hoge positiviteit-factor.<br><br>
+In de shop vind je een groeiend aantal aan leuke dingen met een hoge
+positiviteit-factor. We voegen op regelmatige basis nieuwe spulletjes toe.<br>
+  
+Volg zeker onze socials om op de hoogte te blijven van de nieuwigheden!
+
+<br><br>
+
 <ul>
-  <li>Je kan ze onmiddellijk aan je mandje toevoegen, of in meer detail bestuderen.</li>
-  <li>De meeste kunnen tevens gepersonaliseerd worden. De instructies daarvoor vind je op de product pagina.</li>
+  <li>Je kan ze onmiddellijk aan je mandje toevoegen, of eerst in meer detail bestuderen.</li>
+  <li>Je kan ze allemaal personaliseren. De instructies daarvoor vind je op de product pagina.</li>
 </ul>
+
+<br>
+
+Veel plezier met het schenken van wat extra positiviteit!
+
             </div>
           </div>
         </v-card-title>
