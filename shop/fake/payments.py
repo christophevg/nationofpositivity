@@ -62,7 +62,7 @@ def process_payment_page(id):
   payments.update(id, status="paid", paid_at=ts)
   payment = payments.get(id)
   logger.info(f"sending feedback for payment {id} to {payment.webhookUrl}")
-  requests.post(payment.webhookUrl, data={"id": id})
+  # requests.post(payment.webhookUrl, data={"id": id})
   return f"""
 <h1>OK</h1>
 <a href="{payment.redirectUrl}">Return to the shop...</a>
