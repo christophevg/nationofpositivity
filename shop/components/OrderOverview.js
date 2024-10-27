@@ -64,7 +64,7 @@ Vue.component("OrderOverview", {
     summary: function() {
       return function(options) {
         return options.map(function(option) {
-          return option.option + " : " + option.choice + (
+          return option.option + " : " + option.choice.substring(0,30) + ( option.choice.length > 30 ? "..." : "") + (
             option.cost > 0 ? " (+€" + option.cost + ")" : "" 
           );
         }).join(", ");
