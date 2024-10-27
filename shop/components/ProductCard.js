@@ -16,7 +16,7 @@ Vue.component("ProductConfigurator", {
       <vue-form-generator :schema="model.schema" :model="model.options" :options="formOptions"
                           @validated="onValidated"/>
           
-      <h3 class="subheading mt-3 grey--text">Basis verzending : &euro; {{ shipping_price | fixed2 }}</h3>
+      <h3 class="subheading mt-3 grey--text">Bijkomende kosten voor verzending : &euro; {{ shipping_price | fixed2 }}</h3>
     
     </div>
 
