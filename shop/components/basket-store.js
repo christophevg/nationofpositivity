@@ -42,7 +42,7 @@ store.registerModule("basket", {
       return 5.60;
     },
     payment_total: function(state, getters) {
-      return state.payment ? 0.35 : 0;
+      return state.payment ? 0.39 : 0;
     },
     total: function(state, getters) {
       return getters.lines_total 
