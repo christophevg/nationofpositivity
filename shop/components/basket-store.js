@@ -57,10 +57,10 @@ store.registerModule("basket", {
       return getters.shipping_costs[items-1];
     },
     shipping_format: function(state, getters) {
-      return getters.shipping_method.format;
+      return getters.item_count ? getters.shipping_method.format : "";
     },
     shipping_total: function(state, getters) {
-      return getters.shipping_method.cost;
+      return getters.item_count ? getters.shipping_method.cost : 0;
     },
     payment_total: function(state, getters) {
       return state.payment ? 0.39 : 0;
