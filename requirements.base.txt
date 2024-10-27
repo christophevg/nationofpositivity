@@ -9,6 +9,8 @@ sendgrid
 qrcode
 pillow
 
+mollie-api-python
+
 # run
 gunicorn
 eventlet

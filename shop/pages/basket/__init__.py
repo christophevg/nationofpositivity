@@ -14,12 +14,13 @@ from ...     import recaptcha, qr
 from ...db   import orders
 from ...mail import send
 
-from ...fake.payments import Client
+from mollie.api.client import Client
+
+MOLLIE_API_KEY = os.environ.get("MOLLIE_API_KEY", None)
+WEBSITE_URL    = os.environ.get("WEBSITE_URL", "https://nationofpositivity.com")
 
 client = Client()
-client.set_api_key("test_...")
-
-WEBSITE_URL = os.environ.get("WEBSITE_URL", "https://nationofpositivity.com")
+client.set_api_key(MOLLIE_API_KEY)
 
 class Orders(Resource):
   def post(self):
