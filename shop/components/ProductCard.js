@@ -212,6 +212,27 @@ Vue.component("ProductCard", {
                   
     </div>
   
+    <v-dialog v-model="next" persistent max-width="600">
+      <v-card>
+        <v-card-title>
+          <h3 class="headline mb-0">YES!</h3>
+        </v-card-title>
+
+        <v-card-text>
+  
+          <b>{{ product.title }}</b> werd toegevoegd aan je mandje.<br>
+          <br>
+          Wil je nog verder winkelen? Of gaan we verder naar het mandje?
+  
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="primary" flat @click="next=false" to="/shop">Verder shoppen</v-btn>
+          <v-btn color="secondary" flat @click="next=false" to="/basket">Naar het mandje!</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  
   </v-card>
 `,
   computed: {
@@ -262,13 +283,7 @@ Vue.component("ProductCard", {
       if( !options ) { options = [] }
       store.commit("add_to_basket", { "product" : this.product, "options" : options });
       this.options_dialog = false;
-      app.$notify({
-        group: "notifications",
-        title: "YES !",
-        text:  this.product.title + " werd toegevoegd aan je mandje. Je vindt het links in de navigatie.",
-        type:  "success",
-        duration: 5000
-      });
+      this.next = true;
     }
   },
   data: function() {
@@ -276,6 +291,7 @@ Vue.component("ProductCard", {
       image_viewer : false,
       options_dialog: false,
       selected_image : null,
+      next: false
     }
   }
 });
