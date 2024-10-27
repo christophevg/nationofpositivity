@@ -99,6 +99,9 @@ STATIC = HERE / "static"
 server.app_static_folder = STATIC
 server.register_stylesheet("style.css", STATIC / "css")
 
+# register additional boostrap icons
+server.register_stylesheet("bootstrap-icons.min.css", STATIC / "css")
+
 # register static pages
 for page in [ "welcome", "faq", "contact" ]:
   server.register_component(f"{page}.js", PAGES)

@@ -5,6 +5,23 @@ Vue.component("Page", {
   <div style="padding:0px">
     <slot></slot>
   </div>
+  
+  <p style="text-align:center;">
+
+    <v-btn color="rgb(85,141,206)" fab dark href="https://facebook.com/NationOfPositivity" target="_blank">
+      <i class="bi-twitter-x"/>
+    </v-btn>
+
+    <v-btn color="rgb(85,141,206)" fab dark href="https://facebook.com/NationOfPositivity" target="_blank">
+      <i class="bi-facebook"/>
+    </v-btn>
+
+    <v-btn color="rgb(85,141,206)" fab dark href="https://instagram.com/NationOfPositivity" target="_blank">
+      <i class="bi-instagram"/>
+    </v-btn>
+
+  </p>
+  
 </div>
 `,
   computed: {

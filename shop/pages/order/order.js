@@ -80,6 +80,8 @@ var Order = {
     </p>
     
   </div>
+      
+  <br>
 </Page>
 `,
   created: function() {

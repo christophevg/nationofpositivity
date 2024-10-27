@@ -175,6 +175,8 @@ var Basket = {
       </v-card-text>
     </v-card>
   </v-dialog>
+        
+  <br>
 </Page>
 `,
   navigation: {
