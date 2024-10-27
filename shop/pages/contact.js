@@ -14,9 +14,9 @@ var Contact = {
   </p>
   
   <p>
-  
-    Aarzel dan niet om ons te contacteren:
-    
+
+    Aarzel dan niet om contact op te nemen:
+
   </p>
     
   <p>
