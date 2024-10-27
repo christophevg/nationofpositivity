@@ -51,10 +51,11 @@ class Orders(Resource):
       })
       orders.update(order.id, payment=payment.id, status=None)
       response["next"] = payment.checkout_url
-    else:
-      order_id = str(order.id)
-      structured = '/'.join((order_id[:2],order_id[3:-5],order_id[-5:]))
-      extra_info = f"""
+
+    # always until Mollie is integrated
+    order_id = str(order.id)
+    structured = '/'.join((order_id[:2],order_id[3:-5],order_id[-5:]))
+    extra_info = f"""
 <p>
 
   Je koos voor betaling via overschrijving. Gelieve &euro; {order.total.grand}

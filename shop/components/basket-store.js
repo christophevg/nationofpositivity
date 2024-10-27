@@ -7,7 +7,7 @@ function round2(value) {
 store.registerModule("basket", {
   state: {
     order: [],
-    payment: true,
+    payment: false,
     badge: {
       visible : false,
       text    : 0,
@@ -158,7 +158,7 @@ store.registerModule("basket", {
     },
     clear_basket: function(state) {
       Vue.set(state, "order", []);
-      state.payment = true;
+      state.payment = false;
       state.badge.visible = false;
       state.badge.text    = 0;
     }
