@@ -23,6 +23,7 @@ def send(to, subject, title, body, attachment=None, template=SENDGRID_TEMPLATE):
     from_email = "contact@nationofpositivity.com",
     to_emails  =  to
   )
+  message.bcc = "contact@nationofpositivity.com"
   message.dynamic_template_data = {
     "subject": subject,
     "title"  : title,
