@@ -3,21 +3,21 @@ logger = logging.getLogger(__name__)
 
 import os
 
-from shop import server
+from ... import server
 
 server.register_component("basket.js", os.path.dirname(__file__))
 
 from flask import request, abort
 from flask_restful import Resource
 
-from shop      import recaptcha, qr
-from shop.db   import orders
-from shop.mail import send
+from ...     import recaptcha, qr
+from ...db   import orders
+from ...mail import send
 
-from shop.fake.payments import Client
+from ...fake.payments import Client
 
 client = Client()
-client.set_api_key("test_....")
+client.set_api_key("test_...")
 
 WEBSITE_URL = os.environ.get("WEBSITE_URL", "https://nationofpositivity.com")
 

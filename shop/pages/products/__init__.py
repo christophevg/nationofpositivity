@@ -6,11 +6,11 @@ import os
 from flask import request
 from flask_restful import Resource
 
-from shop import server
+from ... import server
 
 server.register_component("products.js", os.path.dirname(__file__))
 
-from shop.db import products
+from ...db import products
 
 class Products(Resource):
   def get(self):

@@ -6,8 +6,8 @@ import os
 from flask import request
 from flask_restful import Resource
 
-from shop    import server
-from shop.db import orders
+from ....    import server
+from ....db import orders
 
 server.register_component("admin-orders.js", os.path.dirname(__file__))
 

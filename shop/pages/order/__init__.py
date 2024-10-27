@@ -6,11 +6,11 @@ import os
 from flask import request, abort
 from flask_restful import Resource
 
-from shop import server
+from ... import server
 
 server.register_component("order.js", os.path.dirname(__file__))
 
-from shop.db import orders
+from ...db import orders
 
 class Order(Resource):
   def get(self, id):

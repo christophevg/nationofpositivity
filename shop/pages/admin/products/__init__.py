@@ -6,8 +6,8 @@ import os
 from flask import request, abort
 from flask_restful import Resource
 
-from shop import server
-from shop.db import products
+from .... import server
+from ....db import products
 
 server.register_component("admin-products.js", os.path.dirname(__file__))
 

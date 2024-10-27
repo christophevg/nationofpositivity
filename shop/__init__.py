@@ -34,7 +34,7 @@ for module in [
     module_logger.handlers[0].setFormatter(formatter)
 
 # setup datastore
-import shop.db
+from . import db
 
 # all set up, now get our server
 

@@ -15,8 +15,8 @@ import requests
 
 from flask_restful import Resource
 
-from shop    import server
-from shop.db import Collection, db, BaseObject
+from .. import server
+from ..db import Collection, db, BaseObject
 
 def uid():
   return str(uuid.uuid4())
