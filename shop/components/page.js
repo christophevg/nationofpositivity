@@ -9,7 +9,7 @@ Vue.component("Page", {
   <v-footer dark height="auto">
     <v-card class="flex" flat tile>
       <v-card-title style="background-color:rgb(85,141,206)">
-        <strong class="subheading">Volg onze socials voor updates!</strong>
+        <strong class="subheading">Volg onze socials...</strong>
         <v-spacer></v-spacer>
         <v-btn class="mx3" dark icon href="https://instagram.com/NationOfPositivity" target="_blank">
           <i class="bi-instagram"/>

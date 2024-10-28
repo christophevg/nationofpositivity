@@ -47,6 +47,7 @@
 
 ## Future Features
 
+- [ ] social image
 - [ ] send more emails (100/day free)
   - [x] bcc
   - [ ] on every state change
