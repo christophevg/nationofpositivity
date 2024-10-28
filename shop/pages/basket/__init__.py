@@ -12,7 +12,7 @@ from flask_restful import Resource
 
 from ...     import recaptcha, qr
 from ...db   import orders
-from ...mail import send
+from ...mail import send, create_attachment
 
 from mollie.api.client import Client
 
@@ -56,6 +56,13 @@ class Orders(Resource):
     # always until Mollie is integrated
     order_id = str(order.id)
     structured = '/'.join((order_id[:2],order_id[3:-5],order_id[-5:]))
+    
+    attachment = create_attachment(
+      qr.sepa_as_base64(order.total.grand, structured),
+      "qr.png",
+      "image/png",
+      "inline"
+    )
     extra_info = f"""
 <p>
 
@@ -68,7 +75,7 @@ class Orders(Resource):
 <p style="text-align:center">
 
   Je kan ook onderstaande QR code gebruiken in je banking app:<br>
-  {qr.sepa_as_html_image(order.total.grand, structured)}
+  <img src="cid:{attachment.content_id.get()}">
 
 </p>
 """
@@ -76,20 +83,41 @@ class Orders(Resource):
     # send confirmation email
     send(
       order.contact.email,
-      "Bedankt voor je order...",
+      f"Bedankt voor je order! ({order_id})",
       "Je order is goed ontvangen!",
       f"""
+<p>
+
+  Bedankt voor je order. We gaan er zo snel mogelijk en met veel zin aan
+  beginnen en houden je op de hoogte bij elke stap.
+
+</p>
+
+<p>
+
+  Als je bijkomende informatie moest of wil aanleveren, mag je altijd reageren
+  op deze email.
+
+</p>
 {extra_info}
 <p>
-  Zodra ik je betaling ontvangen heb, ga ik aan de slag. Je kan de voortgang van
-  je order opvolgen op de <a href="{WEBSITE_URL}/order/{order.id}">website</a>.
-</p>
-<p>
-  Alvast bedankt voor je order!<br>
-  Christophe
-</p>
-""")
 
+  Zodra ik je betaling ontvangen heb, ga ik aan de slag. Je kan de voortgang
+  van je order opvolgen op onze <a
+  href="{WEBSITE_URL}/order/{order.id}">website</a>. Deze link is persoonlijk
+  en geheim, dus deel hem (en dus ook niet deze email) met anderen.
+
+</p>
+
+<p>
+
+  Christophe<br>
+  Nation of Positivity
+
+</p>
+""",
+     attachment
+   )
     return response
 
 server.api.add_resource(Orders, "/api/orders")

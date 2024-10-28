@@ -9,14 +9,14 @@ from sendgrid.helpers.mail import Mail, Attachment, FileContent, FileType, FileN
 SENDGRID_API_KEY  = os.environ["SENDGRID_API_KEY"]
 SENDGRID_TEMPLATE = os.environ["SENDGRID_TEMPLATE"]
 
-def create_attachment(content, filename, filetype="application/pdf"):
+def create_attachment(content, filename, filetype="application/pdf", disposition="inline"):
   attachment = Attachment()
   attachment.file_content = FileContent(content)
   attachment.file_name    = FileName(filename)
   attachment.file_type    = FileType(filetype)
-  attachment.disposition  = Disposition('attachment')
+  attachment.disposition  = Disposition(disposition)
   attachment.content_id   = ContentId(filename)
-  return attachement
+  return attachment
 
 def send(to, subject, title, body, attachment=None, template=SENDGRID_TEMPLATE):
   message = Mail(
@@ -41,3 +41,4 @@ def send(to, subject, title, body, attachment=None, template=SENDGRID_TEMPLATE):
     logger.info(f"sent mail to {to}: {subject} / {title} / {len(body)} => {code}")
   except Exception as e:
     logger.error(f"while sending mail to {to}: {subject} / {title} / {len(body)} => {e}")
+    logger.exception(e)

@@ -28,16 +28,28 @@
 - [x] admin: order stages vervolledigen
 - [x] mail: generate KBC/ING banking QR codes for bank transfer
 - [x] add products
-- [ ] deploy to production in test mode
-- [ ] integrate Mollie
+- [x] deploy to production in test mode
+- [x] integrate Mollie
+- [x] different way to include QR code in mail (GMail doesn't show inline)
 - [ ] test, test, test && improve, improve, improve
 - [ ] launch 🚀
+  - [ ] homemade website
+  - [ ] personal website
+  - [ ] socials
+    - [ ] instagram
+    - [ ] facebook
+    - [ ] X
+    - [ ] LinkedIn
+  - [ ] mailing?
 - [ ] figure out GLS shipping 😇
 
 ## Future Features
 
 - [ ] send more emails (100/day free)
-- [ ] more shipping options + dynamic sizing
+  - [x] bcc
+  - [ ] on every state change
+- [ ] more shipping options
+- [x] dynamic sizing of shipping format
 - [ ] extend order overview page
    - [ ] add "chat" function
      - [ ] with images e.g. for design example sharing + confirmation
