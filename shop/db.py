@@ -50,12 +50,12 @@ class Collection():
       doc = self.dataclass.create(**kwargs)
     else:
       doc = self.dataclass.create()
-    logger.info(f"create {self.name} : {doc}")
+    logger.debug(f"create {self.name} : {doc}")
     self.collection.insert_one(dataclasses.asdict(doc))
     return doc
 
-  def get(self, id, more_filters=None):
-    logger.info(f"get {self.name} : {id} ")
+  def get(self, id, more_filters=None, can_fail=False):
+    logger.debug(f"get {self.name} : {id} ")
     filters = {"id" : id}
     if more_filters:
       filters.update(more_filters)
@@ -64,9 +64,9 @@ class Collection():
       data = self.dataclass.sanitize(data)
       if data:
         obj = self.dataclass(**data)
-        logger.info(obj)
         return obj
-    logger.warn(f"could not get {self.collection}/{id}")
+    if not can_fail:
+      logger.warn(f"could not get {self.collection}/{id}")
     return None
 
   def find(self, sort=None, order=None, start=0, limit=25, more_filters=None, **kwargs):
@@ -93,18 +93,18 @@ class Collection():
       "pageable"      : self.pageable_collection.pageable
     }
     
-    logger.info(f"find {self.name} : {kwargs} = {len(self.pageable_collection)} results")
+    logger.debug(f"find {self.name} : {kwargs} = {len(self.pageable_collection)} results")
     return results
 
   def update(self, id, **kwargs):
     kwargs["id"] = id
     updated = self.dataclass.sanitize(kwargs)
     updated.pop("id", None)
-    logger.info(f"update {self.name}/{id} : {updated}")
+    logger.debug(f"update {self.name}/{id} : {updated}")
     self.collection.update_one({"id" : id}, { "$set" : updated })
 
   def delete(self, id):
-    logger.info(f"delete {self.name}: {id}")
+    logger.debug(f"delete {self.name}: {id}")
     self.collection.delete_one({"id" : id})
 
 class FilteredCollection(Collection):
@@ -212,10 +212,10 @@ def uid():
 
   for _ in range(5):
     option = gen()
-    if not orders.get(option):
+    if not orders.get(option, can_fail=True):
       return option
     else:
-      logger.info(f"{option} exists")
+      logger.debug(f"{option} exists")
   
   raise ValueException("could not generate id")
 

@@ -78,10 +78,9 @@ var OrderAdmin = {
         { "paid_at": now },
         function(response) {
           self.model.selected.paid_at = now;
-          console.log(response);
         },
         function(response) {
-          console.log(response);
+          console_warn(response);
         }
       );
     },
@@ -94,10 +93,9 @@ var OrderAdmin = {
         function(response) {
           self.model.selected.shipped_at = now;
           self.model.selected.shipment = self.model.tracker;
-          console.log(response);
         },
         function(response) {
-          console.log(response);
+          console_warn(response);
         }
       );
     },
@@ -109,10 +107,9 @@ var OrderAdmin = {
         { "delivered_at": now },
         function(response) {
           self.model.selected.delivered_at = now;
-          console.log(response);
         },
         function(response) {
-          console.log(response);
+          console_warn(response);
         }
       );
     },

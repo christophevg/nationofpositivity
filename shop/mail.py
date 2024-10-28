@@ -38,7 +38,7 @@ def send(to, subject, title, body, attachment=None, template=SENDGRID_TEMPLATE):
     sg = SendGridAPIClient(SENDGRID_API_KEY)
     response = sg.send(message)
     code, body, headers = response.status_code, response.body, response.headers
-    logger.info(f"sent mail to {to}: {subject} / {title} / {len(body)} => {code}")
+    logger.debug(f"sent mail to {to}: {subject} / {title} / {len(body)} => {code}")
   except Exception as e:
     logger.error(f"while sending mail to {to}: {subject} / {title} / {len(body)} => {e}")
     logger.exception(e)

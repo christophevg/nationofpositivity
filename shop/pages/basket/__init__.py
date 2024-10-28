@@ -33,6 +33,7 @@ class Orders(Resource):
     # construct validated and persisted order object
     try:
       order = orders.create(**order)
+      logger.info(f"🛒 new order created: {order.id}")
     except ValueError as ex:
       return abort(400, str(ex))
 
@@ -124,15 +125,15 @@ server.api.add_resource(Orders, "/api/orders")
 
 class PaymentFeedback(Resource):
   def post(self, id):
-    logger.info("FEEDBACK")
     order   = orders.get(id)
     payment = client.payments.get(request.form["id"])
     if order.payment == payment.id:
-      logger.info(f"received payment feedback for order {id}: {payment.status}")
+      logger.debug(f"received payment feedback for order {id}: {payment.status}")
       if payment.is_paid:
         orders.update(order.id, paid_at=payment.paid_at)
+        logger.info(f"💰 {order.id} was paid online")
       else:
-        logger.info("not paid")
+        logger.debug("not paid")
     else:
       logger.error("received feedback for order {id} with incorrect payment id: {payment.id}")
 

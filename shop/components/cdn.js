@@ -70,7 +70,7 @@ store.registerModule("cdn", {
         url: store.state.config.cdn + "/index.json",
         success: function(response) {
           context.commit("index", response.assets);
-          console.log("🌇 loading content from", store.state.config.cdn);
+          console_info("🌇 loading content from", store.state.config.cdn);
         }
       });
     }

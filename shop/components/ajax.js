@@ -10,7 +10,6 @@ function notify_error(response) {
 }
 
 function put(resource, data, success, error) {
-  console.log(resource, data);
   $.ajax( {
     url: resource,
     type: "PUT",
@@ -26,7 +25,6 @@ function put(resource, data, success, error) {
 }
 
 function patch(resource, data, success, error) {
-  console.log(resource, data);
   $.ajax( {
     url: resource,
     type: "PATCH",
@@ -41,7 +39,6 @@ function patch(resource, data, success, error) {
   });
 }
 function post(resource, data, success, error) {
-  console.log(resource, data);
   $.ajax( {
     url: resource,
     type: "POST",

@@ -95,7 +95,7 @@ store.registerModule("contact", {
       }, {});
       var is_valid = Object.keys(final_report).length == 0;
       if(! is_valid ) {
-        console.log("contact in store is not valid", final_report);
+        console_warn("contact in store is not valid", final_report);
       }
       return is_valid;
     }

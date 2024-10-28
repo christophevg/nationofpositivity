@@ -92,7 +92,7 @@ store.registerModule("basket", {
             context.commit("update_product", response);
           },
           error: function(response) {
-            console.log(response);
+            console_warn(response);
           }
         }); 
       });
@@ -108,14 +108,11 @@ store.registerModule("basket", {
       });
       if(existing) {
         existing.product = product;
-        // TODO: refresh selected options' costs
-        console.log("updated product", product);
       }
     },
     add_to_basket: function(state, selection) {
       // if the product is already in the basket, increase the amount and update
       // product to reflect latest version of object
-      console.log("adding to basket", selection);
       var existing = state.order.find(function(item) {
         if( item.product.id != selection.product.id ) { return false; }
         if( item.options.length != selection.options.length ) { return false; }

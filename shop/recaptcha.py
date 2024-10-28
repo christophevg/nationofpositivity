@@ -17,6 +17,6 @@ def is_valid(token):
         "response" : token
       }
     ).json()
-    logger.info(f"recaptcha : {result}")
+    logger.debug(f"recaptcha : {result}")
     return result["success"] and result["score"] >= MINIMAL_SCORE
   return True

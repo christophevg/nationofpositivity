@@ -83,11 +83,10 @@ var ProductAdmin = {
             options: [],
             unit_price: 0
           };
-          console.log(response);
           self.$router.go(0);
         },
         function(response) {
-          console.log(response);
+          console_warn(response);
         }        
       );
     },
@@ -96,10 +95,9 @@ var ProductAdmin = {
         "/api/admin/products/" + this.model.selected.id,
         this.model.selected,
         function(response) {
-          console.log(response);
         },
         function(response) {
-          console.log(response);
+          console_warn(response);
         }
       );
     }
