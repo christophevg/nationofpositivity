@@ -40,7 +40,7 @@ class Orders(Resource):
     response = { "id" : order.id }
 
     extra_info = ""
-    attachement=None
+    attachment=None
 
     if order.requires_payment:
       payment = client.payments.create({
