@@ -113,19 +113,14 @@ var Basket = {
 
         Je wordt na bevestiging doorgestuurd naar onze betaalpartner Mollie. Je
         betaalt een online transactiekost van &euro; {{ payment_total }}<br>
-        <br>
-
-        ⚠️ <b>Opgelet:</b> Deze integratie wordt voorlopig nog nagebootst,
-        terwijl wij aan de slag zijn met Mollie om te koppelen met hun
-        diensten. Je zal dus als je deze optie kiest, niet echt online betalen.
-        Je zal dezelfde bevestiging ontvangen als bij een bankoverschrijving,
-        inclusief de informatie om op die manier te betalen.
 
       </p>
 
       <p v-if="!payment">
+
         Je betaalt per overschrijving. Betaalinstructies vind je terug in de
         bevestigingsmail die je ontvangt na bevestiging van je order.
+
       </p>
   
       <div class="text-xs-center mt-2">

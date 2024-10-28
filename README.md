@@ -32,6 +32,7 @@
 - [x] integrate Mollie
 - [x] different way to include QR code in mail (GMail doesn't show inline)
 - [x] reduce logging
+- [x] Mollie Live
 - [ ] test, test, test && improve, improve, improve
 - [ ] launch 🚀
   - [ ] homemade website
