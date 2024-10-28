@@ -172,6 +172,23 @@ var Faq = {
 ` 
           },
           {
+            id: "credits",
+            question: "Aan wie hebben we dit allemaal te danken?",
+            answer: `
+            
+            Nation of Positivity geeft graag volgende personen/organisaties
+            krediet voor hun ontwerpen, materiaal, diensten...
+            
+            <ul>
+              <li>
+                <a href="https://www.fontsquirrel.com/fonts/list/foundry/natalia-kasatkina" target="_blank">Natalia Kasatkina</a> voor haar leuk
+                <a href="https://www.fontsquirrel.com/fonts/cherry-swash" target="_blank">Cherry Swash lettertype</a>. Dit is het lettertype van het Nation of Positivity logo.
+              </li>
+            </ul>
+            
+`
+          },
+          {
             id: "recaptcha",
             question: "Wat betekent 'protected by reCAPTCHA'?",
             answer: `
