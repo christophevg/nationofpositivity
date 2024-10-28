@@ -53,38 +53,36 @@ class Orders(Resource):
       })
       orders.update(order.id, payment=payment.id, status=None)
       response["next"] = payment.checkout_url
+    else:
+      order_id = str(order.id)
+      structured = '/'.join((order_id[:2],order_id[3:-5],order_id[-5:]))
+      attachment = create_attachment(
+        qr.sepa_as_base64(order.total.grand, structured),
+        "qr.png",
+        "image/png",
+        "inline"
+      )
+      extra_info = f"""
+  <p>
 
-    # always until Mollie is integrated
-    order_id = str(order.id)
-    structured = '/'.join((order_id[:2],order_id[3:-5],order_id[-5:]))
-    
-    attachment = create_attachment(
-      qr.sepa_as_base64(order.total.grand, structured),
-      "qr.png",
-      "image/png",
-      "inline"
-    )
-    extra_info = f"""
-<p>
+    Je koos voor betaling via overschrijving. Gelieve &euro; {order.total.grand}
+    over te schrijven naar BE14.7370.5585.6683. Gebruik het nummer van je order
+    als gestructureerde mededeling: +++{structured}+++.
 
-  Je koos voor betaling via overschrijving. Gelieve &euro; {order.total.grand}
-  over te schrijven naar BE14.7370.5585.6683. Gebruik het nummer van je order
-  als gestructureerde mededeling: +++{structured}+++.
+  </p>
 
-</p>
+  <p style="text-align:center">
 
-<p style="text-align:center">
+    Je kan ook onderstaande QR code gebruiken in je banking app:<br>
+    <img src="cid:{attachment.content_id.get()}">
 
-  Je kan ook onderstaande QR code gebruiken in je banking app:<br>
-  <img src="cid:{attachment.content_id.get()}">
-
-</p>
-"""
+  </p>
+  """
 
     # send confirmation email
     send(
       order.contact.email,
-      f"Bedankt voor je order! ({order_id})",
+      f"Bedankt voor je order! ({order.id})",
       "Je order is goed ontvangen!",
       f"""
 <p>
