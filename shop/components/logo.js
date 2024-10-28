@@ -1,17 +1,26 @@
 Vue.component("Logo", {
   template : `
 <svg
-   width="22.459641"
-   height="52.86158"
-   viewBox="0 0 44.459641 52.86158"
+   width="62.119827mm"
+   height="71.228737mm"
+   viewBox="0 0 62.119829 71.228737"
    version="1.1"
    id="svg1"
    xml:space="preserve"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg"><defs
-     id="defs1" /><g
+     id="defs1"><clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath1"><ellipse
+         style="fill:#ff1cff;fill-opacity:0.248276;stroke:none;stroke-width:0.205403;stroke-linecap:round;stroke-linejoin:round"
+         id="circle1"
+         cx="36.71405"
+         cy="34.552231"
+         rx="25.649794"
+         ry="26.565947" /></clipPath></defs><g
      id="layer1"
-     transform="translate(-14.484228,-8.3183596)"><path
+     transform="matrix(1.3972183,0,0,1.3490338,-20.237629,-11.221748)"
+     clip-path="url(#clipPath1)"><path
        style="fill:#408fd4;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 55.619013,60.72796 c 0,0 1.076599,-8.50441 -5.96924,-9.98312 -8.136687,-1.64485 -9.399165,-3.01859 -4.795441,-7.95801 4.187615,-3.70443 4.500405,-9.35565 4.00829,-13.32036 -0.283063,-2.28049 -1.548223,-5.36668 -2.835915,-7.13086 -2.629174,-3.60205 -5.482861,-3.9956 -9.030596,-4.03843 -5.57292,0.15908 -7.44515,2.25614 -9.316983,4.11863 -1.291937,1.76107 -2.552852,4.85037 -2.835915,7.13086 -0.492115,3.96471 -0.179325,9.61593 4.00829,13.32036 4.890703,5.02287 3.538293,6.34394 -4.795441,7.95801 -7.045839,1.47871 -5.96924,10.2001 -5.96924,10.2001 12.512264,0.30573 25.020604,0.0934 37.532195,-0.0802 z"
        id="path5" /><path
