@@ -2,25 +2,34 @@ Vue.component("Page", {
   template : `
 <div>
   <v-alert v-model="banner.alert" :dismissible="banner.dismissible" :type="banner.type">{{ banner.message }}</v-alert>
-  <div style="padding:0px">
+  <div style="padding:0px;margin-bottom:15px">
     <slot></slot>
   </div>
   
-  <p style="text-align:center;">
-
-    <v-btn color="rgb(85,141,206)" fab dark href="https://facebook.com/NationOfPositivity" target="_blank">
-      <i class="bi-twitter-x"/>
-    </v-btn>
-
-    <v-btn color="rgb(85,141,206)" fab dark href="https://facebook.com/NationOfPositivity" target="_blank">
-      <i class="bi-facebook"/>
-    </v-btn>
-
-    <v-btn color="rgb(85,141,206)" fab dark href="https://instagram.com/NationOfPositivity" target="_blank">
-      <i class="bi-instagram"/>
-    </v-btn>
-
-  </p>
+  <v-footer dark height="auto">
+    <v-card class="flex" flat tile>
+      <v-card-title style="background-color:rgb(85,141,206)">
+        <strong class="subheading">Volg onze socials voor updates!</strong>
+        <v-spacer></v-spacer>
+        <v-btn class="mx3" dark icon href="https://instagram.com/NationOfPositivity" target="_blank">
+          <i class="bi-instagram"/>
+        </v-btn>
+        <v-btn class="mx3" dark icon href="https://facebook.com/NationOfPositivity" target="_blank">
+          <i class="bi-facebook"/>
+        </v-btn>
+        <v-btn class="mx3" dark icon href="https://facebook.com/NationOfPositivity" target="_blank">
+          <i class="bi-twitter-x"/>
+        </v-btn>
+      </v-card-title>
+      <v-card-actions class="grey darken-3 justify-center">
+        <p style="text-align:center">
+          <router-link style="color:white" to="/algemene-voorwaarden">Algemene voorwaarden</router-link> - <router-link style="color:white" to="/faq#privacy">Privacy</router-link> - <router-link style="color:white" to="/faq#cookies">Cookies</router-link><br>
+          &copy;2024 — <strong>Nation of Positivity by 2Know - BE0865.835.163</strong>
+        </p>
+      </v-card-actions>
+    </v-card>
+  </v-footer>
+  
   
 </div>
 `,

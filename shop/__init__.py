@@ -106,7 +106,7 @@ server.register_stylesheet("style.css", STATIC / "css")
 server.register_stylesheet("bootstrap-icons.min.css", STATIC / "css")
 
 # register static pages
-for page in [ "welcome", "faq", "contact" ]:
+for page in [ "welcome", "faq", "contact", "algemene-voorwaarden" ]:
   server.register_component(f"{page}.js", PAGES)
 
 # register dynamic pages

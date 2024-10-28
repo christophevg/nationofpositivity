@@ -13,6 +13,7 @@ var Faq = {
   </p>
   
   <v-card v-for="(faq, i) in model.faqs" :key="i" class="mb-3">
+    <a :id="faq.id" :name="faq.id"/>
     <v-card-title primary-title>
       <div>
         <h3 class="headline mb-0">{{ faq.question }}</h3>
@@ -36,6 +37,7 @@ var Faq = {
       model : {
         faqs : [
           {
+            id: "errors",
             question: "Help! Ik krijg foutboodschappen. Wat moet ik doen?",
             answer: `
             
@@ -55,6 +57,7 @@ var Faq = {
             `
           },
           {
+            id: "cookies",
             question: "Gebruikt deze site cookies?",
             answer: `
     
@@ -71,6 +74,7 @@ var Faq = {
 `
           },
           {
+            id: "betalen",
             question: "Welke opties om te betalen worden aangeboden?",
             answer: `
             
@@ -86,6 +90,7 @@ var Faq = {
 `
           },
           {
+            id: "verzending",
             question: "Hoe ontvang ik mijn stukje positiviteit?",
             answer: `
             
@@ -97,6 +102,42 @@ var Faq = {
 `
           },
           {
+            id: "privacy",
+            question: "Zijn mijn persoonsgegevens veilig?",
+            answer: `
+
+              We doen er alles aan om jouw privégegevens ook echt privé te houden. We vragen gegevens van jou, zodat we je zo goed mogelijk kunnen helpen. Welke gegevens we vragen en waarvoor we ze gebruiken lees je hieronder. Ook zie je wat je rechten zijn, wie toegang heeft tot je data en hoe lang we je gegevens bewaren.
+            
+              Dit privacybeleid is voor het laatst gewijzigd op 28 oktober 2024.
+            
+            Volgens de privacywetgeving moeten we zeggen welke ‘juridische gronden’ we hebben om je gegevens te gebruiken. We hebben gegevens van je nodig vanwege de contractuele afspraken tussen jou en Nation of Positivity, zoals jouw aankoop van een product. Dit is het geval bij:
+
+            <ul>
+              <li>Bestellen</li>
+              <li>Levering</li>
+              <li>Retour</li>
+              <li>Contact met ons</li>
+            </ul>
+            
+            We geven je gegevens alleen door aan andere partijen als dat echt nodig is voor onze dienstverlening. Het betreft dan deze partijen: bezorgpartners en betaalpartners. Onze bezorgpartner moet tenslotte je bestelling afleveren op het juiste adres. In verdachte situaties zijn we verplicht om klantgegevens te delen met overheidsinstanties.
+            
+            De partijen die van ons toegang krijgen tot je gegevens, mogen deze alleen gebruiken om jou een dienst te leveren namens Nation of Positivity. Tenzij ze zelf verantwoordelijk zijn voor het verkrijgen en beschermen van je gegevens.
+            
+            We verkopen jouw gegevens nooit aan derden.
+            
+            We slaan je gegevens op in databases. We hanteren altijd strenge beveiligingsmaatregelen. Deze databases bevinden zich bunnen de Europese Unie.
+            
+            We bewaren en gebruiken jouw gegevens niet langer dan noodzakelijk. Daarna verwijderen we alle data die we van je hebben. Of gebruiken we jouw gegevens anoniem, omdat we bepaalde data nodig hebben voor interne analyses en rapportages zoals de waarde van je bestelling.
+            
+            Van de Belastingdienst moeten we onze administratie met jouw factuur-, betaal- en bestelgegevens 7 jaar bewaren.
+            
+            Gegevens die we gebruiken om fraude te voorkomen bewaren we heel lang. Niet leuk, wel nodig.
+            
+            Aankopen bij Nation of Positivity gebeuren ook niet met een account. We bewaren jouw persoonsgegevens dus niet. We registreren deze enkel als deel van een order.
+`
+          },
+          {
+            id: "aup",
             question: "Mag ik doen en laten wat ik wil?",
             answer: `
     
@@ -113,6 +154,7 @@ var Faq = {
 `
           },
           {
+            id: "wie",
             question: "Wie of wat is Nation of Positivity?",
             answer: `
             
@@ -130,6 +172,7 @@ var Faq = {
 ` 
           },
           {
+            id: "recaptcha",
             question: "Wat betekent 'protected by reCAPTCHA'?",
             answer: `
     

@@ -158,9 +158,14 @@ var Basket = {
         <v-checkbox
           v-model="confirmation"
           value="1"
-          label="Ja, ik begrijp dat ik door deze bevestiging een betaalverplichting heb en dat ik akkoord ga met de algemene verkoopsvoorwaarden en me houd aan een acceptable manier van gebruik van deze website (zie ook 'Mag ik doen en laten wat ik wil?' bij vraag &amp; antwoord)"
           type="checkbox"
-        ></v-checkbox>
+        >
+       <template v-slot:label>
+      <div>
+      Ja, ik begrijp dat ik door deze bevestiging een betaalverplichting heb en dat ik akkoord ga met de <router-link to="/algemene-voorwaarden">algemene verkoopsvoorwaarden</router-link> en me houd aan een acceptable manier van gebruik van deze website (zie ook 'Mag ik doen en laten wat ik wil?' bij <router-link to=\"/faq\">vraag &amp; antwoord</router-link>)
+      </div>
+      </template>
+      </v-checkbox>
         <v-btn :disabled="!confirmation" color="primary" @click="submit">Ja, zo is alles goed...</v-btn>
       </div>
     </v-stepper-content>
