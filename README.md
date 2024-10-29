@@ -33,6 +33,8 @@
 - [x] different way to include QR code in mail (GMail doesn't show inline)
 - [x] reduce logging
 - [x] Mollie Live
+- [ ] faq: order-procedure (e.g. ontwerp per email ter bevestiging)
+- [ ] algemene opmerkingen bij order?
 - [ ] test, test, test && improve, improve, improve
 - [ ] launch 🚀
   - [ ] homemade website
@@ -47,12 +49,12 @@
 
 ## Future Features
 
-- [ ] social image
+- [x] dynamic sizing of shipping format
+- [ ] social image (bw)
 - [ ] send more emails (100/day free)
   - [x] bcc
   - [ ] on every state change
-- [ ] more shipping options
-- [x] dynamic sizing of shipping format
+- [ ] more shipping options?
 - [ ] extend order overview page
    - [ ] add "chat" function
      - [ ] with images e.g. for design example sharing + confirmation

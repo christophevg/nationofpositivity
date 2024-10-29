@@ -49,10 +49,18 @@ var Index = {
             eindejaarsfeesten. De <b>"Holidays are coming" collectie</b>
             bestaat uit een reeks van gepersonaliseerde, houten wenskaarten,
             waarmee je jouw wensen dit jaar nét dat ietsje meer positiviteit
-            geeft. Je vind veel ideeën, voorbeelden en mogelijkheden in <a
-            href="/shop" onclick="router.push({path: '/shop'}); return
-            false;">de shop</a> . ` } ] } } }
-  
+            geeft. Je vind nu al veel ideeën, voorbeelden en mogelijkheden in
+            <a href="/shop" onclick="router.push({path: '/shop'}); return
+            false;">de shop</a> . De komende dagen en weken vullen we deze
+            eerste serie aan met nog veel meer leuke ontwerpen om van te
+            starten.
+
+`
+          }
+        ]
+      }
+    }
+  }
 };
 
 Navigation.add(Index)
