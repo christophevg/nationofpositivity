@@ -36,14 +36,14 @@
 - [ ] faq: order-procedure (e.g. ontwerp per email ter bevestiging)
 - [ ] algemene opmerkingen bij order?
 - [ ] test, test, test && improve, improve, improve
-- [ ] launch 🚀
-  - [ ] homemade website
-  - [ ] personal website
-  - [ ] socials
-    - [ ] instagram
-    - [ ] facebook
-    - [ ] X
-    - [ ] LinkedIn
+- [x] launch 🚀
+  - [x] homemade website
+  - [x] personal website
+  - [x] socials
+    - [x] instagram
+    - [x] facebook
+    - [x] X
+    - [x] LinkedIn
   - [ ] mailing?
 - [ ] figure out GLS shipping 😇
 
