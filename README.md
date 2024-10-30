@@ -2,7 +2,29 @@
 
 > a positive webshop
 
-## MVP TODO
+## Backlog.
+
+- [ ] linkedin social links
+  - [x] website
+  - [ ] SendGrid template
+- [ ] social image (bw)
+- [ ] faq: order-procedure (e.g. ontwerp per email ter bevestiging)
+- [ ] algemene opmerkingen bij order?
+- [ ] test, test, test && improve, improve, improve
+  - [ ] mailing?
+- [ ] figure out GLS shipping 😇
+- [ ] send more emails (100/day free)
+  - [x] bcc
+  - [ ] on every state change
+- [ ] more shipping options?
+- [ ] extend order overview page
+   - [ ] add "chat" function
+     - [ ] with images e.g. for design example sharing + confirmation
+- [ ] font selector
+  - [ ] reference to https://www.fontsquirrel.com/
+  - [ ] local, live generation of text in correct font?
+
+## MVP ✅
 
 - [x] create CDN (repo + pages setup)
 - [x] clean up repo
@@ -31,11 +53,9 @@
 - [x] deploy to production in test mode
 - [x] integrate Mollie
 - [x] different way to include QR code in mail (GMail doesn't show inline)
+- [x] dynamic sizing of shipping format
 - [x] reduce logging
 - [x] Mollie Live
-- [ ] faq: order-procedure (e.g. ontwerp per email ter bevestiging)
-- [ ] algemene opmerkingen bij order?
-- [ ] test, test, test && improve, improve, improve
 - [x] launch 🚀
   - [x] homemade website
   - [x] personal website
@@ -44,20 +64,3 @@
     - [x] facebook
     - [x] X
     - [x] LinkedIn
-  - [ ] mailing?
-- [ ] figure out GLS shipping 😇
-
-## Future Features
-
-- [x] dynamic sizing of shipping format
-- [ ] social image (bw)
-- [ ] send more emails (100/day free)
-  - [x] bcc
-  - [ ] on every state change
-- [ ] more shipping options?
-- [ ] extend order overview page
-   - [ ] add "chat" function
-     - [ ] with images e.g. for design example sharing + confirmation
-- [ ] font selector
-  - [ ] reference to https://www.fontsquirrel.com/
-  - [ ] local, live generation of text in correct font?
