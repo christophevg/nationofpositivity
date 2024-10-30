@@ -7,7 +7,7 @@ function round2(value) {
 store.registerModule("basket", {
   state: {
     order: [],
-    payment: false,
+    payment_method: "overschrijving",
     badge: {
       visible : false,
       text    : 0,
@@ -62,8 +62,11 @@ store.registerModule("basket", {
     shipping_total: function(state, getters) {
       return getters.item_count ? getters.shipping_method.cost : 0;
     },
+    payment_method: function(state) {
+      return state.payment_method;
+    },
     payment_total: function(state, getters) {
-      return state.payment ? 0.39 : 0;
+      return state.payment_method == "overschrijving" ? 0 : 0.39;
     },
     total: function(state, getters) {
       return getters.lines_total 
@@ -72,8 +75,9 @@ store.registerModule("basket", {
     },
     order : function(state, getters) {
       return {
-        lines     : getters.lines,
-        total: {
+        lines         : getters.lines,
+        payment_method: getters.payment_method,
+        total         : {
           lines   : round2(getters.lines_total),
           shipping: round2(getters.shipping_total),
           payment : round2(getters.payment_total),
@@ -99,8 +103,8 @@ store.registerModule("basket", {
     }
   },
   mutations: {
-    update_payment: function(state, value) {
-      state.payment = value;
+    update_payment_method: function(state, method) {
+      state.payment_method = method;
     },
     update_product: function(state, product) {
       var existing = state.order.find(function(item){
@@ -176,9 +180,9 @@ store.registerModule("basket", {
     },
     clear_basket: function(state) {
       Vue.set(state, "order", []);
-      state.payment = false;
-      state.badge.visible = false;
-      state.badge.text    = 0;
+      state.payment_method = "overschrijving";
+      state.badge.visible  = false;
+      state.badge.text     = 0;
     }
   }
 });

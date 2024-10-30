@@ -106,23 +106,24 @@ var Basket = {
     </v-stepper-step>
 
     <v-stepper-content step="4">
+      
+      <v-tabs icons-and-text v-model="payment_index">
+        <v-tabs-slider></v-tabs-slider>
 
-      <v-switch v-model="payment" :label="payment ? 'online' : 'overschrijving'"></v-switch>
+        <v-tab key="0" v-for="(method, index) in payment_options" :key="index">
+          Overschrijving
+          <v-img :src="'/app/static/images/payment/' + method + '.svg'"
+                 max-width="32" max-height="25" min-width="32" min-height="25"/>
+        </v-tab>
 
-      <p v-if="payment">
+        <v-tab-item v-for="(method, index) in payment_options" :key="index">
 
-        Je wordt na bevestiging doorgestuurd naar onze betaalpartner Mollie. Je
-        betaalt een online transactiekost van &euro; {{ payment_total }}<br>
+          <p style="margin:20px" v-html="payment_description[method]"></p>
 
-      </p>
+        </v-tab-item>
 
-      <p v-if="!payment">
+      </v-tabs>
 
-        Je betaalt per overschrijving. Betaalinstructies vind je terug in de
-        bevestigingsmail die je ontvangt na bevestiging van je order.
-
-      </p>
-  
       <div class="text-xs-center mt-2">
         <v-btn color="primary" @click="stage = 5">Top, zo betaal ik dat!</v-btn>
       </div>
@@ -171,8 +172,8 @@ var Basket = {
       <v-card-text>
 
         <br>
-        We registreren je order.<br>
-        <span v-if="payment">
+        We registreren je order. {{payment_method}}<br>
+        <span v-if="payment_method != 'overschrijving'">
         <br>
         Nadien wordt je doorverwezen naar de betaalpartner, Mollie.
         </span>
@@ -223,14 +224,17 @@ var Basket = {
     payment_total: function() {
       return store.getters.payment_total;
     },
-    payment: {
+    payment_method: function() {
+      return store.getters.payment_method;
+    },
+    payment_index: {
       get() {
-        return store.getters.payment_total > 0;
+        return this.payment_options.indexOf(store.getters.payment_method);
       },
-      set(value) {
-        store.commit("update_payment", value)
+      set(method) {
+        store.commit("update_payment_method", this.payment_options[method])
       }
-    }
+    },
   },
   methods: {
     remove: function(line) {
@@ -263,10 +267,10 @@ var Basket = {
         grecaptcha.execute(store.state.config.recaptcha, {action: "submit"}).then(function(token) {
           post( "/api/orders",
             {
-              order    : self.basket,
-              contact  : self.contact,
-              payment  : self.payment,
-              recaptcha: token
+              order         : self.basket,
+              contact       : self.contact,
+              payment_method: self.payment_method,
+              recaptcha     : token
             },
             function( data ) {
               // server responded successfully, so order is registered
@@ -295,6 +299,23 @@ var Basket = {
   },
   data () {
     return {
+      payment_options : [ "overschrijving", "bancontact" ],
+      payment_description: {
+        "overschrijving": `
+            Na bevestiging van je order, betaalt je zelf, per overschrijving.<br>
+
+            Betaalinstructies vind je terug in de bevestigingsmail die je
+            ontvangt na bevestiging van je order.<br>
+      
+            Je betaalt hiervoor geen transactiekosten.
+`,
+        "bancontact": `
+            Je wordt na bevestiging van je order, doorgestuurd naar onze
+            betaalpartner Mollie. Daar voer je de betaling via Bancontact online uit.<br>
+      
+            Je betaalt een vaste online transactiekost van &euro; 0.39.
+`
+      },
       stage: 1,
       submission_overlay: false,
       confirmation: false,

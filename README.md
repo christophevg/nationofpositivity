@@ -4,29 +4,37 @@
 
 ## Backlog
 
+- [ ] improve mail templates/content
+- [ ] download payment history on state update and store locally?
 - [ ] faq: order-procedure (e.g. ontwerp per email ter bevestiging)
-- [ ] algemene opmerkingen bij order?
-- [ ] test, test, test && improve, improve, improve
-  - [ ] mailing?
-- [ ] figure out GLS shipping 😇
-- [ ] send more emails (100/day free)
-  - [x] bcc
-  - [ ] on every state change
+- [ ] start mailing list?
+- [ ] send out mailing?
+- [ ] first order
+  - [ ] figure out GLS shipping 😇
+- [ ] send more emails (100/day free) - on every state change?
 - [ ] more shipping options?
-- [ ] extend order overview page
-   - [ ] add "chat" function
-     - [ ] with images e.g. for design example sharing + confirmation
 - [ ] font selector
   - [ ] reference to https://www.fontsquirrel.com/
   - [ ] local, live generation of text in correct font?
 
 ## Done
 
+- [x] add bancontact references (generalize methods)
 - [x] social image (bw)
 - [x] linkedin social links
   - [x] website
   - [x] SendGrid template
 - [x] add credit for boy-arcade movie/still
+
+## Won't Do
+
+- [-] algemene opmerkingen bij order?
+  => email als conversatie, order is zo eenvoudig mogelijke start
+- [ ] extend order overview page
+   - [ ] add "chat" function
+     - [ ] with images e.g. for design example sharing + confirmation
+  => email als conversatie, order is zo eenvoudig mogelijke start
+
 
 ## MVP ✅
 
@@ -60,6 +68,7 @@
 - [x] dynamic sizing of shipping format
 - [x] reduce logging
 - [x] Mollie Live
+- [x] bcc order confirmation mails to contact@
 - [x] launch 🚀
   - [x] homemade website
   - [x] personal website

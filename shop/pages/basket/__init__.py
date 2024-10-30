@@ -15,6 +15,7 @@ from ...db   import orders
 from ...mail import send, create_attachment
 
 from mollie.api.client import Client
+# from ...fake.payments import Client
 
 MOLLIE_API_KEY = os.environ.get("MOLLIE_API_KEY", None)
 WEBSITE_URL    = os.environ.get("WEBSITE_URL", "https://nationofpositivity.com")
@@ -52,7 +53,7 @@ class Orders(Resource):
         "redirectUrl": f"{WEBSITE_URL}/order/{order.id}",
         "webhookUrl" : f"{WEBSITE_URL}/api/payment/{order.id}"
       })
-      orders.update(order.id, payment=payment.id, status=None)
+      orders.update(order.id, payment_id=payment.id, status=None)
       response["next"] = payment.checkout_url
     else:
       order_id = str(order.id)
@@ -126,7 +127,7 @@ class PaymentFeedback(Resource):
   def post(self, id):
     order   = orders.get(id)
     payment = client.payments.get(request.form["id"])
-    if order.payment == payment.id:
+    if order.payment_id == payment.id:
       logger.debug(f"received payment feedback for order {id}: {payment.status}")
       if payment.is_paid:
         orders.update(order.id, paid_at=payment.paid_at)

@@ -230,19 +230,20 @@ class OrderTotal:
 
 @dataclass
 class Order(BaseObject):
-  lines        : List[OrderLine]
-  contact      : Contact
-  total        : OrderTotal
+  lines         : List[OrderLine]
+  contact       : Contact
+  total         : OrderTotal
 
-  id           : str = field(default_factory=uid)
-  created      : datetime = field(default_factory=datetime.now)
+  id            : str = field(default_factory=uid)
+  created       : datetime = field(default_factory=datetime.now)
 
-  payment      : str = ""   # reference for payment provider
-  paid_at      : str = ""   # timestamps
+  payment_method: str = "overschrijving" # "bancontact",...
+  payment_id    : str = ""               # reference for payment provider
+  paid_at       : str = ""               # timestamp
 
-  shipment     : str = ""   # reference from courier
-  shipped_at   : str = ""
-  delivered_at : str = ""
+  shipment      : str = ""               # reference from courier
+  shipped_at    : str = ""               # timestamp
+  delivered_at  : str = ""               # timestamp
 
   @classmethod
   def create(cls, **kwargs):
@@ -272,6 +273,8 @@ class Order(BaseObject):
       if order["total"]["lines"] != expected_total:
         logger.warn(f"{order['total']['lines']} != {expected_total}")
         raise ValueError("incorrect lines total detected")
+      
+      # TODO validate grand, tax, shipping, payment totals
       
       # create
       return cls(**order, contact=contact)

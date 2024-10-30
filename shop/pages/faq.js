@@ -78,15 +78,16 @@ var Faq = {
             question: "Welke opties om te betalen worden aangeboden?",
             answer: `
             
-            Je kan kiezen om je order via een bankoverschrijving te betalen. We
-            wachten op jouw betaling en beginnen er dan aan te werken. Je
-            ontvangt van ons bij de bevestigingsmail alle informatie om de
-            overschrijving uit te voeren, inclusief een handige QR code.
+            Je kan kiezen om je order zelf via een bankoverschrijving te
+            betalen. We wachten op jouw betaling en beginnen er dan aan te
+            werken. Je ontvangt van ons bij de bevestigingsmail alle informatie
+            om de overschrijving uit te voeren, inclusief een handige QR code.
             
             Je kan ook kiezen om online te betalen. We verwijzen je dan door
-            naar onze betaalpartner, Mollie. Voor het gebruik van hun diensten
-            rekenen we &euro; 0.39 aan.
-
+            naar onze betaalpartner, Mollie. Op dit moment voorzien we op die
+            manier Bancontact als optie en rekenen we &euro; 0.39
+            transactiekosten aan.
+            
 `
           },
           {

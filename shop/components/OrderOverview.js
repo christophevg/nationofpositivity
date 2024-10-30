@@ -149,7 +149,7 @@ Vue.component("OrderOverviewAsDataTable", {
     </tr>
     <tr v-if="withExtras && order.total.payment > 0">
       <td :colspan="headers.length" class="text-xs-right">
-        <b>Online Payment: &euro; {{ order.total.payment }}</b>
+        <b>Online Payment ({{ order.payment_method }} ): &euro; {{ order.total.payment }}</b>
       </td>
     </tr>
     <tr v-if="withExtras">
