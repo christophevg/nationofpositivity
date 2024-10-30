@@ -2,9 +2,8 @@
 
 > a positive webshop
 
-## Backlog.
+## Backlog
 
-- [ ] social image (bw)
 - [ ] faq: order-procedure (e.g. ontwerp per email ter bevestiging)
 - [ ] algemene opmerkingen bij order?
 - [ ] test, test, test && improve, improve, improve
@@ -23,6 +22,7 @@
 
 ## Done
 
+- [x] social image (bw)
 - [x] linkedin social links
   - [x] website
   - [x] SendGrid template

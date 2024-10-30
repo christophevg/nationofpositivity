@@ -44,6 +44,7 @@ from . import db
 from baseweb import Baseweb
 server = Baseweb("nation-of-positivity")
 server.config["TEMPLATES_AUTO_RELOAD"] = True
+server.log_config()
 
 # improve json output generation
 import json
