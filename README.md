@@ -4,9 +4,6 @@
 
 ## Backlog.
 
-- [x] linkedin social links
-  - [x] website
-  - [x] SendGrid template
 - [ ] social image (bw)
 - [ ] faq: order-procedure (e.g. ontwerp per email ter bevestiging)
 - [ ] algemene opmerkingen bij order?
@@ -23,6 +20,13 @@
 - [ ] font selector
   - [ ] reference to https://www.fontsquirrel.com/
   - [ ] local, live generation of text in correct font?
+
+## Done
+
+- [x] linkedin social links
+  - [x] website
+  - [x] SendGrid template
+- [x] add credit for boy-arcade movie/still
 
 ## MVP ✅
 

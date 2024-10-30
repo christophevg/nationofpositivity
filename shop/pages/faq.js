@@ -184,6 +184,10 @@ var Faq = {
                 <a href="https://www.fontsquirrel.com/fonts/list/foundry/natalia-kasatkina" target="_blank">Natalia Kasatkina</a> voor haar leuk
                 <a href="https://www.fontsquirrel.com/fonts/cherry-swash" target="_blank">Cherry Swash lettertype</a>. Dit is het lettertype van het Nation of Positivity logo.
               </li>
+              <li>
+                <a href="https://www.pexels.com/@cottonbro/" target="_blank">Cottonbro Studio</a> voor de super positieve vibe in de video met 
+                <a href="https://www.pexels.com/video/a-boy-standing-in-front-of-a-video-game-machine-4841882/" target="_blank">het jongentje in de speelhal</a>. We gebruiken deze video en afbeeldingen eruit als background voor onze socials.
+              </li>
             </ul>
             
 `
