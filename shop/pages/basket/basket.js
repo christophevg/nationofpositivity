@@ -111,7 +111,7 @@ var Basket = {
         <v-tabs-slider></v-tabs-slider>
 
         <v-tab key="0" v-for="(method, index) in payment_options" :key="index">
-          Overschrijving
+          {{ method }}
           <v-img :src="'/app/static/images/payment/' + method + '.svg'"
                  max-width="32" max-height="25" min-width="32" min-height="25"/>
         </v-tab>
