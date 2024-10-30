@@ -41,13 +41,15 @@ class Orders(Resource):
     response = { "id" : order.id }
 
     extra_info = ""
-    attachment=None
+    attachment = None
+    
+    grand_total_string = f"{order.total.grand:.2f}"
 
     if order.requires_payment:
       payment = client.payments.create({
         "amount": {
           "currency" : "EUR",
-          "value"    : str(order.total.grand) 
+          "value"    : grand_total_string 
         },
         "description": f"Betaling voor Nation of Positivity order {order.id}",
         "redirectUrl": f"{WEBSITE_URL}/order/{order.id}",
@@ -65,15 +67,26 @@ class Orders(Resource):
         "inline"
       )
       extra_info = f"""
-  <p>
+  <p style="margin-top:15px">
 
-    Je koos voor betaling via overschrijving. Gelieve &euro; {order.total.grand}
-    over te schrijven naar BE14.7370.5585.6683. Gebruik het nummer van je order
-    als gestructureerde mededeling: +++{structured}+++.
+    Je koos voor betaling via overschrijving. Gebruik onderstaande
+    betalingsgegevens om je betaling vlot en correct uit te voeren.
+  
+  <table border="0" style="margin-top:10px">
+    <tr>
+      <td>Totaal bedrag</td>   <td>&euro; {grand_total_string}</td>
+    </tr>
+    <tr>
+      <td>Op rekening</td>     <td>BE14 7370 5585 6683</td>
+    </tr>
+    <tr>
+      <td>Met mededeling</td>  <td>{structured}</td>
+    </tr>
+    </table>
 
   </p>
 
-  <p style="text-align:center">
+  <p style="text-align:center;margin-top:15px;">
 
     Je kan ook onderstaande QR code gebruiken in je banking app:<br>
     <img src="cid:{attachment.content_id.get()}">
@@ -89,19 +102,21 @@ class Orders(Resource):
       f"""
 <p>
 
-  Bedankt voor je order. We gaan er zo snel mogelijk en met veel zin aan
-  beginnen en houden je op de hoogte bij elke stap.
+  Bedankt voor je order. We gaan zo snel mogelijk en met veel zin aan de
+  slag en houden je op de hoogte bij elke stap.
 
 </p>
 
-<p>
+<p style="margin-top:15px">
 
-  Als je bijkomende informatie moest of wil aanleveren, mag je altijd reageren
+  👉 Als je bijkomende informatie moest of wil aanleveren, mag je altijd reageren
   op deze email.
 
 </p>
+
 {extra_info}
-<p>
+
+<p style="margin-top:15px">
 
   Zodra ik je betaling ontvangen heb, ga ik aan de slag. Je kan de voortgang
   van je order opvolgen op onze <a
@@ -110,7 +125,7 @@ class Orders(Resource):
 
 </p>
 
-<p>
+<p style="margin-top:15px">
 
   Christophe<br>
   Nation of Positivity

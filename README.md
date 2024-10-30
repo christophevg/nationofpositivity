@@ -4,7 +4,6 @@
 
 ## Backlog
 
-- [ ] improve mail templates/content
 - [ ] download payment history on state update and store locally?
 - [ ] faq: order-procedure (e.g. ontwerp per email ter bevestiging)
 - [ ] start mailing list?
@@ -19,6 +18,7 @@
 
 ## Done
 
+- [x] improve mail templates/content
 - [x] add bancontact references (generalize methods)
 - [x] social image (bw)
 - [x] linkedin social links
