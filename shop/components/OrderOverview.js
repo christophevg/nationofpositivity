@@ -27,60 +27,66 @@ Vue.component("OrderOverviewAsList", {
     "withExtras" : Boolean
   },
   template: `
-<v-card>
-  <v-list two-line subheader>
-    <v-subheader>Producten</v-subheader>
+<div>
+  <p v-if="order.lines.length < 1">
+    Je hebt nog geen spulletjes toegevoegd aan je order. Ontdek positiviteit
+    <router-link to="/shop">in de shop</router-link>...
+  </p>
+  <v-card v-else>
+    <v-list two-line subheader>
+      <v-subheader>Producten</v-subheader>
 
-    <v-list-tile v-for="(item, i) in order.lines" :key="i">
-      <v-list-tile-content>
+      <v-list-tile v-for="(item, i) in order.lines" :key="i">
+        <v-list-tile-content>
 
-        <v-list-tile-title>
-          <router-link :to="'/products/' + item.product.id">{{ item.product.title }}</router-link>
-        </v-list-tile-title>
+          <v-list-tile-title>
+            <router-link :to="'/products/' + item.product.id">{{ item.product.title }}</router-link>
+          </v-list-tile-title>
 
-        <v-list-tile-sub-title>
-          {{ summary(item.options )}}<br>
-          &euro; {{ item.unit_price | fixed2 }} x {{ item.amount }} = &euro; {{ item.line_total | fixed2  }}
-        </v-list-tile-sub-title>
+          <v-list-tile-sub-title>
+            {{ summary(item.options )}}<br>
+            &euro; {{ item.unit_price | fixed2 }} x {{ item.amount }} = &euro; {{ item.line_total | fixed2  }}
+          </v-list-tile-sub-title>
 
-      </v-list-tile-content>
+        </v-list-tile-content>
 
-        <v-list-tile-action>
-          <div>
-          <v-icon v-if="editable" small class="mr-2" @click="remove(item)">remove</v-icon>
-          <v-icon v-if="editable" small class="mr-2" @click="add(item)">add</v-icon>
-          </div>
-        </v-list-tile-action>
+          <v-list-tile-action>
+            <div>
+            <v-icon v-if="editable" small class="mr-2" @click="remove(item)">remove</v-icon>
+            <v-icon v-if="editable" small class="mr-2" @click="add(item)">add</v-icon>
+            </div>
+          </v-list-tile-action>
 
-    </v-list-tile>
+      </v-list-tile>
 
-  </v-list>
+    </v-list>
 
-  <v-divider></v-divider>
+    <v-divider></v-divider>
           
-  <div style="margin-bottom: 20px">
-    <v-subheader>Totaal</v-subheader>
+    <div style="margin-bottom: 20px">
+      <v-subheader>Totaal</v-subheader>
     
-    <table width="100%" cellspacing=0 cellpadding="0" border="0">
-      <tr>
-        <th class="text-xs-right">Artikels</th><td class="text-xs-right">&euro;{{ order.total.lines | fixed2 }}</td>
-      </tr>
-      <tr class="text-xs-right" v-if="withExtras">
-        <th>Verzending</th><td class="text-xs-right">&euro; {{ order.total.shipping | fixed2 }}</td>
-      </tr>
-      <tr class="text-xs-right" v-if="withExtras && order.total.payment > 0">
-        <th>Online betalen</th><td class="text-xs-right">&euro; {{ order.total.payment | fixed2 }}</td>
-      </tr>
-      <tr class="text-xs-right" v-if="withExtras">
-        <th>Totaal</th><td class="text-xs-right">&euro; {{ order.total.grand | fixed2 }}</td>
-      </tr>
-      <tr class="text-xs-right" v-if="withExtras">
-        <th>Waarvan 21% BTW</th><td class="text-xs-right">&euro; {{ order.total.tax | fixed2 }}</td>
-      </tr>
-    </table>
-  </div>
+      <table width="100%" cellspacing=0 cellpadding="0" border="0">
+        <tr>
+          <th class="text-xs-right">Artikels</th><td class="text-xs-right">&euro;{{ order.total.lines | fixed2 }}</td>
+        </tr>
+        <tr class="text-xs-right" v-if="withExtras">
+          <th>Verzending</th><td class="text-xs-right">&euro; {{ order.total.shipping | fixed2 }}</td>
+        </tr>
+        <tr class="text-xs-right" v-if="withExtras && order.total.payment > 0">
+          <th>Online betalen</th><td class="text-xs-right">&euro; {{ order.total.payment | fixed2 }}</td>
+        </tr>
+        <tr class="text-xs-right" v-if="withExtras">
+          <th>Totaal</th><td class="text-xs-right">&euro; {{ order.total.grand | fixed2 }}</td>
+        </tr>
+        <tr class="text-xs-right" v-if="withExtras">
+          <th>Waarvan 21% BTW</th><td class="text-xs-right">&euro; {{ order.total.tax | fixed2 }}</td>
+        </tr>
+      </table>
+    </div>
 
-</v-card>
+  </v-card>
+</div>
 `,
   computed: {
     summary: function() {
