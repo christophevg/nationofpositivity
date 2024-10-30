@@ -4,9 +4,9 @@
 
 ## Backlog.
 
-- [ ] linkedin social links
+- [x] linkedin social links
   - [x] website
-  - [ ] SendGrid template
+  - [x] SendGrid template
 - [ ] social image (bw)
 - [ ] faq: order-procedure (e.g. ontwerp per email ter bevestiging)
 - [ ] algemene opmerkingen bij order?
