@@ -57,7 +57,7 @@ class Orders(Resource):
       response["next"] = payment.checkout_url
     else:
       order_id = str(order.id)
-      structured = '/'.join((order_id[:2],order_id[3:-5],order_id[-5:]))
+      structured = "+++"+'/'.join((order_id[:3],order_id[3:-5],order_id[-5:]))+"+++"
       attachment = create_attachment(
         qr.sepa_as_base64(order.total.grand, structured),
         "qr.png",
