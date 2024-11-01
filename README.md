@@ -4,20 +4,31 @@
 
 ## Backlog
 
-- [ ] download payment history on state update and store locally?
 - [ ] faq: order-procedure (e.g. ontwerp per email ter bevestiging)
+
+- [ ] ball design variations selector (bal, ster, boom, rendier)
+- [ ] font selector
+  - [ ] reference page
+- [ ] send more emails (100/day free) - on every state change?
+
 - [ ] start mailing list?
 - [ ] send out mailing?
+
 - [ ] first order
   - [ ] figure out GLS shipping 😇
-- [ ] send more emails (100/day free) - on every state change?
+
+- [ ] download payment history on state update and store locally?
+
 - [ ] more shipping options?
-- [ ] font selector
-  - [ ] reference to https://www.fontsquirrel.com/
-  - [ ] local, live generation of text in correct font?
+  - [ ] delivery to ParcelShop (https://gls-group.com/BE/en/depot-parcelshop/)
 
 ## Done
 
+### 20241101
+
+- [x] fix footer icons vs text in xs
+
+### 20241030
 - [x] improve mail templates/content
 - [x] add bancontact references (generalize methods)
 - [x] social image (bw)
@@ -34,7 +45,8 @@
    - [ ] add "chat" function
      - [ ] with images e.g. for design example sharing + confirmation
   => email als conversatie, order is zo eenvoudig mogelijke start
-
+- [ ] coupon support?
+  => pricing is minimal
 
 ## MVP ✅
 

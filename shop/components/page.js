@@ -9,27 +9,36 @@ Vue.component("Page", {
   <v-footer dark height="auto">
     <v-card class="flex" flat tile>
       <v-card-title style="background-color:rgb(85,141,206)">
-        <strong class="subheading">Volg onze socials...</strong>
-        <v-spacer></v-spacer>
-        <v-btn dark icon href="https://instagram.com/NationOfPositivity" target="_blank">
-          <i class="bi-instagram"/>
-        </v-btn>
-        <v-btn dark icon href="https://facebook.com/NationOfPositivity" target="_blank">
-          <i class="bi-facebook"/>
-        </v-btn>
-        <v-btn dark icon href="https://www.linkedin.com/company/nationofpositivity" target="_blank">
-          <i class="bi-linkedin"/>
-        </v-btn>
-        <v-btn dark icon href="https://facebook.com/NationOfPositivity" target="_blank">
-          <i class="bi-twitter-x"/>
-        </v-btn>
+
+        <v-layout row wrap>
+          <v-flex xs12 sm6 align-self-center :style="$vuetify.breakpoint.xs ? 'text-align:center' : ''">
+            <strong class="subheading">Volg onze socials...</strong>
+          </v-flex>
+
+          <v-flex xs12 sm6 :style="$vuetify.breakpoint.xs ? 'text-align:center' : 'text-align:right'">
+            <v-btn dark icon href="https://instagram.com/NationOfPositivity" target="_blank">
+              <i class="bi-instagram"/>
+            </v-btn>
+            <v-btn dark icon href="https://facebook.com/NationOfPositivity" target="_blank">
+              <i class="bi-facebook"/>
+            </v-btn>
+            <v-btn dark icon href="https://www.linkedin.com/company/nationofpositivity" target="_blank">
+              <i class="bi-linkedin"/>
+            </v-btn>
+            <v-btn dark icon href="https://facebook.com/NationOfPositivity" target="_blank">
+              <i class="bi-twitter-x"/>
+            </v-btn>
+          </v-flex>
+        </v-layout>
       </v-card-title>
+
       <v-card-actions class="grey darken-3 justify-center">
         <p style="text-align:center">
           <router-link style="color:white" to="/algemene-voorwaarden">Algemene voorwaarden</router-link> - <router-link style="color:white" to="/faq#privacy">Privacy</router-link> - <router-link style="color:white" to="/faq#cookies">Cookies</router-link><br>
           &copy;2024 — <strong>Nation of Positivity by 2Know - BE0865.835.163</strong>
         </p>
       </v-card-actions>
+
     </v-card>
   </v-footer>
   
