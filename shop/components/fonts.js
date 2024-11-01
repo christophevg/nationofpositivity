@@ -127,31 +127,19 @@ Vue.component("field-FontSelectionField",{
   </v-input>
 `,
   mounted: function() {
+    // adopt the currently selected font
     this.value = store.getters.selected_font;
+    // subscribe to changes to the selected font
+    var self = this;
+    store.subscribe((mutation, state) => {
+      if([ "select_font" ].includes(mutation.type)) {
+        self.value = state.fonts.selected;
+      }
+    });
   },
   methods: {
     select_font: function() {
-      // show the dialog
       store.commit("show_font_selection");
-
-      // subscribe to change and close events
-      var self = this;
-      var unsubscribe = store.subscribe((mutation, state) => {
-        if([ "select_font" ].includes(mutation.type)) {
-          self.value = state.fonts.selected;
-        }
-      });
-      var cleanup = store.subscribe((mutation, state) => {
-        if(["hide_font_selection"].includes(mutation.type)) {
-          unsubscribe();
-          cleanup();
-        }
-      });
-    }
-  },
-  data: function() {
-    return {
-      unsubscribe: null
     }
   }
 });

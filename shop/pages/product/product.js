@@ -4,7 +4,7 @@ var Product = {
   <ProductCard :product="selected" layout="page" nolink/>
 </Page>
 `,
-  created: function() {
+  activated: function() {
     store.dispatch("select", this.$route.params.id);
   },
   computed : {
