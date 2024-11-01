@@ -46,6 +46,10 @@ Vue.component("Page", {
   
 </div>
 `,
+  activated: function() {
+    // ensure pages are always scrolled back to the top
+    this.$vuetify.goTo(0);
+  },
   computed: {
     banner: function() {
       return store.state.allpages.banner;
