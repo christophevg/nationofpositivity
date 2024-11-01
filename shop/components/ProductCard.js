@@ -123,18 +123,19 @@ Vue.component("ProductCard", {
     }
   },
   template: `
-  <v-card :to="link_to" tile height="100%" style="margin-right: 3px;">
-
-    <div v-if="! product">
+<div>
+  <div v-if="product == null || is_error">
+    <div v-if="product == null">
       Ok, dit product wordt geladen...
     </div>
-  
+
     <div v-if="is_error">
       Whoops, dat product lijkt niet te bestaan...
     </div>
-
-    <div v-if="product && ! is_error">
+  </div>
   
+  <v-card v-else :to="link_to" tile height="100%" style="margin-right: 3px;">
+
       <v-img v-if="(card_layout && header.images.length >= 1) || (page_layout && header.images.length == 1)"
              :src="cdn(header.images[0])"
              :aspect-ratio="header.ratio"
@@ -210,9 +211,7 @@ Vue.component("ProductCard", {
         </v-flex>
 
       </v-layout>
-                  
-    </div>
-  
+
     <v-dialog v-model="next" persistent max-width="600">
       <v-card>
         <v-card-title>
@@ -235,6 +234,7 @@ Vue.component("ProductCard", {
     </v-dialog>
   
   </v-card>
+</div>
 `,
   computed: {
     html_description: function() {
