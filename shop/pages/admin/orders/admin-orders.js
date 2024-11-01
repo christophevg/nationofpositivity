@@ -129,6 +129,7 @@ var OrderAdmin = {
       headers: [
         { text: "id",      align: "left",  sortable: true, value: "id"           },
         { text: "buyer",   align: "left",  sortable: true, value: "contact.name" },
+        { text: "total",   align: "right", sortable: true, value: "total.grand"  },
         { text: "created", align: "left",  sortable: true, value: "created"      }
       ],
     }
