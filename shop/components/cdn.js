@@ -15,6 +15,7 @@ store.registerModule("cdn", {
   },
   mutations: {
     index: function(state, index) {
+
       function flatten(obj, prefix, lst) {
         for(var key in obj) {
           if(key == "_files") {
@@ -30,7 +31,10 @@ store.registerModule("cdn", {
       }
       
       Vue.set(state, "index", index);
-      flatten(index, "", state.flat_index);
+
+      var temp = [];
+      flatten(index, "", temp);
+      Vue.set(state, "flat_index", temp);
     }
   },
   getters: {
@@ -39,6 +43,11 @@ store.registerModule("cdn", {
         var parts = path.split("/"),
             filename = parts.pop(),
             ptr = state.index;
+
+        if(! ptr) {
+          return "/app/static/images/placeholder.png";
+        }
+
         if(parts[0] == "") {
           parts.shift();
         }
