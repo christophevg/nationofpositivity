@@ -4,8 +4,6 @@
 
 ## Backlog
 
-- [ ] faq: order-procedure (e.g. ontwerp per email ter bevestiging)
-
 - [ ] ball design variations selector (bal, ster, boom, rendier)
 - [ ] font selector
   - [ ] reference page
@@ -27,6 +25,7 @@
 ### 20241101
 
 - [x] fix footer icons vs text in xs
+- [x] faq: order-procedure (e.g. ontwerp per email ter bevestiging)
 
 ### 20241030
 - [x] improve mail templates/content

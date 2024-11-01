@@ -37,6 +37,61 @@ var Faq = {
       model : {
         faqs : [
           {
+            id: "proces",
+            question: "Hoe verloopt mijn aankoop?",
+            answer: `
+
+            Het merendeel van onze producten worden gepersonaliseerd. Jouw
+            input hierbij is belangrijk en je kan die op verschillende manieren
+            aanleveren.
+            
+            In de <a href="/shop" onclick="router.push({path: '/shop'}); return
+            false;">de shop</a> kan je bepaalde keuzes maken om jouw product te
+            personaliseren (bv: van welk basisontwerp er mag vertrokken
+            worden, welke tekst je graag wil...)
+              
+            Sommige artikels bieden de mogelijkheid om een eigen foto of logo
+            toe te voegen. Deze bestanden kan je als antwoord op onze
+            bevestigingsmail naar ons toe zenden.
+              
+            Nadat wij alle personalisaties aangebracht hebben sturen we je per
+            email een visualisatie toe hoe het resultaat er gaat uitzien. Je
+            kan dan eventueel nog één maal bijkomende instructies geven om de
+            "finishing touches" aan te brengen. Of je meldt ons gewoon dat het
+            ontwerp klaar is voor productie.
+              
+            De volgende stappen zijn dan nog: productie, verzending en
+            ontvangst van jouw stukje positiviteit bij jouw thuis.
+
+`
+          },
+          {
+            id: "doorlooptijd",
+            question: "Hoe lang duurt het voor ik mijn aankoop ontvang?",
+            answer: `
+            
+            Vanaf het moment dat we jouw order ontvangen én we bevestiging van
+            betaling hebben, beginnen we zo snel mogelijk aan de
+            personalisatie. Als de personalisatie nog input van jou nodig heeft
+            (bv: een foto of logo), wachten we natuurlijk nog even op jouw
+            mailtje.
+            
+            De meeste personalisaties zijn klaar binnen een werkdag. Dan
+            wachten wij weer even op jouw feedback en/of bevestiging.
+            
+            Na ontvangst van de bevestiging, begint de productie. Ook deze is
+            meestal klaar binnen een werkdag. Echter, afhankelijk van het
+            aantal en de omvang van de orders die op een gegeven moment in
+            productie zijn, kan dit oplopen. We verwittigen je tijdig per email
+            indien dit een aanzienlijke vertraging met zich zou meebrengen.
+            
+            Na productie verpakken we jouw aankoop en brengen die naar de
+            transportdienst. In normale omstandigheden zal deze jouw pakket
+            binnen 1 à 2 werkdagen aanbieden op jouw adres.
+            
+`
+          },
+          {
             id: "errors",
             question: "Help! Ik krijg foutboodschappen. Wat moet ik doen?",
             answer: `
@@ -54,7 +109,7 @@ var Faq = {
             seintje</a>. Je feedback wordt enorm geapprecieerd en zo maken we
             de site alvast samen weer dat ietsje beter en leuker.
 
-            `
+`
           },
           {
             id: "cookies",
