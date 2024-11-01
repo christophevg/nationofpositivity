@@ -85,7 +85,7 @@ COMPONENTS = HERE / "components"
 PAGES      = HERE / "pages"
 
 for component in [
-  "cdn",
+  "cdn", "fonts",
   "ajax",
   "moment", "moment-timezone", "filters",
   "logo", "page",

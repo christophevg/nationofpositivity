@@ -6,6 +6,8 @@ Vue.component("Page", {
     <slot></slot>
   </div>
   
+  <FontSelectionDialog/>
+  
   <v-footer dark height="auto">
     <v-card class="flex" flat tile>
       <v-card-title style="background-color:rgb(85,141,206)">
