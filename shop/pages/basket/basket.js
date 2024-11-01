@@ -234,7 +234,7 @@ var Basket = {
       set(method) {
         store.commit("update_payment_method", this.payment_options[method])
       }
-    },
+    }
   },
   methods: {
     remove: function(line) {
