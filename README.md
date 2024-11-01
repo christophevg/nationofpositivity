@@ -4,9 +4,9 @@
 
 ## Backlog
 
-- [ ] ball design variations selector (bal, ster, boom, rendier)
 - [ ] font selector
-  - [ ] reference page
+
+- [ ] ball design variations selector (bal, ster, boom, rendier)
 - [ ] send more emails (100/day free) - on every state change?
 
 - [ ] start mailing list?
@@ -26,6 +26,7 @@
 
 - [x] fix footer icons vs text in xs
 - [x] faq: order-procedure (e.g. ontwerp per email ter bevestiging)
+- [x] local database setup for development with sync
 
 ### 20241030
 - [x] improve mail templates/content
