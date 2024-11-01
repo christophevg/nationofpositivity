@@ -5,6 +5,7 @@
 ## Backlog
 
 - [ ] ball design variations selector (bal, ster, boom, rendier)
+
 - [ ] send more emails (100/day free) - on every state change?
 
 - [ ] start mailing list?

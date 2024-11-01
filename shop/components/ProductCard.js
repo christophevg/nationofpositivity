@@ -60,6 +60,7 @@ Vue.component("ProductConfigurator", {
       var self = this;
       return Object.keys(this.model.options).map(function(id){
         if(self.model.options[id] == null) { return null; }
+        if(self.model.options[id] == "")   { return null; }
         if(self.model.options[id].cost !== undefined ) {
           return { "option" : id, "choice" : self.model.options[id].choice, "cost" : self.model.options[id].cost };
         } else {
