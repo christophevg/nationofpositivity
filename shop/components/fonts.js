@@ -59,9 +59,6 @@ Vue.component("FontSelectionDialog", {
     selected: function() {
       return store.getters.selected_font;
     }
-  },
-  data: function() {
-    return {}
   }
 });
 
@@ -131,15 +128,24 @@ Vue.component("field-FontSelectionField",{
     this.value = store.getters.selected_font;
     // subscribe to changes to the selected font
     var self = this;
-    store.subscribe((mutation, state) => {
+    this.clean_up = store.subscribe((mutation, state) => {
       if([ "select_font" ].includes(mutation.type)) {
         self.value = state.fonts.selected;
       }
     });
   },
+  beforeDestroy: function() {
+    this.clean_up();
+    this.clean_up = null;
+  },
   methods: {
     select_font: function() {
       store.commit("show_font_selection");
+    }
+  },
+  data: function() {
+    return {
+      clean_up: null
     }
   }
 });

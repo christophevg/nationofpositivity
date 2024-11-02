@@ -46,7 +46,7 @@ Vue.component("Page", {
   
 </div>
 `,
-  activated: function() {
+  mounted: function() {
     // ensure pages are always scrolled back to the top
     this.$vuetify.goTo(0);
   },

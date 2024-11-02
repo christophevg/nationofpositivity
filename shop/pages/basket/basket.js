@@ -194,7 +194,7 @@ var Basket = {
     path:    "/basket",
     index:   3
   },
-  activated: function() {
+  mounted: function() {
     store.dispatch("refresh_basket");
   },
   computed: {

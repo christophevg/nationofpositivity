@@ -71,7 +71,7 @@ Veel plezier met het schenken van wat extra positiviteit!
     path:    "/shop",
     index:   2
   },
-  activated: function() {
+  mounted: function() {
     store.dispatch("search");
   },
   computed : {

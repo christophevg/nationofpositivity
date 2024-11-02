@@ -4,7 +4,7 @@
 
 ## Backlog
 
-- [ ] ball design variations selector (bal, ster, boom, rendier)
+- [ ] ball design variations selector (sneeuwvlok, ster, boom, rendier)
 
 - [ ] send more emails (100/day free) - on every state change?
 
