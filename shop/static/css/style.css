@@ -25,3 +25,7 @@ div.v-toolbar__title span, h1, h2, h3.headline, h3.subheading {
 .grecaptcha-badge {
   width: 0px !important;
 }
+
+.vue-form-generator .form-group:last-child {
+  margin-bottom: 0px;
+}
