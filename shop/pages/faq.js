@@ -92,6 +92,28 @@ var Faq = {
 `
           },
           {
+            id: "hout",
+            question: "Mijn houten artikel ruikt verbrand. Is dat normaal?",
+            answer: `
+
+            Absoluut. We gebruiken een lasersnijder om jouw artikel uit een
+            houten plaat te snijden. Een laser brandt letterlijk een heel dun
+            lijntje hout weg. Hierbij blijft een klein beetje roet over aan de
+            randen. Hierdoor blijft de geur van verbrand hout ook aanwezig.
+
+            Daarom kan het ook zijn dat als je over de randen gaat, dat nog een
+            beetje van het roet afgeeft. Als deel van de productie van jouw
+            artikel behandelen we de randen zo goed mogelijk om zo veel
+            mogelijk roet te verwijderen, echter er kan altijd nog een beetje
+            overblijven.
+
+            Hout is een natuurlijk product en de verbranding ervan is ook een
+            natuurlijk proces. Hopelijk deel je onze mening dat de typische
+            geur een extra charme-dimensie geeft aan het resultaat.
+
+`
+          },
+          {
             id: "errors",
             question: "Help! Ik krijg foutboodschappen. Wat moet ik doen?",
             answer: `

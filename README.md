@@ -5,6 +5,7 @@
 ## Backlog
 
 - [ ] ball design variations selector (sneeuwvlok, ster, boom, rendier)
+- [ ] garland/puzzle
 
 - [ ] send more emails (100/day free) - on every state change?
 
@@ -21,12 +22,13 @@
 
 ## Done
 
-### 20241101
+### 20241104
 
 - [x] fix footer icons vs text in xs
 - [x] faq: order-procedure (e.g. ontwerp per email ter bevestiging)
 - [x] local database setup for development with sync
 - [x] font selector
+- [x] add faq about wood/burn
 
 ### 20241030
 - [x] improve mail templates/content
