@@ -14,6 +14,6 @@ from ...db import products
 
 class Products(Resource):
   def get(self):
-    return products.find(**request.args)
+    return products.find(**request.args, sort="unit_price")
     
 server.api.add_resource(Products, "/api/products")

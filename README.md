@@ -31,6 +31,7 @@
 - [x] add faq about wood/burn
 - [x] ball design variations (sneeuwvlok, ster, boom, rendier)
 - [x] garland/puzzle
+- [x] sort products on price
 
 ### 20241030 ✅
 - [x] improve mail templates/content
