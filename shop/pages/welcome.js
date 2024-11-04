@@ -41,15 +41,15 @@ var Index = {
             We hadden het beloofd: hier zijn <b>3 nieuwe designs</b> voor de
             bestaande kerstbal-gebaseerde kaarten <b>én</b> een <b>gloednieuwe
             kaart</b>. Naast je kerstbal kan je nu ook een heuse <b>slinger</b>
-            in de kerstboom van jouw gelukkige ontvangen hangen. En natuurlijk
-            kan je in dit originele, eigen ontwerp van Nation of Positivity
-            niet alleen <a href="/shop" onclick="router.push({path:
-            '/products/garland-with-text'}); return false;">je wens</a> ,
-            echter ook jouw <a href="/shop" onclick="router.push({path:
-            '/products/garland-with-logo'}); return false;">logo</a> of <a
+            in de kerstboom van jouw gelukkige ontvanger hangen. En natuurlijk
+            kan je in dit originele ontwerp van Nation of Positivity niet
+            alleen <a href="/shop" onclick="router.push({path:
+            '/products/garland-with-text'}); return false;">jouw wens</a> ,
+            maar ook <a href="/shop" onclick="router.push({path:
+            '/products/garland-with-logo'}); return false;">jouw logo</a> of <a
             href="/shop" onclick="router.push({path:
-            '/products/garland-with-picture'}); return false;">foto's'</a> in
-            te verwerken.
+            '/products/garland-with-picture'}); return false;">eigen
+            foto's'</a> laten verwerken.
 
             Je vind nu dus nog meer ideeën, voorbeelden en vooral mogelijkheden
             in <a href="/shop" onclick="router.push({path: '/shop'}); return
