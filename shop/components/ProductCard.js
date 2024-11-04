@@ -13,7 +13,7 @@ Vue.component("ProductConfigurator", {
       <span class="grey--text">(inclusief &euro; {{ unit_tax | fixed2 }} BTW)</span>
 
       <h3 class="subheading mt-2" v-if="have_options">Personaliseer jouw positiviteit</h3>
-      <vue-form-generator :schema="model.schema" :model="model.options" :options="formOptions"
+      <vue-form-generator :schema="schema" :model="model.options" :options="formOptions"
                           @validated="onValidated"/>
           
       <h3 class="subheading grey--text">Kosten voor verzending : &euro; {{ shipping_price | fixed2 }}</h3>
@@ -38,21 +38,20 @@ Vue.component("ProductConfigurator", {
 
 </div>
 `,
-  mounted: function() {
-    // generate schema for product
-    this.model.schema = {
-      fields: !this.product.options ?
-        []
-        :
-        this.product.options.map(function(field) {
-          if(field.validate) {
-            field.validator = VueFormGenerator.validators[field.validate].locale(nl);
-          }
-          return field;
-        })
-    };
-  },
   computed: {
+    schema: function() {
+      return {
+        fields: !this.product.options ?
+          []
+          :
+          this.product.options.map(function(field) {
+            if(field.validate) {
+              field.validator = VueFormGenerator.validators[field.validate].locale(nl);
+            }
+            return field;
+          })
+      }
+    },
     have_options: function() {
       return this.product.options && this.product.options.length > 0;
     },
@@ -97,7 +96,6 @@ Vue.component("ProductConfigurator", {
   data: function() {
     return {
       model : {
-        schema: null,
         options : {}
       },
       options_are_valid : false,
