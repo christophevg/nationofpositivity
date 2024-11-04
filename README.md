@@ -4,8 +4,8 @@
 
 ## Backlog
 
-- [ ] ball design variations selector (sneeuwvlok, ster, boom, rendier)
-- [ ] garland/puzzle
+- [ ] store favorite font in local storage
+- [ ] create visual lookup for designs (cfr fonts)
 
 - [ ] send more emails (100/day free) - on every state change?
 
@@ -29,8 +29,10 @@
 - [x] local database setup for development with sync
 - [x] font selector
 - [x] add faq about wood/burn
+- [x] ball design variations (sneeuwvlok, ster, boom, rendier)
+- [x] garland/puzzle
 
-### 20241030
+### 20241030 ✅
 - [x] improve mail templates/content
 - [x] add bancontact references (generalize methods)
 - [x] social image (bw)
