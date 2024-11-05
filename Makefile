@@ -24,3 +24,5 @@ export-production:
 import-local:
 	@echo "*** importing locally '${COLLECTION}'..."
 	@mongoimport --collection=${COLLECTION} --drop --db=${DB} local/${COLLECTION}.json
+
+sync: export-production import-local
