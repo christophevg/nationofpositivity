@@ -32,9 +32,8 @@ store.registerModule("cdn", {
       
       Vue.set(state, "index", index);
 
-      var temp = [];
-      flatten(index, "", temp);
-      Vue.set(state, "flat_index", temp);
+      state.flat_index.splice(0); // clear
+      flatten(index, "", state.flat_index); // add recursively
     }
   },
   getters: {
