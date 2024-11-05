@@ -56,7 +56,7 @@ Veel plezier met het schenken van wat extra positiviteit!
     -->
 
     <v-layout row wrap>
-      <v-flex v-for="(product, i) in matching_products" :key="i" xs12 sm6 md4>
+      <v-flex d-flex v-for="(product, i) in matching_products" :key="i" xs12 sm6 md4>
         <ProductCard :product="product"/>
       </v-flex>
     </v-layout>

@@ -4,10 +4,6 @@
 
 ## Backlog
 
-- [ ] product cards same height
-- [ ] products: sorting, filtering (tags)
-- [ ] collection navigation
-
 - [ ] horizontal design greeting cards
 - [ ] 3D design greeting cards
 - [ ] more letter-art designs: ball
@@ -19,8 +15,8 @@
 
 - [ ] send more emails (100/day free) - on every state change?
 
-- [ ] start mailing list?
 - [ ] send out mailing?
+- [ ] start mailing list?
 
 - [ ] first order
   - [ ] figure out GLS shipping 😇
@@ -30,10 +26,15 @@
 - [ ] more shipping options?
   - [ ] delivery to ParcelShop (https://gls-group.com/BE/en/depot-parcelshop/)
 
+- [ ] more payment options?
+  - [ ] Visa, Mastercard (% payment cost)
+
 - [ ] more collections
-  - [ ] Rock around the Clock (vinyl record clock custom design)
-  - [ ]  (duo tone tiles with pictures)
-  - [ ]  (custom coasters with resin in wood)
+  - [ ] products: sorting, filtering (tags)
+  - [ ] collection navigation
+  - [ ] collection: Rock around the Clock (vinyl record clock custom design)
+  - [ ] collection: ... (duo tone tiles with pictures)
+  - [ ] collection: ... (custom coasters with resin in wood)
 
 ## Done
 
@@ -42,6 +43,7 @@
 - [x] NL versie "This is required!" <- FormGenerator Options
 - [x] Bug fix Options Form (required fields)
 - [x] Added HomemadeByCVG references
+- [x] product cards same height
 
 ### 20241104
 
