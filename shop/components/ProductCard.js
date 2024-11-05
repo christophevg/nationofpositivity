@@ -165,7 +165,7 @@ Vue.component("ProductCard", {
 
       <v-dialog v-if="card_layout" v-model="options_dialog" max-width="600px">
         <v-card>
-          <ProductConfigurator :product="product" @add="add"/>
+          <ProductConfigurator v-if="card_layout && options_dialog" :product="product" @add="add"/>
         </v-card>
       </v-dialog>
 

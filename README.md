@@ -4,19 +4,18 @@
 
 ## Backlog
 
-- [ ] Bug fix Options Form (required fiedls)
-
-- [ ] static welcome <-> news/updates
-
 - [ ] product cards same height
 - [ ] products: sorting, filtering (tags)
 - [ ] collection navigation
 
 - [ ] horizontal design greeting cards
 - [ ] 3D design greeting cards
+- [ ] more letter-art designs: ball
 
 - [ ] store favorite font in local storage
 - [ ] create visual lookup for designs (cfr fonts)
+
+- [ ] static welcome <-> news/updates
 
 - [ ] send more emails (100/day free) - on every state change?
 
@@ -41,6 +40,7 @@
 ### next
 
 - [x] NL versie "This is required!" <- FormGenerator Options
+- [x] Bug fix Options Form (required fields)
 
 ### 20241104
 

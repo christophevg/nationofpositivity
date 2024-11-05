@@ -124,9 +124,9 @@ Vue.component("field-FontSelectionField",{
   </v-input>
 `,
   mounted: function() {
-    // adopt the currently selected font
+    // adopt the currently selected font as default value
     this.value = store.getters.selected_font;
-    // subscribe to changes to the selected font
+    // and stay updated: subscribe to changes to the selected font
     var self = this;
     this.clean_up = store.subscribe((mutation, state) => {
       if([ "select_font" ].includes(mutation.type)) {
