@@ -34,7 +34,7 @@ var Index = {
         items: [
           {
             image: "images/products/holidays-are-coming/designs.jpeg",
-            title: "🆕 Nieuwe kaartontwerp en meer designopties 🎄⭐️🦌",
+            title: "🆕 Nieuw kaartontwerp en meer designopties 🎄⭐️🦌",
             date:  "4 november 2024",
             body: `
             
