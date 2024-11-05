@@ -37,10 +37,11 @@
 
 ## Done
 
-### next
+### 20241105
 
 - [x] NL versie "This is required!" <- FormGenerator Options
 - [x] Bug fix Options Form (required fields)
+- [x] Added HomemadeByCVG references
 
 ### 20241104
 

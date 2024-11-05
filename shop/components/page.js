@@ -37,7 +37,7 @@ Vue.component("Page", {
       <v-card-actions class="grey darken-3 justify-center">
         <p style="text-align:center">
           <router-link style="color:white" to="/algemene-voorwaarden">Algemene voorwaarden</router-link> - <router-link style="color:white" to="/faq#privacy">Privacy</router-link> - <router-link style="color:white" to="/faq#cookies">Cookies</router-link><br>
-          &copy;2024 — <strong>Nation of Positivity by 2Know - BE0865.835.163</strong>
+          &copy;2024 — <strong>Nation of Positivity</strong> - <strong><a href="https://homemadebycvg.com" target="_blank" style="color:white">homemade by CVG</a></strong> - supported by <strong><a href="https://2know.be" target="_blank" style="color:white">2Know</a></strong> - BE0865.835.163</strong>
         </p>
       </v-card-actions>
 
