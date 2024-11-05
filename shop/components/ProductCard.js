@@ -45,8 +45,13 @@ Vue.component("ProductConfigurator", {
           []
           :
           this.product.options.map(function(field) {
+            // translate validate(string) -> validator
             if(field.validate) {
-              field.validator = VueFormGenerator.validators[field.validate].locale(nl);
+              field.validator = VueFormGenerator.validators[field.validate];
+            }
+            // ensure all validators have NL locale
+            if(field.validator) {
+              field.validator = field.validator.locale(nl);
             }
             return field;
           })

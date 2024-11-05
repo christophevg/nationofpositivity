@@ -4,6 +4,17 @@
 
 ## Backlog
 
+- [ ] Bug fix Options Form (required fiedls)
+
+- [ ] static welcome <-> news/updates
+
+- [ ] product cards same height
+- [ ] products: sorting, filtering (tags)
+- [ ] collection navigation
+
+- [ ] horizontal design greeting cards
+- [ ] 3D design greeting cards
+
 - [ ] store favorite font in local storage
 - [ ] create visual lookup for designs (cfr fonts)
 
@@ -20,7 +31,16 @@
 - [ ] more shipping options?
   - [ ] delivery to ParcelShop (https://gls-group.com/BE/en/depot-parcelshop/)
 
+- [ ] more collections
+  - [ ] Rock around the Clock (vinyl record clock custom design)
+  - [ ]  (duo tone tiles with pictures)
+  - [ ]  (custom coasters with resin in wood)
+
 ## Done
+
+### next
+
+- [x] NL versie "This is required!" <- FormGenerator Options
 
 ### 20241104
 
