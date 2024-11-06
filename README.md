@@ -38,7 +38,7 @@
 
 ## Done
 
-### next
+### 20241106
 
 - [x] sorted fonts in selection dialog
 - [x] made news/updated managed with collection
@@ -46,14 +46,14 @@
 - [x] improved image inspection dialog: turned into carousel
 - [x] store favorite font in local storage
 
-### 20241105
+### 20241105 ✅
 
 - [x] NL versie "This is required!" <- FormGenerator Options
 - [x] Bug fix Options Form (required fields)
 - [x] Added HomemadeByCVG references
 - [x] product cards same height
 
-### 20241104
+### 20241104 ✅
 
 - [x] fix footer icons vs text in xs
 - [x] faq: order-procedure (e.g. ontwerp per email ter bevestiging)
