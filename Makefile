@@ -18,11 +18,21 @@ DB=nation
 COLLECTION=products
 
 export-production:
-	@echo "*** exporting remote '${COLLECTION}'..."
+	@echo "*** exporting from remote '${COLLECTION}'..."
 	@. ./.env.local; mongoexport --uri=$$URI --collection=${COLLECTION} --username=$$MONGO_USER --password=$$MONGO_PASS --db=${DB} --out=local/${COLLECTION}.json
 
+import-production:
+	@echo "*** importing to remote '${COLLECTION}'..."
+	@. ./.env.local; mongoimport --uri=$$URI --collection=${COLLECTION} --drop --username=$$MONGO_USER --password=$$MONGO_PASS --db=${DB} local/${COLLECTION}.json
+
+export-local:
+	@echo "*** exporting from local '${COLLECTION}'..."
+	@mongoexport --collection=${COLLECTION} --db=${DB} --out=local/${COLLECTION}.json
+
 import-local:
-	@echo "*** importing locally '${COLLECTION}'..."
+	@echo "*** importing to local '${COLLECTION}'..."
 	@mongoimport --collection=${COLLECTION} --drop --db=${DB} local/${COLLECTION}.json
 
-sync: export-production import-local
+sync-from-production: export-production import-local
+
+sync-to-production: export-local import-production
