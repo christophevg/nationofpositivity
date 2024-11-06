@@ -48,7 +48,12 @@ Vue.component("Page", {
 `,
   mounted: function() {
     // ensure pages are always scrolled back to the top
-    this.$vuetify.goTo(0);
+    // IF there is no anchor, else explicitly go there
+    if(window.location.hash == "") {
+      this.$vuetify.goTo(0);
+    } else {
+      this.$vuetify.goTo(window.location.hash, {offset: 20});
+    }
   },
   computed: {
     banner: function() {
