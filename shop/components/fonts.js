@@ -84,6 +84,9 @@ store.registerModule("fonts", {
   },
   getters: {
     fonts: function(state) {
+      if(Object.keys(state.fonts).length === 0) {
+        store.dispatch("refresh_fonts");
+      }
       return state.fonts;
     },
     font_selection_is_showing: function(state) {
@@ -104,8 +107,6 @@ store.registerModule("fonts", {
     }
   }
 });
-
-before_app_mount( function() { store.dispatch("refresh_fonts"); } );
 
 // form generator field
 
