@@ -44,6 +44,7 @@
 - [x] sorted fonts in selection dialog
 - [x] made news/updated managed with collection
 - [x] changed image inspection icon + added to carousel
+- [x] improved image inspection dialog: turned into carousel
 
 ### 20241105
 

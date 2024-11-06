@@ -159,12 +159,15 @@ Vue.component("ProductCard", {
       </v-carousel>
 
       <v-dialog v-model="image_viewer">
-        <v-img v-if="selected_image" :src="cdn(selected_image)" contain @click.native="image_viewer=false"
-               style="text-align:right;">
-          <v-btn flat icon color="white" v-on:click.prevent @click="image_viewer=false">
-            <v-icon>close</v-icon>
-          </v-btn>
-        </v-img>
+        <v-carousel height="auto" v-if="image_viewer" :cycle="false">
+          <v-carousel-item v-for="(item,i) in header.images" :key="i">
+            <v-img :src="cdn(item)" aspect-ratio="1.90" style="text-align:right;">
+              <v-btn flat fab dark large color="white" v-on:click.prevent @click="image_viewer=false">
+                <v-icon>close</v-icon>
+              </v-btn>
+            </v-img>
+          </v-carousel-item>
+        </v-carousel>
       </v-dialog>
 
       <v-dialog v-if="card_layout" v-model="options_dialog" max-width="600px">
