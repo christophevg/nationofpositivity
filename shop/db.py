@@ -297,3 +297,13 @@ class Order(BaseObject):
     return self.total.payment > 0
 
 orders = Collection(db, "orders",   Order)
+
+@dataclass
+class News(BaseObject):
+  id    : str
+  title : str
+  image : str
+  body  : str
+  when  : datetime = field(default_factory=datetime.now)
+
+news = FilteredCollection(db, "news", News)

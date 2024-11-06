@@ -90,7 +90,7 @@ for component in [
   "moment", "moment-timezone", "filters",
   "logo", "page",
   "i18n",
-  "product-store", "basket-store", "contact-store",
+  "product-store", "basket-store", "contact-store", "news-store",
   "ProductCard", "OrderOverview", "ContactCard"
 ]:
   server.register_component(f"{component}.js", COMPONENTS)
@@ -107,11 +107,11 @@ server.register_stylesheet("style.css", STATIC / "css")
 server.register_stylesheet("bootstrap-icons.min.css", STATIC / "css")
 
 # register static pages
-for page in [ "welcome", "faq", "contact", "algemene-voorwaarden" ]:
+for page in [ "faq", "contact", "algemene-voorwaarden" ]:
   server.register_component(f"{page}.js", PAGES)
 
 # register dynamic pages
-from .pages import products, product, basket, order
+from .pages import welcome, products, product, basket, order
 
 # admin mode
 if os.environ.get("ADMIN_MODE") == "yes":
@@ -124,6 +124,6 @@ if os.environ.get("ADMIN_MODE") == "yes":
                                                              
 """)
   server.register_component("admin.js", COMPONENTS);
-  from .pages.admin import products, orders
+  from .pages.admin import products, orders, news
 
 logger.info("✅ shop is ready")

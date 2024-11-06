@@ -6,6 +6,12 @@ function format_datetime(dt) {
 
 Vue.filter("formatDateTime", format_datetime);
 
+function format_date(dt) {
+  return moment.tz(dt, "utc").tz(moment.tz.guess()).format("D MMMM YYYY")
+}
+
+Vue.filter("formatDate", format_date);
+
 function fixed2(num) {
   return (Math.round(num * 100) / 100).toFixed(2);
 }

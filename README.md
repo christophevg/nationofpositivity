@@ -11,8 +11,6 @@
 - [ ] store favorite font in local storage
 - [ ] create visual lookup for designs (cfr fonts)
 
-- [ ] static welcome <-> news/updates
-
 - [ ] send more emails (100/day free) - on every state change?
 
 - [ ] send out mailing?
@@ -38,7 +36,11 @@
 
 ## Done
 
+### next
+
 - [x] sorted fonts in selection dialog
+- [x] made news/updated managed with collection
+
 ### 20241105
 
 - [x] NL versie "This is required!" <- FormGenerator Options
