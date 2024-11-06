@@ -9,6 +9,11 @@
 - [ ] 3D design greeting cards
 - [ ] more letter-art designs: ball
 
+- [ ] improve error pages (e.g. Whoops product 404)
+- [ ] improve+add loading pages
+- [ ] improve placeholder while loading (look into lazy prop)
+- [ ] improve height/aspect ration inspect product image dialog
+
 - [ ] create visual lookup for designs (cfr fonts)
 
 - [ ] send more emails (100/day free) - on every state change?
@@ -38,7 +43,9 @@
 
 ## Done
 
-### 20241106
+### next
+
+### 20241106 ✅
 
 - [x] sorted fonts in selection dialog
 - [x] made news/updated managed with collection
