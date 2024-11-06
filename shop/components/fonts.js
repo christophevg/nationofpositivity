@@ -25,8 +25,7 @@ Vue.component("FontSelectionDialog", {
       <v-divider></v-divider>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="secondary" flat @click="close">Sluit</v-btn>
-        <v-btn color="primary"   flat @click="close" :disabled="selected == null">Kies</v-btn>
+        <v-btn color="primary" flat @click="close">Ok</v-btn>
       </v-card-actions>
     </v-card>
 
@@ -69,6 +68,12 @@ store.registerModule("fonts", {
     fonts: []
   },
   mutations: {
+    initialise_favorite_font: function(state) {
+      var favorite = localStorage.getItem("font");
+      if(favorite && favorite != "null") {
+        state.selected = favorite;
+      }
+    },
     fonts: function(state, index) {
       state.fonts.splice(0);                                        // clear
       Object.keys(index).forEach(                                   // transform
@@ -78,6 +83,7 @@ store.registerModule("fonts", {
     },
     select_font: function(state, name) {
       state.selected = state.selected == name ? null : name;
+      localStorage.setItem("font", state.selected);
     },
     show_font_selection(state) {
       state.dialog = true;
@@ -111,6 +117,8 @@ store.registerModule("fonts", {
     }
   }
 });
+
+before_app_mount( function() { store.commit("initialise_favorite_font"); } );
 
 // form generator field
 

@@ -9,7 +9,6 @@
 - [ ] 3D design greeting cards
 - [ ] more letter-art designs: ball
 
-- [ ] store favorite font in local storage
 - [ ] create visual lookup for designs (cfr fonts)
 
 - [ ] send more emails (100/day free) - on every state change?
@@ -45,6 +44,7 @@
 - [x] made news/updated managed with collection
 - [x] changed image inspection icon + added to carousel
 - [x] improved image inspection dialog: turned into carousel
+- [x] store favorite font in local storage
 
 ### 20241105
 
