@@ -1,21 +1,21 @@
 Vue.component("FontSelectionDialog", {
   mixins: [ Content ],
   template: `
-  <v-dialog v-model="dialog" scrollable max-width="800px">
+  <v-dialog v-model="dialog" v-if="dialog" scrollable max-width="800px">
    <v-card>
       <v-card-title>Kies jouw favoriete lettertype...</v-card-title>
       <v-divider></v-divider>
       <v-card-text style="max-height:500px;">
 
       <v-list>
-        <v-list-tile v-for="(preview, index) in fonts" :key="index" @click="select(index)">
+        <v-list-tile v-for="font in fonts" :key="font.name" @click="select(font.name)">
 
           <v-list-tile-action>
-            <v-icon v-if="index == selected" color="pink">favorite</v-icon>
+            <v-icon v-if="font.name == selected" color="pink">favorite</v-icon>
           </v-list-tile-action>
 
           <v-list-tile-content>
-            <v-img :src="cdn('images/fonts/' + preview)" width="100%" position="left center"/>
+            <v-img :src="cdn('images/fonts/' + font.preview)" width="100%" position="left center"/>
           </v-list-tile-content>
 
         </v-list-tile>
@@ -48,8 +48,8 @@ Vue.component("FontSelectionDialog", {
       get() {
         return store.getters.font_selection_is_showing;
       },
-      set(value) {
-        if(value) {
+      set(showing) {
+        if(showing) {
           store.commit("show_font_selection");
         } else {
           store.commit("hide_font_selection");
@@ -66,11 +66,15 @@ store.registerModule("fonts", {
   state: {
     selected: null,
     dialog: false,
-    fonts: {}
+    fonts: []
   },
   mutations: {
     fonts: function(state, index) {
-      Vue.set(state, "fonts", index);
+      state.fonts.splice(0);                                        // clear
+      Object.keys(index).forEach(                                   // transform
+        (key) => state.fonts.push({ name: key, preview: index[key]})
+      );
+      state.fonts.sort((a, b) => a.name.localeCompare(b.name));     // sort
     },
     select_font: function(state, name) {
       state.selected = state.selected == name ? null : name;

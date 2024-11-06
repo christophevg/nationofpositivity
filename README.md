@@ -38,6 +38,7 @@
 
 ## Done
 
+- [x] sorted fonts in selection dialog
 ### 20241105
 
 - [x] NL versie "This is required!" <- FormGenerator Options
