@@ -143,23 +143,23 @@ Vue.component("ProductCard", {
       <v-img v-if="(card_layout && header.images.length >= 1) || (page_layout && header.images.length == 1)"
              :src="cdn(header.images[0])"
              :aspect-ratio="header.ratio"
-             @click.native="show_image(header.images[0])"
+             @click.native="show_image(0)"
              style="text-align:right;">
-        <v-btn flat icon color="white" v-on:click.prevent @click="show_image(header.images[0])">
+        <v-btn flat icon color="white" v-on:click.prevent @click="show_image(0)">
           <v-icon>search</v-icon>
         </v-btn>
       </v-img>
 
       <v-carousel :height="header.height" v-if="page_layout && header.images.length >= 2" hide-delimiters :cycle="false">
-        <v-carousel-item v-for="(item,i) in header.images" :key="i" :src="cdn(item)" @click.native="show_image(item)" style="text-align:right;">
-          <v-btn flat fab dark large color="white" v-on:click.prevent @click="show_image(header.images[0])">
+        <v-carousel-item v-for="(item,i) in header.images" :key="i" :src="cdn(item)" @click.native="show_image(i)" style="text-align:right;">
+          <v-btn flat fab dark large color="white" v-on:click.prevent @click="show_image(i)">
             <v-icon>search</v-icon>
           </v-btn>
         </v-carousel-item>
       </v-carousel>
 
       <v-dialog v-model="image_viewer">
-        <v-carousel height="auto" v-if="image_viewer" :cycle="false">
+        <v-carousel height="auto" v-if="image_viewer" :cycle="false" v-model="showing_image">
           <v-carousel-item v-for="(item,i) in header.images" :key="i">
             <v-img :src="cdn(item)" aspect-ratio="1.90" style="text-align:right;">
               <v-btn flat fab dark large color="white" v-on:click.prevent @click="image_viewer=false">
@@ -284,8 +284,9 @@ Vue.component("ProductCard", {
     show: function(product) {
       router.push("/products/" + product.id);
     },
-    show_image: function(item) {
-      this.selected_image = item;
+    show_image: function(index) {
+      this.showing_image = index
+      this.selected_image = this.header[index];
       this.image_viewer = true;
     },
     show_configurator: function() {
@@ -301,6 +302,7 @@ Vue.component("ProductCard", {
   data: function() {
     return  {
       image_viewer : false,
+      showing_image: 0,
       options_dialog: false,
       selected_image : null,
       next: false
