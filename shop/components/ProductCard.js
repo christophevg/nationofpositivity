@@ -146,12 +146,16 @@ Vue.component("ProductCard", {
              @click.native="show_image(header.images[0])"
              style="text-align:right;">
         <v-btn flat icon color="white" v-on:click.prevent @click="show_image(header.images[0])">
-          <v-icon>expand</v-icon>
+          <v-icon>search</v-icon>
         </v-btn>
       </v-img>
 
       <v-carousel :height="header.height" v-if="page_layout && header.images.length >= 2" hide-delimiters :cycle="false">
-        <v-carousel-item v-for="(item,i) in header.images" :key="i" :src="cdn(item)" @click.native="show_image(item)"/>
+        <v-carousel-item v-for="(item,i) in header.images" :key="i" :src="cdn(item)" @click.native="show_image(item)" style="text-align:right;">
+          <v-btn flat fab dark large color="white" v-on:click.prevent @click="show_image(header.images[0])">
+            <v-icon>search</v-icon>
+          </v-btn>
+        </v-carousel-item>
       </v-carousel>
 
       <v-dialog v-model="image_viewer">

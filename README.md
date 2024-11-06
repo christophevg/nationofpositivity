@@ -43,6 +43,7 @@
 
 - [x] sorted fonts in selection dialog
 - [x] made news/updated managed with collection
+- [x] changed image inspection icon + added to carousel
 
 ### 20241105
 
