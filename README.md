@@ -4,6 +4,7 @@
 
 ## Backlog
 
+- [ ] retake packaging pictures of garlands including wire
 - [ ] horizontal design greeting cards
 - [ ] 3D design greeting cards
 - [ ] more letter-art designs: ball
@@ -17,7 +18,9 @@
 - [ ] start mailing list?
 
 - [ ] first order
+  - [ ] "thanks" card + Chokotoff
   - [ ] figure out GLS shipping 😇
+    - [ ] print label? (102x150)
 
 - [ ] download payment history on state update and store locally?
 
