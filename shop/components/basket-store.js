@@ -141,6 +141,9 @@ store.registerModule("basket", {
       // property doesn't seem to be reactive enough ;-)
       state.badge.text += 1;
       state.badge.visible = state.badge.text > 0;
+      
+      // write through cache locally
+      localStorage.setItem("basket", JSON.stringify(state));
     },
     remove_from_basket: function(state, selection) {
       var existing = state.order.find(function(item) {
@@ -167,6 +170,9 @@ store.registerModule("basket", {
         state.badge.text -= 1;
         state.badge.visible = state.badge.text > 0;
       }
+
+      // write through cache locally
+      localStorage.setItem("basket", JSON.stringify(state));
     },
     initialise_basket: function(state) {
 			if(localStorage.getItem("basket")) {
@@ -177,30 +183,18 @@ store.registerModule("basket", {
           return count + line.amount;
         }, 0);
 		  }
+      store.dispatch("refresh_basket");
     },
     clear_basket: function(state) {
       Vue.set(state, "order", []);
       state.payment_method = "overschrijving";
       state.badge.visible  = false;
       state.badge.text     = 0;
+
+      // write through cache locally
+      localStorage.setItem("basket", JSON.stringify(state));
     }
   }
 });
 
-// cache basket in localstorage
-
-store.subscribe((mutation, state) => {
-  if([ "add_to_basket", "remove_from_basket", "clear_basket" ].includes(mutation.type)) {
-    localStorage.setItem("basket", JSON.stringify(state.basket));
-  }
-});
-
 before_app_mount( function() { store.commit("initialise_basket"); } );
-
-// trigger a refresh after initialisation
-
-store.subscribe( function(mutation, state) {
-  if( mutation.type === "initialise_basket" ) {
-    store.dispatch("refresh_basket");
-  }
-});

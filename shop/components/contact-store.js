@@ -117,15 +117,9 @@ store.registerModule("contact", {
           Vue.set(state, field.model, contact[field.model]);
         }
       });
+      // write through cache locally
+      localStorage.setItem("contact", JSON.stringify(state));
     }
-  }
-});
-
-// cache basket in localstorage
-
-store.subscribe((mutation, state) => {
-  if([ "contact" ].includes(mutation.type)) {
-    localStorage.setItem("contact", JSON.stringify(state.contact));
   }
 });
 

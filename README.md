@@ -5,6 +5,7 @@
 ## Backlog
 
 - [ ] clean up stores
+  - [ ] look into 2 remaining store subscriptions (fonts, contact)
   - [ ] consistent structure, naming, api
   - [ ] load products into local store, access from there
     - [ ] set timeout to refresh?
