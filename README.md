@@ -4,6 +4,12 @@
 
 ## Backlog
 
+- [ ] clean up stores
+  - [ ] consistent structure, naming, api
+  - [ ] load products into local store, access from there
+    - [ ] set timeout to refresh?
+- [ ] do something with /products route
+
 - [ ] retake packaging pictures of garlands including wire
 - [ ] horizontal design greeting cards
 - [ ] 3D design greeting cards
@@ -36,7 +42,7 @@
 
 - [ ] more collections
   - [ ] products: sorting, filtering (tags)
-  - [ ] collection navigation
+  - [ ] collection navigation /shop/{collection}
   - [ ] collection: Rock around the Clock (vinyl record clock custom design)
   - [ ] collection: ... (duo tone tiles with pictures)
   - [ ] collection: ... (custom coasters with resin in wood)
@@ -44,6 +50,8 @@
 ## Done
 
 ### next
+
+- [x] provide smaller images for card headers
 
 ### 20241106 ✅
 

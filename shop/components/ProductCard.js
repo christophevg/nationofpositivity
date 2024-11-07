@@ -141,7 +141,7 @@ Vue.component("ProductCard", {
   <v-card v-else :to="link_to" tile height="100%" style="margin-right: 3px;">
 
       <v-img v-if="(card_layout && header.images.length >= 1) || (page_layout && header.images.length == 1)"
-             :src="cdn(header.images[0])"
+             :src="cdn(header.card.image)"
              :aspect-ratio="header.ratio"
              @click.native="show_image(0)"
              style="text-align:right;">
@@ -273,7 +273,8 @@ Vue.component("ProductCard", {
       return {
         ratio: this.page_layout ? 5 : 2,
         height: 300,
-        images: this.product.images
+        images: this.product.images,
+        card: { image: this.product.images[0].replace(/.jpeg$/,".header.jpeg") }
       }
     },
     info_flex: function() {
