@@ -15,3 +15,4 @@ var Product = {
 };
 
 router.addRoutes([ { path: "/products/:id", component: Product } ]);
+router.addRoutes([ { path: "/products",     redirect: "/shop"  } ]);

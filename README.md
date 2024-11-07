@@ -8,7 +8,6 @@
   - [ ] consistent structure, naming, api
   - [ ] load products into local store, access from there
     - [ ] set timeout to refresh?
-- [ ] do something with /products route
 
 - [ ] retake packaging pictures of garlands including wire
 - [ ] horizontal design greeting cards
@@ -52,6 +51,7 @@
 ### next
 
 - [x] provide smaller images for card headers
+- [x] redirect /products route to /shop
 
 ### 20241106 ✅
 
