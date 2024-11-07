@@ -132,9 +132,9 @@ var NewsAdmin = {
         validateAfterChanged: true
       },
       headers: [
-        { text: "id",    align: "left",  sortable: true, value: "id"    },
-        { text: "title", align: "left",  sortable: true, value: "title" },
-        { text: "when",  align: "left",  sortable: true, value: "when"  }
+        { text: "id",    align: "left",  sortable: false, value: "id"    },
+        { text: "title", align: "left",  sortable: false, value: "title" },
+        { text: "when",  align: "left",  sortable: false, value: "when"  }
       ],
     }
   }
