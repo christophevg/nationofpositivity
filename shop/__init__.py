@@ -107,11 +107,11 @@ server.register_stylesheet("style.css", STATIC / "css")
 server.register_stylesheet("bootstrap-icons.min.css", STATIC / "css")
 
 # register static pages
-for page in [ "faq", "contact", "algemene-voorwaarden" ]:
+for page in [ "shop", "faq", "contact", "algemene-voorwaarden" ]:
   server.register_component(f"{page}.js", PAGES)
 
-# register dynamic pages
-from .pages import welcome, products, product, basket, order
+# register dynamic pages (aka with own API)
+from .pages import welcome, products, basket, order
 
 # admin mode
 if os.environ.get("ADMIN_MODE") == "yes":

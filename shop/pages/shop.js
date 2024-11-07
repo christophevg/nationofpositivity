@@ -1,4 +1,4 @@
-var Catalogue = {
+var Shop = {
   template : `
 <Page>
 
@@ -81,4 +81,4 @@ Veel plezier met het schenken van wat extra positiviteit!
   }
 };
 
-Navigation.add(Catalogue);
+Navigation.add(Shop);
