@@ -15,7 +15,6 @@
 - [ ] 3D design greeting cards
 - [ ] more letter-art designs: ball
 
-- [ ] improve error pages (e.g. Whoops product 404)
 - [ ] improve+add loading pages
 - [ ] improve placeholder while loading (look into lazy prop)
 - [ ] improve height/aspect ration inspect product image dialog
@@ -23,6 +22,8 @@
 - [ ] create visual lookup for designs (cfr fonts)
 
 - [ ] send more emails (100/day free) - on every state change?
+
+- [ ] consider: compile javascript into single minimised file?
 
 - [ ] send out mailing?
 - [ ] start mailing list?
@@ -53,6 +54,7 @@
 
 - [x] provide smaller images for card headers
 - [x] redirect /products route to /shop
+- [x] improve error pages (e.g. Whoops product 404)
 
 ### 20241106 ✅
 

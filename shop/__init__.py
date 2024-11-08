@@ -113,6 +113,9 @@ for page in [ "shop", "faq", "contact", "algemene-voorwaarden" ]:
 # register dynamic pages (aka with own API)
 from .pages import welcome, products, basket, order
 
+# catch unknown pages
+server.register_component("404.js", PAGES)
+
 # admin mode
 if os.environ.get("ADMIN_MODE") == "yes":
   logger.warn("""
