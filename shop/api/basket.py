@@ -3,25 +3,21 @@ logger = logging.getLogger(__name__)
 
 import os
 
-from ... import server
-
-server.register_component("basket.js", os.path.dirname(__file__))
-
 from flask import request, abort
 from flask_restful import Resource
 
-from ...     import recaptcha, qr
-from ...db   import orders
-from ...mail import send, create_attachment
+# from mollie.api.client import Client
+from ..fake.payments import Client
 
-from mollie.api.client import Client
-# from ...fake.payments import Client
+from .. import server, recaptcha, qr, db, mail
 
 MOLLIE_API_KEY = os.environ.get("MOLLIE_API_KEY", None)
 WEBSITE_URL    = os.environ.get("WEBSITE_URL", "https://nationofpositivity.com")
 
 client = Client()
 client.set_api_key(MOLLIE_API_KEY)
+
+server.register_component("basket.js", os.path.dirname(__file__))
 
 class Orders(Resource):
   def post(self):
@@ -33,7 +29,7 @@ class Orders(Resource):
 
     # construct validated and persisted order object
     try:
-      order = orders.create(**order)
+      order = db.orders.create(**order)
       logger.info(f"🛒 new order created: {order.id}")
     except ValueError as ex:
       return abort(400, str(ex))
@@ -55,12 +51,12 @@ class Orders(Resource):
         "redirectUrl": f"{WEBSITE_URL}/order/{order.id}",
         "webhookUrl" : f"{WEBSITE_URL}/api/payment/{order.id}"
       })
-      orders.update(order.id, payment_id=payment.id, status=None)
+      db.orders.update(order.id, payment_id=payment.id, status=None)
       response["next"] = payment.checkout_url
     else:
       order_id = str(order.id)
       structured = "+++"+'/'.join((order_id[:3],order_id[3:-5],order_id[-5:]))+"+++"
-      attachment = create_attachment(
+      attachment = mail.create_attachment(
         qr.sepa_as_base64(order.total.grand, structured),
         "qr.png",
         "image/png",
@@ -95,7 +91,7 @@ class Orders(Resource):
   """
 
     # send confirmation email
-    send(
+    mail.send(
       order.contact.email,
       f"Bedankt voor je order! ({order.id})",
       "Je order is goed ontvangen!",
@@ -140,12 +136,12 @@ server.api.add_resource(Orders, "/api/orders")
 
 class PaymentFeedback(Resource):
   def post(self, id):
-    order   = orders.get(id)
+    order   = db.orders.get(id)
     payment = client.payments.get(request.form["id"])
     if order.payment_id == payment.id:
       logger.debug(f"received payment feedback for order {id}: {payment.status}")
       if payment.is_paid:
-        orders.update(order.id, paid_at=payment.paid_at)
+        db.orders.update(order.id, paid_at=payment.paid_at)
         logger.info(f"💰 {order.id} was paid online")
       else:
         logger.debug("not paid")

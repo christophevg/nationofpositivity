@@ -55,6 +55,7 @@
 - [x] provide smaller images for card headers
 - [x] redirect /products route to /shop
 - [x] improve error pages (e.g. Whoops product 404)
+- [x] unified API and simplified pages setup
 
 ### 20241106 ✅
 

@@ -79,10 +79,18 @@ if recaptcha_key:
   server.settings["recaptcha"] = recaptcha_key
   server.register_external_script(f"https://www.google.com/recaptcha/api.js?render={recaptcha_key}")
 
+HERE = Path(__file__).resolve().parent
+
+# setup static hosting and style (which is static ;-))
+STATIC = HERE / "static"
+server.app_static_folder = STATIC
+server.register_stylesheet("style.css", STATIC / "css")
+
+# register additional boostrap icons
+server.register_stylesheet("bootstrap-icons.min.css", STATIC / "css")
+
 # register components
-HERE       = Path(__file__).resolve().parent
 COMPONENTS = HERE / "components"
-PAGES      = HERE / "pages"
 
 for component in [
   "cdn", "fonts",
@@ -95,29 +103,15 @@ for component in [
 ]:
   server.register_component(f"{component}.js", COMPONENTS)
 
-
+# set up some globals (nav drawer setup, console logging utilities,...)
 server.register_component(f"app.js", HERE)
 
-# setup static hosting and style (which is static ;-))
-STATIC = HERE / "static"
-server.app_static_folder = STATIC
-server.register_stylesheet("style.css", STATIC / "css")
-
-# register additional boostrap icons
-server.register_stylesheet("bootstrap-icons.min.css", STATIC / "css")
-
-# register static pages
-for page in [ "shop", "faq", "contact", "algemene-voorwaarden" ]:
-  server.register_component(f"{page}.js", PAGES)
-
-# register dynamic pages (aka with own API)
-from .pages import welcome, products, basket, order
-
-# catch unknown pages
-server.register_component("404.js", PAGES)
+# setup API and pages
+from . import api, pages
 
 # admin mode
-if os.environ.get("ADMIN_MODE") == "yes":
+if os.environ.get("ADMIN_MODE", "no") == "yes":
+  from . import admin
   logger.warn("""
      _       _           _         __  __           _      
     / \   __| |_ __ ___ (_)_ __   |  \/  | ___   __| | ___ 
@@ -126,7 +120,5 @@ if os.environ.get("ADMIN_MODE") == "yes":
  /_/   \_\__,_|_| |_| |_|_|_| |_| |_|  |_|\___/ \__,_|\___|
                                                              
 """)
-  server.register_component("admin.js", COMPONENTS);
-  from .pages.admin import products, orders, news
 
 logger.info("✅ shop is ready")
