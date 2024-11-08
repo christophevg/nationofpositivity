@@ -6,8 +6,16 @@ import os
 from flask import request, abort
 from flask_restful import Resource
 
-from mollie.api.client import Client
-# from ..fake.payments import Client
+if os.environ.get("FAKE_PAYMENTS", "no") == "yes":
+  from ..fake.payments import Client
+  logger.warn("""
+▗▄▄▄▖ ▗▄▖ ▗▖ ▗▖▗▄▄▄▖    ▗▄▄▖  ▗▄▖▗▖  ▗▖▗▖  ▗▖▗▄▄▄▖▗▖  ▗▖▗▄▄▄▖▗▄▄▖
+▐▌   ▐▌ ▐▌▐▌▗▞▘▐▌       ▐▌ ▐▌▐▌ ▐▌▝▚▞▘ ▐▛▚▞▜▌▐▌   ▐▛▚▖▐▌  █ ▐▌   
+▐▛▀▀▘▐▛▀▜▌▐▛▚▖ ▐▛▀▀▘    ▐▛▀▘ ▐▛▀▜▌ ▐▌  ▐▌  ▐▌▐▛▀▀▘▐▌ ▝▜▌  █  ▝▀▚▖
+▐▌   ▐▌ ▐▌▐▌ ▐▌▐▙▄▄▖    ▐▌   ▐▌ ▐▌ ▐▌  ▐▌  ▐▌▐▙▄▄▖▐▌  ▐▌  █ ▗▄▄▞▘                                                             
+""")
+else:
+  from mollie.api.client import Client
 
 from .. import server, recaptcha, qr, db, mail
 
