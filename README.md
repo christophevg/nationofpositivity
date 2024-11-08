@@ -56,6 +56,7 @@
 - [x] redirect /products route to /shop
 - [x] improve error pages (e.g. Whoops product 404)
 - [x] unified API and simplified pages setup
+- [x] improved frontpage a bit on desktop
 
 ### 20241106 ✅
 
