@@ -13,7 +13,6 @@ for page in [
   "order",
   "faq",
   "contact",
-  "algemene-voorwaarden",
-  "404"
+  "algemene-voorwaarden"
 ]:
   server.register_component(f"{page}.js", HERE)

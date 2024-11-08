@@ -121,4 +121,7 @@ if os.environ.get("ADMIN_MODE", "no") == "yes":
                                                              
 """)
 
+# ensure everything else is caught with a 404 page
+server.register_component(f"404.js", HERE / "pages")
+
 logger.info("✅ shop is ready")
