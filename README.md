@@ -50,7 +50,7 @@
 
 ## Done
 
-### next
+### 20241108
 
 - [x] provide smaller images for card headers
 - [x] redirect /products route to /shop
