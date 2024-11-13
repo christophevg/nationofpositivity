@@ -6,7 +6,7 @@ HERE = Path(__file__).resolve().parent
 
 # register static pages
 for page, route in {
-  "welcome"              : "/welcome",
+  "welcome"              : None,
   "shop"                 : "/shop",
   "product"              : "/products/<id?>",
   "basket"               : "/basket",
