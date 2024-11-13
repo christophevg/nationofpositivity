@@ -13,13 +13,13 @@ class News(Resource):
   def get(self):
     return db.news.find(_available=None, _findable=None, sort="when", order="desc")
     
-server.api.add_resource(News, "/api/news")
+server.api.add_resource(News, "/api/news", endpoint="api-news")
 
 class Products(Resource):
   def get(self):
     return db.products.find(**request.args, sort="unit_price")
     
-server.api.add_resource(Products, "/api/products")
+server.api.add_resource(Products, "/api/products", endpoint="api-products")
 
 class Product(Resource):
   def get(self, id):
@@ -28,7 +28,7 @@ class Product(Resource):
      abort(404)
    return product.asdict()
     
-server.api.add_resource(Product, "/api/products/<id>")
+server.api.add_resource(Product, "/api/products/<id>", endpoint="api-products-id")
 
 class Order(Resource):
   def get(self, id):
@@ -37,6 +37,6 @@ class Order(Resource):
      abort(404)
    return order.asdict()
     
-server.api.add_resource(Order, "/api/orders/<id>")
+server.api.add_resource(Order, "/api/orders/<id>", endpoint="api-order")
 
 from . import basket

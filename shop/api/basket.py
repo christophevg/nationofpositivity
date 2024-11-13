@@ -25,8 +25,6 @@ WEBSITE_URL    = os.environ.get("WEBSITE_URL", "https://nationofpositivity.com")
 client = Client()
 client.set_api_key(MOLLIE_API_KEY)
 
-server.register_component("basket.js", os.path.dirname(__file__))
-
 class Orders(Resource):
   def post(self):
     order = request.json
@@ -140,7 +138,7 @@ class Orders(Resource):
    )
     return response
 
-server.api.add_resource(Orders, "/api/orders")
+server.api.add_resource(Orders, "/api/orders", endpoint="api-orders")
 
 class PaymentFeedback(Resource):
   def post(self, id):
@@ -156,4 +154,4 @@ class PaymentFeedback(Resource):
     else:
       logger.error("received feedback for order {id} with incorrect payment id: {payment.id}")
 
-server.api.add_resource(PaymentFeedback, "/api/payment/<id>")
+server.api.add_resource(PaymentFeedback, "/api/payment/<id>", endpoint="api-payment-id")

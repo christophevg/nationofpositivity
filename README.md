@@ -50,6 +50,10 @@
 
 ## Done
 
+### 20241113
+
+- [x] upgrade to baseweb 0.4.0
+
 ### 20241108 ✅
 
 - [x] provide smaller images for card headers

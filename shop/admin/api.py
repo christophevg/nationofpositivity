@@ -19,7 +19,7 @@ class NewsItems(Resource):
     id = request.args.get("id")
     db.news.delete(id)
     
-server.api.add_resource(NewsItems, "/api/admin/news", endpoint="admin-newsitems")
+server.api.add_resource(NewsItems, "/api/admin/news", endpoint="api-admin--newsitems")
 
 class NewsItem(Resource):
   def put(self, id):
@@ -27,7 +27,7 @@ class NewsItem(Resource):
     update.pop("id", None)
     db.news.update(id, **update)
 
-server.api.add_resource(NewsItem, "/api/admin/news/<id>", endpoint="admin-newsitem")
+server.api.add_resource(NewsItem, "/api/admin/news/<id>", endpoint="api-admin--newsitem")
 
 class Products(Resource):
   def post(self):
@@ -40,7 +40,7 @@ class Products(Resource):
     id = request.args.get("id")
     db.products.delete(id)
     
-server.api.add_resource(Products, "/api/admin/products", endpoint="admin-products")
+server.api.add_resource(Products, "/api/admin/products", endpoint="api-admin--products")
 
 class Product(Resource):
   def put(self, id):
@@ -48,7 +48,7 @@ class Product(Resource):
     update.pop("id", None)
     db.products.update(id, **update)
 
-server.api.add_resource(Product, "/api/admin/products/<id>", endpoint="admin-product")
+server.api.add_resource(Product, "/api/admin/products/<id>", endpoint="api-admin--product")
 
 class Orders(Resource):
   def get(self):
@@ -58,7 +58,7 @@ class Orders(Resource):
     id = request.args["id"]
     db.orders.delete(id)
     
-server.api.add_resource(Orders, "/api/admin/orders", endpoint="admin-orders")
+server.api.add_resource(Orders, "/api/admin/orders", endpoint="api-admin--orders")
 
 class Order(Resource):
   def patch(self, id):
@@ -66,4 +66,4 @@ class Order(Resource):
     update.pop("id", None)
     db.orders.update(id, **update)
 
-server.api.add_resource(Order, "/api/admin/orders/<id>", endpoint="admin-order")
+server.api.add_resource(Order, "/api/admin/orders/<id>", endpoint="api-admin--order")

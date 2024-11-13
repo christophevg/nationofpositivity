@@ -11,6 +11,6 @@ for page in [
   "orders",
   "news"
 ]:
-  server.register_component(f"admin-{page}.js", HERE)
+  server.register_component(f"admin-{page}.js", HERE, route=f"/admin/{page}")
 
 from . import api

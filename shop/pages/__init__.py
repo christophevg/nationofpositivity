@@ -5,14 +5,14 @@ from .. import server
 HERE = Path(__file__).resolve().parent
 
 # register static pages
-for page in [
-  "welcome",
-  "shop",
-  "product",
-  "basket",
-  "order",
-  "faq",
-  "contact",
-  "algemene-voorwaarden"
-]:
-  server.register_component(f"{page}.js", HERE)
+for page, route in {
+  "welcome"              : "/welcome",
+  "shop"                 : "/shop",
+  "product"              : "/products/<id?>",
+  "basket"               : "/basket",
+  "order"                : "/order/<id>",
+  "faq"                  : "/faq",
+  "contact"              : "/contact",
+  "algemene-voorwaarden" : "/algemene-voorwaarden"
+}.items():
+  server.register_component(f"{page}.js", HERE, route=route)
