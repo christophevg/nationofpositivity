@@ -11,7 +11,7 @@ from .. import db
 
 class News(Resource):
   def get(self):
-    return db.news.find(_available=None, _findable=None, sort="when", order="desc")
+    return db.news.find(_available=True, _findable=None, sort="when", order="desc")
     
 server.api.add_resource(News, "/api/news", endpoint="api-news")
 

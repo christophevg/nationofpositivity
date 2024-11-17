@@ -308,10 +308,11 @@ orders = Collection(db, "orders",   Order)
 
 @dataclass
 class News(BaseObject):
-  id    : str
-  title : str
-  image : str
-  body  : str
-  when  : datetime = field(default_factory=datetime.now)
+  id        : str
+  title     : str
+  image     : str
+  body      : str
+  when      : datetime = field(default_factory=datetime.now)
+  _available: bool = False
 
 news = FilteredCollection(db, "news", News)

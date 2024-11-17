@@ -43,12 +43,18 @@
 
 - [ ] more collections
   - [ ] products: sorting, filtering (tags)
-  - [ ] collection navigation /shop/{collection}
-  - [ ] collection: Rock around the Clock (vinyl record clock custom design)
+    - [ ] collection navigation /shop#{collection} filter
+      - [ ] include "tag" header ?
+  - [x] collection: Rock around the Clock (vinyl record clock custom design)
   - [ ] collection: ... (duo tone tiles with pictures)
   - [ ] collection: ... (custom coasters with resin in wood)
 
 ## Done
+
+### 20241117
+
+- [x] add "_available" flag to news
+  - [x] by default only show available news
 
 ### 20241113 ✅
 

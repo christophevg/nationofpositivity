@@ -89,6 +89,11 @@ var NewsAdmin = {
             model      : "id"
           },
           {
+            type       : "checkbox",
+            label      : "Available",
+            model      : "_available"
+          },
+          {
             type       : "input",
             inputType  : "text",
             label      : "when",
