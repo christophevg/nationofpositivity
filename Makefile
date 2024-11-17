@@ -14,24 +14,28 @@ requirements.txt:
 ip:
 	nslookup myip.opendns.com resolver1.opendns.com
 
-DB=nation
-COLLECTION=products
+DB?=nation
+COLLECTION?=products
+FILE?=${COLLECTION}
+
+test:
+	echo ${FILE}
 
 export-production:
 	@echo "*** exporting from remote '${COLLECTION}'..."
-	@. ./.env.local; mongoexport --uri=$$URI --collection=${COLLECTION} --username=$$MONGO_USER --password=$$MONGO_PASS --db=${DB} --out=local/${COLLECTION}.json
+	@. ./.env.local; mongoexport --uri=$$URI --collection=${COLLECTION} --username=$$MONGO_USER --password=$$MONGO_PASS --db=${DB} --out=local/${FILE}.json
 
 import-production:
 	@echo "*** importing to remote '${COLLECTION}'..."
-	@. ./.env.local; mongoimport --uri=$$URI --collection=${COLLECTION} --drop --username=$$MONGO_USER --password=$$MONGO_PASS --db=${DB} local/${COLLECTION}.json
+	@. ./.env.local; mongoimport --uri=$$URI --collection=${COLLECTION} --drop --username=$$MONGO_USER --password=$$MONGO_PASS --db=${DB} local/${FILE}.json
 
 export-local:
 	@echo "*** exporting from local '${COLLECTION}'..."
-	@mongoexport --collection=${COLLECTION} --db=${DB} --out=local/${COLLECTION}.json
+	@mongoexport --collection=${COLLECTION} --db=${DB} --out=local/${FILE}.json
 
 import-local:
 	@echo "*** importing to local '${COLLECTION}'..."
-	@mongoimport --collection=${COLLECTION} --drop --db=${DB} local/${COLLECTION}.json
+	@mongoimport --collection=${COLLECTION} --drop --db=${DB} local/${FILE}.json
 
 sync-from-production: export-production import-local
 
