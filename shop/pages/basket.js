@@ -172,7 +172,7 @@ var Basket = {
       <v-card-text>
 
         <br>
-        We registreren je order. {{payment_method}}<br>
+        We registreren je order.<br>
         <span v-if="payment_method != 'overschrijving'">
         <br>
         Nadien wordt je doorverwezen naar de betaalpartner, Mollie.
