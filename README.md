@@ -55,6 +55,7 @@
 ### next
 
 - [x] more full-screen-like welcome page
+- [x] replaced image dialog viewer with magnific popup
 
 ### 20241118 ✅
 

@@ -89,6 +89,10 @@ server.register_stylesheet("style.css", STATIC / "css")
 # register additional boostrap icons
 server.register_stylesheet("bootstrap-icons.min.css", STATIC / "css")
 
+# register magnific popup
+server.register_stylesheet("magnific-popup.css", STATIC / "css")
+server.register_component("jquery.magnific-popup.min.js", STATIC / "js")
+
 # register components
 COMPONENTS = HERE / "components"
 

@@ -150,36 +150,13 @@ Vue.component("ProductCard", {
         </v-btn>
       </v-img>
 
-      <v-carousel :height="header.height" v-if="page_layout && header.images.length >= 2" hide-delimiters :cycle="false">
+      <v-carousel :height="header.height" v-if="page_layout && header.images.length >= 2" hide-delimiters :cycle="false" v-model="showing_image">
         <v-carousel-item v-for="(item,i) in header.images" :key="i" :src="cdn(item)" @click.native="show_image(i)" style="text-align:right;">
           <v-btn flat fab dark large color="white" v-on:click.prevent @click="show_image(i)">
             <v-icon>search</v-icon>
           </v-btn>
         </v-carousel-item>
       </v-carousel>
-
-      <v-dialog v-model="image_viewer">
-
-        <v-img v-if="image_viewer && header.images.length == 1"
-               :src="cdn(header.images[0])"
-               aspect-ratio="1.90"
-               style="text-align:right;">
-          <v-btn flat fab dark large color="white" v-on:click.prevent @click="image_viewer=false">
-            <v-icon>close</v-icon>
-          </v-btn>
-        </v-img>
-
-        <v-carousel height="auto" v-if="image_viewer && header.images.length > 1" :cycle="false" v-model="showing_image">
-          <v-carousel-item v-for="(item,i) in header.images" :key="i">
-            <v-img :src="cdn(item)" aspect-ratio="1.90" style="text-align:right;">
-              <v-btn flat fab dark large color="white" v-on:click.prevent @click="image_viewer=false">
-                <v-icon>close</v-icon>
-              </v-btn>
-            </v-img>
-          </v-carousel-item>
-        </v-carousel>
-
-      </v-dialog>
 
       <v-dialog v-if="card_layout" v-model="options_dialog" max-width="600px">
         <v-card>
@@ -296,8 +273,35 @@ Vue.component("ProductCard", {
       router.push("/products/" + product.id);
     },
     show_image: function(index) {
-      this.showing_image = index
-      this.image_viewer = true;
+      var self = this;
+      var items = this.header.images.map(function(image){
+        return { src : self.cdn(image) }
+      });
+      $.magnificPopup.open({
+        items: items,
+        tClose: 'Sluit (Esc)',
+        tLoading: "Afbeelding wordt geladen...",
+        image: { tError: 'De afbeelding kon niet geladen worden.' },
+        ajax:  { tError: 'De afbeelding kon niet geladen worden.' },
+        gallery: {
+          enabled: items.length > 1,
+          navigateByImgClick: true,
+          preload: [0,1],
+          arrowMarkup: '<i aria-hidden="true" class="v-icon material-icons theme--dark mfp-arrow-%dir%" style="position:absolute;opacity:0.65;margin: 0;top:50%;margin-top:-55px;padding:15px;font-size:46px;">chevron_%dir%</i>',
+          tPrev: 'Vorige (linker pijltoets)',
+          tNext: 'Volgende (rechter pijltoets))',
+          tCounter: '%curr% / %total%'
+        },
+        type: "image",
+        closeOnContentClick: true,
+        midClick: true,
+        callbacks: {
+          change: function() {
+            self.showing_image = this.index;
+          }
+        }
+      });
+      $.magnificPopup.instance.goTo(index);
     },
     show_configurator: function() {
       this.options_dialog = true;
@@ -311,7 +315,6 @@ Vue.component("ProductCard", {
   },
   data: function() {
     return  {
-      image_viewer : false,
       showing_image: 0,
       options_dialog: false,
       next: false
