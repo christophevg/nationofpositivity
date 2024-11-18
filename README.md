@@ -4,6 +4,8 @@
 
 ## Backlog
 
+- [ ] log api calls
+
 - [ ] clean up stores
   - [ ] look into 2 remaining store subscriptions (fonts, contact)
   - [ ] consistent structure, naming, api
@@ -17,7 +19,6 @@
 
 - [ ] improve+add loading pages
 - [ ] improve placeholder while loading (look into lazy prop)
-- [ ] improve height/aspect ration inspect product image dialog
 
 - [ ] create visual lookup for designs (cfr fonts)
 
@@ -46,11 +47,11 @@
     - [ ] collection navigation /shop#{collection} filter
       - [ ] include "tag" header ?
   - [ ] collection: ... (duo tone tiles with pictures)
-  - [ ] collection: ... (custom coasters with resin in wood)
+  - [ ] collection: "Resin in the Woods" (custom coasters/cutting boards with resin in wood)
 
 ## Done
 
-### next
+### 20241118 ✅
 
 - [x] bugfix: improved display/height of product header images
 - [x] improved shipping configuration
