@@ -50,6 +50,10 @@
 
 ## Done
 
+### next
+
+- [x] bugfix: improved display/height of product header images
+
 ### 20241117 ✅
 
 - [x] collection: Rock around the Clock (vinyl record clock custom design)
