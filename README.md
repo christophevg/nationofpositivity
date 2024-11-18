@@ -5,6 +5,7 @@
 ## Backlog
 
 - [ ] log api calls
+- [ ] validate entire order at server side (db/Order)
 
 - [ ] clean up stores
   - [ ] look into 2 remaining store subscriptions (fonts, contact)
@@ -50,6 +51,10 @@
   - [ ] collection: "Resin in the Woods" (custom coasters/cutting boards with resin in wood)
 
 ## Done
+
+### next
+
+- [x] more full-screen-like welcome page
 
 ### 20241118 ✅
 
