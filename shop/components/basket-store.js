@@ -8,6 +8,7 @@ store.registerModule("basket", {
   state: {
     order: [],
     payment_method: "overschrijving",
+    courier: "gls",
     badge: {
       visible : false,
       text    : 0,
@@ -40,27 +41,83 @@ store.registerModule("basket", {
         return total + item.amount;
       }, 0);
     },
-    shipping_costs: function(state) {
-      return [
-        { format: "XS", cost:  5.60 }, // 1
-        { format: "S",  cost:  6.60 }, // 2
-        { format: "M",  cost:  7.60 }, // 3
-        { format: "L",  cost:  9.30 }, // 4
-        { format: "L",  cost:  9.30 }, // 5
-        { format: "L",  cost:  9.30 }, // 6
-        { format: "XL", cost: 12.90 }  // 7 ...
-      ];
+    shipping_cost: function(state) {
+      return function(format) {
+        return {
+          "gls" : {
+             "XS":  5.60,
+             "S" :  6.60,
+             "M" :  7.60,
+             "L" :  9.30,
+             "XL": 12.90
+            }
+        }[state.courier][format];
+      }
+    },
+    shipping_combinations: function(state) {
+      return function(group) {
+        return {
+          "gls" : {
+            // { "XS" : 350,  "S"  : 500, "M"  : 650, "L"  : 800 }
+            ""       : [ "XS", "S", "M", "L", "L", "L", "XL" ],
+            "record" : [ "S",  "S", "M", "M", "L", "L", "XL" ]
+          }
+        }[state.courier][group || ""];
+      }
+    },
+    base_shipping_cost: function(state, getters) {
+      return function(group) {
+        return getters.shipping_cost(getters.shipping_combinations(group)[0]);
+      }
+    },
+    shipping_boxes: function(state, getters) {
+      // returns a list of box descriptions
+      // e.g. { format: "XS", cost: 5.60 }
+
+      // step 1: sum amount/items per shipping group
+      var groups = {};
+      getters.lines.forEach(function(line) {
+        if(line.product.shipping in groups) {
+          groups[line.product.shipping || ""] += line.amount;
+        } else {
+          groups[line.product.shipping || ""] = line.amount;          
+        }
+      });
+
+      // step 2: combine items per shipping groups into boxes
+      var amounts = {};
+      for(var group in groups) {
+        var amount = groups[group];
+        amount = amount > 7 ? 7 : amount;
+        var format = getters.shipping_combinations(group)[amount-1];
+        if(format in amounts) {
+          amounts[format]++;
+        } else {
+          amounts[format] = 1
+        }
+      }
+      
+      // step 3: add unit cost and return as a list
+      var boxes = [];
+      for(var format in amounts) {
+        boxes.push( {
+          format: format,
+          amount: amounts[format],
+          cost  : getters.shipping_cost(format)
+        });
+      }
+      
+      return boxes;
     },
     shipping_method: function(state, getters) {
       var items = getters.item_count;
       items = items > 7 ? 7 : items;
       return getters.shipping_costs[items-1];
     },
-    shipping_format: function(state, getters) {
-      return getters.item_count ? getters.shipping_method.format : "";
-    },
     shipping_total: function(state, getters) {
-      return getters.item_count ? getters.shipping_method.cost : 0;
+      return getters.shipping_boxes.reduce(function(total, box) {
+        return total + box.cost * box.amount;
+      }, 0);
     },
     payment_method: function(state) {
       return state.payment_method;

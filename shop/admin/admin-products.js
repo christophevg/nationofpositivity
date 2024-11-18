@@ -208,6 +208,12 @@ var ProductAdmin = {
             inputType  : "text",
             label      : "Price",
             model      : "unit_price"
+          },
+          {
+            type       : "input",
+            inputType  : "text",
+            label      : "Shipping",
+            model      : "shipping"
           }
         ]
       },

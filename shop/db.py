@@ -174,6 +174,7 @@ class Product(BaseObject):
   tags: List[str] = field(default_factory=list)
   options: List[Dict] = field(default_factory=list)
   specifications: Dict[str, str] = field(default_factory=dict)
+  shipping : str = ""
 
 products = FilteredCollection(db, "products", Product)
 

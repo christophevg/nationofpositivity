@@ -83,8 +83,8 @@ var Basket = {
       <p>We werken met GLS om je order in perfecte omstandigheden tot bij jou
       te brengen.</p>
   
-      <p>Voor jouw zending gebruiken we het {{ shipping_format }}
-      pakket-formaat. Dit kost &euro; {{ shipping_total.toFixed(2) }}</p>
+      <p>Voor jouw zending gebruiken we {{ shipping_configuration }}. Dit kost
+      &euro; {{ shipping_total.toFixed(2) }}</p>
 
       <div class="text-xs-center mt-2">
         <v-btn color="primary" @click="stage = 4">Ok, zo mag dat naar mij komen...</v-btn>
@@ -215,8 +215,10 @@ var Basket = {
       }
       return store.getters.contact_is_valid;
     },
-    shipping_format: function() {
-      return store.getters.shipping_format;
+    shipping_configuration: function() {
+      return store.getters.shipping_boxes.map(function(box){
+        return box.amount + " " + box.format + " " + (box.amount > 1 ? "paketten" : "pakket");
+      }).join(" en ");
     },
     shipping_total: function() {
       return store.getters.shipping_total;

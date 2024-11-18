@@ -53,6 +53,7 @@
 ### next
 
 - [x] bugfix: improved display/height of product header images
+- [x] improved shipping configuration
 
 ### 20241117 ✅
 
