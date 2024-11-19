@@ -25,7 +25,11 @@
 
 ### Frontend
 
+- [ ] change pointer over left/right handles in fullscreen viewer
+- [ ] make tags on product page link to shop with search
 - [ ] products: sorting
+- [ ] collection section
+
 - [ ] clean up stores
   - [ ] look into 2 remaining store subscriptions (fonts, contact)
   - [ ] consistent structure, naming, api
