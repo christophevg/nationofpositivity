@@ -1,21 +1,33 @@
 store.registerModule("products", {
   state: {
+    searching: false,
     filters: [],
     products: [],
     selected: null
   },
   mutations: {
+    start_searching: function(state) {
+      state.searching = true;
+    },
+    stop_searching: function(state) {
+      state.searching = false;
+    },
     filters: function(state, filters) {
       state.filters = filters;
+      window.location.hash = filters.join(",").replaceAll(" ", "-");
     },
     products: function(state, products) {
       state.products = products;
+      state.searching = false;
     },
     selected: function(state, product) {
       state.selected = product;
     }
   },
   getters: {
+    searching: function(state) {
+      return state.searching;
+    },
     possible_filters: function(state) {
       return state.products.reduce(function(acc, product) {
         return [...new Set([...acc, ...product.tags])]
@@ -40,12 +52,16 @@ store.registerModule("products", {
       context.dispatch("search", filters);
     },
     search: function(context, filters=[]) {
+      context.commit("start_searching");
       var query = filters.length > 0 ? "?tags=" + encodeURI(filters.join(",")) : "";
       $.get({
         url: "/api/products" + query,
         success: function(response) {
           context.commit("products", response.content);
           context.commit("filters", filters);
+        },
+        failure: function(response) {
+          context.commit("stop_searching");
         }
       });
     },

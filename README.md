@@ -26,8 +26,6 @@
 ### Frontend
 
 - [ ] products: sorting
-  - [ ] collection navigation /shop#{collection} filter
-    - [ ] include "tag" header ?
 - [ ] clean up stores
   - [ ] look into 2 remaining store subscriptions (fonts, contact)
   - [ ] consistent structure, naming, api
@@ -52,12 +50,13 @@
 
 ## Done
 
-### next
+### 20241119
 
 - [x] more full-screen-like welcome page
 - [x] replaced image dialog viewer with magnific popup
 - [x] remove X
 - [x] products: filtering (tags)
+- [x] shop navigation allows for hash-based tags filtering /shop#tag1,tag2
 
 ### 20241118 ✅
 

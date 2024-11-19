@@ -1,6 +1,6 @@
 var Shop = {
   template : `
-<Page>
+<Page nogoto>
 
   <v-container grid-list-md style="padding:0px;">
 
@@ -43,6 +43,12 @@ Veel plezier met het schenken van wat extra positiviteit!
       <v-card xs12>
         <v-card-text>
          <div class="text-xs-center" style="padding:15px">
+            <p v-if="searching && matching_products.length < 1">
+              🙌 Dat zoek ik even voor je...
+            </p>
+            <p v-if="!searching && matching_products.length < 1">
+              🥺 Sorry, ik heb niets gevonden... <a href="">Bekijk alles</a>.
+            </p>
             <v-chip v-for="tag in possible_filters" :key="tag"
                     :outline="!current_filters.includes(tag)"
                     :close="current_filters.includes(tag)"
@@ -74,7 +80,11 @@ Veel plezier met het schenken van wat extra positiviteit!
     index:   2
   },
   mounted: function() {
-    store.dispatch("search");
+    if(window.location.hash != "") {
+      store.dispatch("search", window.location.hash.substring(1).replaceAll("-", " ").split(","));
+    } else {
+      store.dispatch("search");
+    }
   },
   methods: {
     add_filter: function(tag) {
@@ -85,6 +95,9 @@ Veel plezier met het schenken van wat extra positiviteit!
     }
   },
   computed : {
+    searching: function() {
+      return store.getters.searching;
+    },
     possible_filters: function() {
       return store.getters.possible_filters;
     },

@@ -1,4 +1,7 @@
 Vue.component("Page", {
+  props: {
+    "nogoto": Boolean
+  },
   template : `
 <div>
   <v-alert v-model="banner.alert" :dismissible="banner.dismissible" :type="banner.type">{{ banner.message }}</v-alert>
@@ -44,6 +47,8 @@ Vue.component("Page", {
 </div>
 `,
   mounted: function() {
+    if(this.nogoto) { return; }
+
     // ensure pages are always scrolled back to the top
     // IF there is no anchor, else explicitly go there
     if(window.location.hash == "") {
