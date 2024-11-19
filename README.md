@@ -54,7 +54,7 @@
 
 ## Done
 
-### 20241119
+### 20241119 ✅
 
 - [x] more full-screen-like welcome page
 - [x] replaced image dialog viewer with magnific popup
