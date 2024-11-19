@@ -27,9 +27,6 @@ Vue.component("Page", {
             <v-btn dark icon href="https://www.linkedin.com/company/nationofpositivity" target="_blank">
               <i class="bi-linkedin"/>
             </v-btn>
-            <v-btn dark icon href="https://facebook.com/NationOfPositivity" target="_blank">
-              <i class="bi-twitter-x"/>
-            </v-btn>
           </v-flex>
         </v-layout>
       </v-card-title>

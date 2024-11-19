@@ -4,44 +4,7 @@
 
 ## Backlog
 
-- [ ] log api calls
-- [ ] validate entire order at server side (db/Order)
-
-- [ ] clean up stores
-  - [ ] look into 2 remaining store subscriptions (fonts, contact)
-  - [ ] consistent structure, naming, api
-  - [ ] load products into local store, access from there
-    - [ ] set timeout to refresh?
-
-- [ ] retake packaging pictures of garlands including wire
-- [ ] horizontal design greeting cards
-- [ ] 3D design greeting cards
-- [ ] more letter-art designs: ball
-
-- [ ] improve+add loading pages
-- [ ] improve placeholder while loading (look into lazy prop)
-
-- [ ] create visual lookup for designs (cfr fonts)
-
-- [ ] send more emails (100/day free) - on every state change?
-
-- [ ] consider: compile javascript into single minimised file?
-
-- [ ] send out mailing?
-- [ ] start mailing list?
-
-- [ ] first order
-  - [ ] "thanks" card + Chokotoff
-  - [ ] figure out GLS shipping 😇
-    - [ ] print label? (102x150)
-
-- [ ] download payment history on state update and store locally?
-
-- [ ] more shipping options?
-  - [ ] delivery to ParcelShop (https://gls-group.com/BE/en/depot-parcelshop/)
-
-- [ ] more payment options?
-  - [ ] Visa, Mastercard (% payment cost)
+### Products
 
 - [ ] more collections
   - [ ] products: sorting, filtering (tags)
@@ -49,6 +12,43 @@
       - [ ] include "tag" header ?
   - [ ] collection: ... (duo tone tiles with pictures)
   - [ ] collection: "Resin in the Woods" (custom coasters/cutting boards with resin in wood)
+- [ ] retake packaging pictures of garlands including wire
+- [ ] horizontal design greeting cards
+- [ ] 3D design greeting cards
+- [ ] more letter-art designs: ball
+
+### Ops
+
+- [ ] send out mailing?
+- [ ] start mailing list?
+- [ ] first order
+  - [ ] "thanks" card + Chokotoff
+  - [ ] figure out GLS shipping 😇
+    - [ ] print label? (102x150)
+
+### Frontend
+
+- [ ] clean up stores
+  - [ ] look into 2 remaining store subscriptions (fonts, contact)
+  - [ ] consistent structure, naming, api
+  - [ ] load products into local store, access from there
+    - [ ] set timeout to refresh?
+- [ ] improve+add loading pages
+- [ ] improve placeholder while loading (look into lazy prop)
+
+- [ ] create visual lookup for designs (cfr fonts)
+- [ ] consider: compile javascript into single minimised file?
+- [ ] more shipping options?
+  - [ ] delivery to ParcelShop (https://gls-group.com/BE/en/depot-parcelshop/)
+- [ ] more payment options?
+  - [ ] Visa, Mastercard (% payment cost)
+
+### Backend
+
+- [ ] log api calls
+- [ ] validate entire order at server side (db/Order)
+- [ ] send more emails (100/day free) - on every state change?
+- [ ] download payment history on state update and store locally?
 
 ## Done
 
@@ -56,6 +56,7 @@
 
 - [x] more full-screen-like welcome page
 - [x] replaced image dialog viewer with magnific popup
+- [x] remove X
 
 ### 20241118 ✅
 
