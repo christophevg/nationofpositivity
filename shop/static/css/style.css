@@ -29,3 +29,7 @@ div.v-toolbar__title span, h1, h2, h3, h4, h5, h3.headline, h3.title, h3.subhead
 .vue-form-generator .form-group:last-child {
   margin-bottom: 0px;
 }
+
+.cursor-pointer span.v-chip__content {
+  cursor: pointer;
+}

@@ -1,9 +1,13 @@
 store.registerModule("products", {
   state: {
+    filters: [],
     products: [],
     selected: null
   },
   mutations: {
+    filters: function(state, filters) {
+      state.filters = filters;
+    },
     products: function(state, products) {
       state.products = products;
     },
@@ -12,16 +16,36 @@ store.registerModule("products", {
     }
   },
   getters: {
+    possible_filters: function(state) {
+      return state.products.reduce(function(acc, product) {
+        return [...new Set([...acc, ...product.tags])]
+      }, []);
+    },
+    current_filters: function(state) {
+      return state.filters;
+    },
     matching_products: function(state) {
       return state.products;
     }
   },
   actions: {
-    search: function(context) {
+    add_filter: function(context, tag) {
+      var filters = [...new Set([...context.getters.current_filters, ...[tag]])];
+      context.dispatch("search", filters);
+    },
+    remove_filter: function(context, tag) {
+      var filters = context.getters.current_filters.filter(function(current){
+        return current != tag;
+      });
+      context.dispatch("search", filters);
+    },
+    search: function(context, filters=[]) {
+      var query = filters.length > 0 ? "?tags=" + encodeURI(filters.join(",")) : "";
       $.get({
-        url: "/api/products",
+        url: "/api/products" + query,
         success: function(response) {
           context.commit("products", response.content);
+          context.commit("filters", filters);
         }
       });
     },

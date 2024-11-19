@@ -7,9 +7,6 @@
 ### Products
 
 - [ ] more collections
-  - [ ] products: sorting, filtering (tags)
-    - [ ] collection navigation /shop#{collection} filter
-      - [ ] include "tag" header ?
   - [ ] collection: ... (duo tone tiles with pictures)
   - [ ] collection: "Resin in the Woods" (custom coasters/cutting boards with resin in wood)
 - [ ] retake packaging pictures of garlands including wire
@@ -28,6 +25,9 @@
 
 ### Frontend
 
+- [ ] products: sorting
+  - [ ] collection navigation /shop#{collection} filter
+    - [ ] include "tag" header ?
 - [ ] clean up stores
   - [ ] look into 2 remaining store subscriptions (fonts, contact)
   - [ ] consistent structure, naming, api
@@ -57,6 +57,7 @@
 - [x] more full-screen-like welcome page
 - [x] replaced image dialog viewer with magnific popup
 - [x] remove X
+- [x] products: filtering (tags)
 
 ### 20241118 ✅
 

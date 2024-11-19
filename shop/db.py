@@ -8,7 +8,7 @@ from random import randint
 
 import dataclasses
 from dataclasses import dataclass, field, fields
-from typing import List, Dict
+from typing import List, Dict, get_origin
 from datetime import datetime
 
 import pymongo
@@ -78,13 +78,25 @@ class Collection():
     return None
 
   def find(self, sort=None, order=None, start=0, limit=25, more_filters=None, **kwargs):
-    filters = {
-      arg : { "$regex" : value, "$options" : "i" }
-      for arg, value in kwargs.items()
+    # construct quick lookup table for types
+    typeof = {
+      field.name : field.type
+      for field in dataclasses.fields(self.dataclass)
     }
+    
+    # construct filters from additional kwargs
+    # by default simply turn it into a regexp
+    # in case the targetted field is a list, check for inclusion
+    filters = {}
+    for arg, value in kwargs.items():
+      if get_origin(typeof[arg]) == list:
+        filters[arg] = { "$all" : value.split(",") }
+      else:
+        filters[arg] = { "$regex" : value, "$options" : "i" }
+
     if more_filters:
       filters.update(more_filters)
-    
+
     self.pageable_collection.find(filters, { "_id": False })
 
     # add sorting
