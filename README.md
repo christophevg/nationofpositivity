@@ -23,7 +23,6 @@
 
 ### Frontend
 
-- [ ] samenvatting contact gegevens herhalen in bevestiging
 - [ ] collection section
 - [ ] separate collections from tags
 
@@ -62,6 +61,7 @@
 
 - [x] removed phone contact information
 - [x] watching contact property changes on ContactCard
+- [x] added summary of contact information to order summary
 
 ### 20241125 ✅
 

@@ -148,7 +148,14 @@ var Basket = {
 
     <v-stepper-content step="5">
       
-      <OrderOverview :order="basket" with-extras/>
+      <h3 style="margin-bottom:5px">Dit ben jij</h3>
+
+      <div style="margin-left: 10px">
+        <ContactCard :contact="contact" summary />
+      </div>
+
+      <h3>Dit ga je bestellen</h3>
+      <OrderOverview :order="basket" with-extras />
 
       <div class="text-xs-center">
         <v-checkbox

@@ -1,13 +1,22 @@
 Vue.component("ContactCard", {
-  props: [ "contact" ],
+  props: {
+    contact : Object,
+    summary : Boolean
+  },
   template: `
-    <v-card>
-      <v-card-text>
-        <vue-form-generator :schema="schema" :model="model" :options="formOptions"
-                            @validated="onValidated"
-        ></vue-form-generator>
-      </v-card-text>
-    </v-card>  
+<div>
+  <p v-if="summary">
+    <table cellspacing="5">
+      <template v-for="(field, i) in this.schema.fields">
+        <tr v-if="model[field.model] && model[field.model] != ''">
+          <td><b>{{ field.label }}</b></td><td>{{ model[field.model ]}}</td>
+        </tr>
+      </template>
+    </table>
+  </p>
+  <vue-form-generator v-else :schema="schema" :model="model" :options="formOptions"
+                             @validated="onValidated"/>
+</div>
 `,
   watch: {
     contact: {
