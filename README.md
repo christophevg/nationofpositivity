@@ -18,14 +18,11 @@
 
 - [ ] send out mailing?
 - [ ] start mailing list?
-- [ ] first order
-  - [ ] "thanks" card + Chokotoff
-  - [ ] figure out GLS shipping 😇
-    - [ ] print label? (102x150)
+- [ ] Chokotoff
+- [ ] thank you letter for HaC
 
 ### Frontend
 
-- [ ] products: sorting
 - [ ] collection section
 
 - [ ] clean up stores
@@ -57,6 +54,13 @@
 - [x] create a more enriched frontpage (welcome text, highlights)
 - [x] change pointer over left/right handles in fullscreen viewer
 - [x] make tags on product page link to shop with search
+- [x] products: sorting
+
+### 20241122
+
+- [x] figure out GLS shipping 😇
+- [x] print label (1/3 A4)
+- [x] thank you letter for RatC
 
 ### 20241119 ✅
 

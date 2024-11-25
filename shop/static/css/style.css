@@ -33,3 +33,8 @@ div.v-toolbar__title span, h1, h2, h3, h4, h5, h3.headline, h3.title, h3.subhead
 .cursor-pointer span.v-chip__content {
   cursor: pointer;
 }
+
+
+.v-select__selections input {
+  width: 10px;
+}

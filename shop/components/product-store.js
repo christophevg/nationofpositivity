@@ -2,6 +2,17 @@ store.registerModule("products", {
   state: {
     searching: false,
     filters: [],
+    possible_sorting: [
+      "oplopende prijs",
+      "aflopende prijs",
+      "volgens naam"
+    ],
+    sorting_functions: [
+      function(a, b) { return a.unit_price - b.unit_price; },
+      function(a, b) { return b.unit_price - a.unit_price; },
+      function(a, b) { return a.title < b.title }
+    ],
+    sorting: 0,
     products: [],
     selected: null
   },
@@ -15,6 +26,12 @@ store.registerModule("products", {
     filters: function(state, filters) {
       state.filters = filters;
       window.location.hash = filters.join(",").replaceAll(" ", "-");
+    },
+    sorting: function(state, sorting) {
+      var index = state.possible_sorting.findIndex((item) => item == sorting);
+      if(index > -1) {
+        state.sorting = index;
+      }
     },
     products: function(state, products) {
       state.products = products;
@@ -36,8 +53,14 @@ store.registerModule("products", {
     current_filters: function(state) {
       return state.filters;
     },
+    possible_sorting: function(state) {
+      return state.possible_sorting;
+    },
+    current_sorting: function(state, getters) {
+      return getters.possible_sorting[state.sorting];
+    },
     matching_products: function(state) {
-      return state.products;
+      return [...state.products].sort(state.sorting_functions[state.sorting]);
     }
   },
   actions: {
@@ -50,6 +73,9 @@ store.registerModule("products", {
         return current != tag;
       });
       context.dispatch("search", filters);
+    },
+    change_sorting: function(context, sorting) {
+      context.commit("sorting", sorting);
     },
     search: function(context, filters=[]) {
       context.commit("start_searching");

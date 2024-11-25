@@ -57,6 +57,20 @@ Veel plezier met het schenken van wat extra positiviteit!
                     @input="remove_filter(tag)" @click="add_filter(tag);"
                     class="cursor-pointer"
                     >{{ tag }}</v-chip>
+
+          <div style="display:inline-block;position:relative;top:5px">
+            <v-select
+              :items="possible_sorting"
+              v-model="current_sorting"
+              style="min-width: min-content;"
+              prepend-icon="sort"
+              hide-details
+              solo
+              dense
+              flat
+              />
+          </div>
+
           </div>
         </v-card-text>
       </v-card>
@@ -103,6 +117,17 @@ Veel plezier met het schenken van wat extra positiviteit!
     },
     current_filters: function() {
       return store.getters.current_filters;
+    },
+    possible_sorting: function() {
+      return store.getters.possible_sorting;
+    },
+    current_sorting: {
+      get() {
+        return store.getters.current_sorting;
+      },
+      set(sorting) {
+        store.dispatch("change_sorting", sorting);
+      }
     },
     matching_products : function() {
       return store.getters.matching_products;
