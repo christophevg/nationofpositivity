@@ -25,7 +25,6 @@
 
 ### Frontend
 
-- [ ] make tags on product page link to shop with search
 - [ ] products: sorting
 - [ ] collection section
 
@@ -57,6 +56,7 @@
 
 - [x] create a more enriched frontpage (welcome text, highlights)
 - [x] change pointer over left/right handles in fullscreen viewer
+- [x] make tags on product page link to shop with search
 
 ### 20241119 ✅
 

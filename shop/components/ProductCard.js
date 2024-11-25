@@ -185,7 +185,7 @@ Vue.component("ProductCard", {
                 </template>
                 </p>
               </div>
-              <v-chip v-for="tag in product.tags" :key="tag" outline color="grey" text-color="black">{{ tag }}</v-chip>
+              <v-chip v-for="tag in product.tags" :key="tag" outline color="grey" text-color="black" class="cursor-pointer" @click="search(tag)">{{ tag }}</v-chip>
             </div>
           </v-card-text>
 
@@ -269,6 +269,9 @@ Vue.component("ProductCard", {
     }
   },
   methods: {
+    search: function(tag) {
+      router.push('/shop#' + tag.replaceAll(' ', '-'));
+    },
     show: function(product) {
       router.push("/products/" + product.id);
     },
