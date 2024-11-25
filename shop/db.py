@@ -221,6 +221,8 @@ class Contact:
   city       : str
   email      : str
 
+  phone      : str = ""  # deprecated
+
   company    : str = ""
   tax        : str = ""
 
