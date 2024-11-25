@@ -9,46 +9,33 @@ var Shop = {
     <v-layout row wrap>
      <v-flex xs12>
       <v-card xs12>
-        <v-card-title primary-title>
-          <div>
-            <h3 class="headline mb-0">Shop positiviteit</h3>
-            <div>
-  
-In de shop vind je een groeiend aantal aan leuke dingen met een hoge
-positiviteit-factor. We voegen op regelmatige basis nieuwe spulletjes toe.<br>
-  
-Volg zeker onze socials om op de hoogte te blijven van de nieuwigheden!
-
-<br><br>
-
-<ul>
-  <li>Je kan ze onmiddellijk aan je mandje toevoegen, of eerst in meer detail bestuderen.</li>
-  <li>Je kan ze allemaal personaliseren. De instructies daarvoor vind je op de product pagina.</li>
-</ul>
-
-<br>
-
-Veel plezier met het schenken van wat extra positiviteit!
-
-            </div>
-          </div>
-        </v-card-title>
-      </v-card>
-    </v-flex>
-    </v-layout>
-    
-    
-    <v-layout row wrap>
-     <v-flex xs12>
-      <v-card xs12>
         <v-card-text>
-         <div class="text-xs-center" style="padding:15px">
-            <p v-if="searching && matching_products.length < 1">
+          <h3 class="headline mb-0">Shop positiviteit</h3>
+          <p>
+          
+            Filter, sorteer, klik door naar de productpagina of voeg direct
+            toe aan je mandje. Hier vind je jouw positief cadeautje!
+          
+          </p>
+
+          <!-- ACTIVITY / RESULTS -->
+  
+          <div class="text-xs-center" style="padding:15px" v-if="matching_products.length < 1">
+
+            <p v-if="searching">
               🙌 Dat zoek ik even voor je...
             </p>
-            <p v-if="!searching && matching_products.length < 1">
+
+            <p v-if="!searching">
               🥺 Sorry, ik heb niets gevonden... <a href="">Bekijk alles</a>.
             </p>
+  
+          </div>
+  
+          <div class="text-xs-center" v-if="matching_products.length > 0">
+  
+            <!-- FILTERS -->
+  
             <v-chip v-for="tag in possible_filters" :key="tag"
                     :outline="!current_filters.includes(tag)"
                     :close="current_filters.includes(tag)"
@@ -58,20 +45,22 @@ Veel plezier met het schenken van wat extra positiviteit!
                     class="cursor-pointer"
                     >{{ tag }}</v-chip>
 
-          <div style="display:inline-block;position:relative;top:5px">
-            <v-select
-              :items="possible_sorting"
-              v-model="current_sorting"
-              style="min-width: min-content;"
-              prepend-icon="sort"
-              hide-details
-              solo
-              dense
-              flat
-              />
+            <!-- SORTING -->
+
+            <div style="display:inline-block;position:relative;top:5px">
+              <v-select
+                :items="possible_sorting"
+                v-model="current_sorting"
+                style="min-width: min-content;"
+                prepend-icon="sort"
+                hide-details
+                solo
+                dense
+                flat
+                />
+            </div>
           </div>
 
-          </div>
         </v-card-text>
       </v-card>
     </v-flex>

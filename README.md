@@ -24,6 +24,7 @@
 ### Frontend
 
 - [ ] collection section
+- [ ] separate collections from tags
 
 - [ ] clean up stores
   - [ ] look into 2 remaining store subscriptions (fonts, contact)
@@ -56,6 +57,7 @@
 - [x] make tags on product page link to shop with search
 - [x] products: sorting
 - [x] bugfix: shop scrolls to top
+- [x] simplified introduction on shop page
 
 ### 20241122
 
