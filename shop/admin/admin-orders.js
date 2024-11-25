@@ -6,6 +6,7 @@ var OrderAdmin = {
                     id="id" :selected="model.selected" @select="select"
                     actions="delete show|blue|receipt"
                     sortBy="created"
+                    :enrich="add_status"
                     @show="show">
 
       <v-tabs v-model="model.active">
@@ -68,6 +69,20 @@ var OrderAdmin = {
     path:    "/admin/orders"
   },
   methods: {
+    add_status: function(orders) {
+      return orders.map(function(order) {
+        if(order["delivered_at"]) {
+          order["status"] = "delivered";
+        } else if(order["shipped_at"]) {
+          order["status"] = "shipped";          
+        } else if(order["paid_at"]) {
+          order["status"] = "in production";
+        } else {
+          order["status"] = "awaiting payment";
+        }
+        return order;
+      });
+    },
     select : function(selected) {
       this.model.selected = selected;
     },
@@ -131,10 +146,12 @@ var OrderAdmin = {
         tracker: ""
       },
       headers: [
-        { text: "id",      align: "left",  sortable: true, value: "id"           },
-        { text: "buyer",   align: "left",  sortable: true, value: "contact.name" },
-        { text: "total",   align: "right", sortable: true, value: "total.grand"  },
-        { text: "created", align: "left",  sortable: true, value: "created"      }
+        { text: "status",  align: "left",  sortable: false, value: "status"       },
+        { text: "id",      align: "left",  sortable: true,  value: "id"           },
+        { text: "buyer",   align: "left",  sortable: true,  value: "contact.name" },
+        { text: "total",   align: "right", sortable: true,  value: "total.grand"  },
+        { text: "created", align: "left",  sortable: true,  value: "created"      },
+        { text: "status",  align: "left",  sortable: true,  value: "status"       }
       ],
     }
   }

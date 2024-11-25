@@ -1,4 +1,4 @@
-baseweb>=0.4.0
+baseweb>=0.4.1
 
 pymongo
 pageable_mongo

@@ -45,7 +45,6 @@
 
 - [ ] add confirmation of actions (delete)
 - [ ] reset tracker url entry field when changing order
-- [ ] add status field as a column: dynamic based on *_at fields
 
 ### Backend
 
@@ -62,6 +61,7 @@
 - [x] watching contact property changes on ContactCard
 - [x] added summary of contact information to order summary
 - [x] admin: selected order must be highlighted
+- [x] add status field as a column: dynamic based on *_at fields
 - [x] admin: add link to customer facing order page
 
 ### 20241125 ✅
