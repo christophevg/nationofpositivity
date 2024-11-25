@@ -94,6 +94,7 @@ Veel plezier met het schenken van wat extra positiviteit!
     index:   2
   },
   mounted: function() {
+    this.$vuetify.goTo(0);
     if(window.location.hash != "") {
       store.dispatch("search", window.location.hash.substring(1).replaceAll("-", " ").split(","));
     } else {

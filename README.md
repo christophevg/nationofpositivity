@@ -55,6 +55,7 @@
 - [x] change pointer over left/right handles in fullscreen viewer
 - [x] make tags on product page link to shop with search
 - [x] products: sorting
+- [x] bugfix: shop scrolls to top
 
 ### 20241122
 
