@@ -44,16 +44,6 @@ var contact_schema = [
   {
     type       : "input",
     inputType  : "text",
-    label      : "Telefoonnummer",
-    placeholder: "Vast of mobiel",
-    model      : "phone",
-    required   : true,
-    min        : 3,
-    validator  : VueFormGenerator.validators.string.locale(nl)
-  },
-  {
-    type       : "input",
-    inputType  : "text",
     label      : "E-mail",
     placeholder: "",
     model      : "email",

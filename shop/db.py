@@ -219,7 +219,6 @@ class Contact:
   address    : str
   postalcode : int
   city       : str
-  phone      : str
   email      : str
 
   company    : str = ""

@@ -23,6 +23,7 @@
 
 ### Frontend
 
+- [ ] samenvatting contact gegevens herhalen in bevestiging
 - [ ] collection section
 - [ ] separate collections from tags
 
@@ -40,6 +41,14 @@
   - [ ] delivery to ParcelShop (https://gls-group.com/BE/en/depot-parcelshop/)
 - [ ] more payment options?
   - [ ] Visa, Mastercard (% payment cost)
+  
+### Admin
+
+- [ ] contact form doesn't reset when changing order
+- [ ] selected order isn't highlighted
+- [ ] add confirmation of actions (delete)
+- [ ] reset tracker url entry field when changing order
+- [ ] add status field as a column: dynamic based on *_at fields
 
 ### Backend
 
@@ -49,6 +58,10 @@
 - [ ] download payment history on state update and store locally?
 
 ## Done
+
+### Next
+
+- [x] removed phone contact information
 
 ### 20241125 ✅
 
