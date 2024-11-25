@@ -50,7 +50,7 @@
 
 ## Done
 
-### Next
+### 20241125 ✅
 
 - [x] create a more enriched frontpage (welcome text, highlights)
 - [x] change pointer over left/right handles in fullscreen viewer
