@@ -43,7 +43,6 @@
   
 ### Admin
 
-- [ ] selected order isn't highlighted
 - [ ] add confirmation of actions (delete)
 - [ ] reset tracker url entry field when changing order
 - [ ] add status field as a column: dynamic based on *_at fields
@@ -62,6 +61,7 @@
 - [x] removed phone contact information
 - [x] watching contact property changes on ContactCard
 - [x] added summary of contact information to order summary
+- [x] admin: selected order must be highlighted
 
 ### 20241125 ✅
 

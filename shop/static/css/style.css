@@ -38,3 +38,16 @@ div.v-toolbar__title span, h1, h2, h3, h4, h5, h3.headline, h3.title, h3.subhead
 .v-select__selections input {
   width: 10px;
 }
+
+
+tr.selected-row {
+  background-color: rgb(21, 101, 192);
+}
+
+tr.selected-row td {
+  color: white;
+}
+
+tr.selected-row:hover td {
+  color: black;
+}
