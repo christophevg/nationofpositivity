@@ -44,7 +44,6 @@
   
 ### Admin
 
-- [ ] contact form doesn't reset when changing order
 - [ ] selected order isn't highlighted
 - [ ] add confirmation of actions (delete)
 - [ ] reset tracker url entry field when changing order
@@ -62,6 +61,7 @@
 ### Next
 
 - [x] removed phone contact information
+- [x] watching contact property changes on ContactCard
 
 ### 20241125 ✅
 
