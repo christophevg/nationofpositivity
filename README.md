@@ -43,8 +43,6 @@
   
 ### Admin
 
-- [ ] reset tracker url entry field when changing order
-
 ### Backend
 
 - [ ] log api calls
@@ -64,6 +62,7 @@
 - [x] admin: add link to customer facing order page
 - [x] add confirmation of actions (delete)
 - [x] add banners when using local db / fake payments
+- [x] reset tracker url entry field when changing order
 
 ### 20241125 ✅
 

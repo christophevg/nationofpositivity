@@ -86,6 +86,7 @@ var OrderAdmin = {
     },
     select : function(selected) {
       this.model.selected = selected;
+      this.model.tracker = "";
     },
     paid: function() {
       var now  = moment().format(),
@@ -110,6 +111,7 @@ var OrderAdmin = {
         function(response) {
           self.model.selected.shipped_at = now;
           self.model.selected.shipment = self.model.tracker;
+          this.model.tracker = "";
         },
         function(response) {
           console_warn(response);
@@ -131,7 +133,7 @@ var OrderAdmin = {
       );
     },
     track: function() {
-      if(this.model.tracker !="") {
+      if(this.model.tracker != "") {
         window.open(this.model.tracker, "_blank");
       }
     },
