@@ -129,17 +129,22 @@ if os.environ.get("ADMIN_MODE", "no") == "yes":
 server.register_component(f"404.js", HERE / "pages")
 
 # construct dynamic mode_message
-warning_message = []
+warning_messages = []
+
+if server.settings["mode_message"]:
+  warning_messages.append(server.settings["mode_message"])
 
 if db.is_local:
-  warning_message.append("De gegevens worden uit een test databank opgehaald.")
+  warning_messages.append("De gegevens worden uit een test databank opgehaald.")
 
 if os.environ.get("FAKE_PAYMENTS", "no") == "yes":
-  warning_message.append("De integratie met de betaalpartner is niet operationeel.")
+  warning_messages.append("De integratie met de betaalpartner is niet operationeel.")
 
-if warning_message:
-  server.settings["mode"] = "test"
-  server.settings["mode_message"] = " ".join( warning_message )
+if warning_messages:
+  server.settings["mode"] = "<b>test</b>"
+  server.settings["mode_message"] = "<ul>" + \
+   "\n".join( [ f"<li>{msg}</li>" for msg in warning_messages ] ) + \
+   "</ul>"
   
 server.log_routes()
 logger.info("✅ shop is ready")

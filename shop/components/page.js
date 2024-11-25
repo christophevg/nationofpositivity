@@ -4,7 +4,9 @@ Vue.component("Page", {
   },
   template : `
 <div>
-  <v-alert v-model="banner.alert" :dismissible="banner.dismissible" :type="banner.type">{{ banner.message }}</v-alert>
+  <v-alert v-model="banner.alert" :dismissible="banner.dismissible" :type="banner.type"">
+    <span v-html="banner.message"/>
+  </v-alert>
   <div style="padding:0px;margin-bottom:15px">
     <slot></slot>
   </div>
