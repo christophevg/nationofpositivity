@@ -39,24 +39,26 @@ store.registerModule("cdn", {
   getters: {
     cdn_url: function(state) {
       return function(path) {
-        var parts = path.split("/"),
-            filename = parts.pop(),
-            ptr = state.index;
+        if(path)  {
+          var parts = path.split("/"),
+              filename = parts.pop(),
+              ptr = state.index;
 
-        if(! ptr) {
-          return "/app/static/images/placeholder.png";
-        }
+          if(! ptr) {
+            return "/app/static/images/placeholder.png";
+          }
 
-        if(parts[0] == "") {
-          parts.shift();
-        }
-        parts.push("_files");
-        for(var i=0; i<parts.length; i++) {
-          var step = parts[i];
-          if( step in ptr ) {
-            ptr = ptr[step];
-          } else {
-            break;
+          if(parts[0] == "") {
+            parts.shift();
+          }
+          parts.push("_files");
+          for(var i=0; i<parts.length; i++) {
+            var step = parts[i];
+            if( step in ptr ) {
+              ptr = ptr[step];
+            } else {
+              break;
+            }
           }
         }
         if(ptr && ptr.includes && ptr.includes(filename)) {
