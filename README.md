@@ -62,6 +62,7 @@
 - [x] watching contact property changes on ContactCard
 - [x] added summary of contact information to order summary
 - [x] admin: selected order must be highlighted
+- [x] admin: add link to customer facing order page
 
 ### 20241125 ✅
 

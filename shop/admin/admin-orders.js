@@ -4,8 +4,9 @@ var OrderAdmin = {
   <h1>Admin Orders</h1>
     <CollectionView topic="orders" :headers="headers" resource="/api/admin/orders"
                     id="id" :selected="model.selected" @select="select"
-                    actions="delete"
-                    sortBy="created">
+                    actions="delete show|blue|receipt"
+                    sortBy="created"
+                    @show="show">
 
       <v-tabs v-model="model.active">
         <v-tab key="overview">Order</v-tab>
@@ -117,6 +118,9 @@ var OrderAdmin = {
       if(this.model.tracker !="") {
         window.open(this.model.tracker, "_blank");
       }
+    },
+    show: function(id) {
+      window.open("/order/" + id, "_blank");
     }
   },
   data: function() {
