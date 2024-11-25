@@ -54,6 +54,10 @@
 
 ## Done
 
+### Next
+
+- [x] create a more enriched frontpage (welcome text, highlights)
+
 ### 20241119 ✅
 
 - [x] more full-screen-like welcome page

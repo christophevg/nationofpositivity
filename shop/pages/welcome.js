@@ -40,12 +40,12 @@ Vue.component("NewsItemsAsCarousel", {
   mixins: [ Content ],
   props: [ "items" ],
   template: `
-  <v-carousel :height="item_height" :cycle="false" id="carousel-container">
+  <v-carousel height="600" interval="10000" id="carousel-container">
     <v-carousel-item v-for="(item, i) in items" :src="cdn(item.image)" :key="i">
 
         <v-container fill-height style="max-width:100%" width="100%">
           <v-layout align-end justify-end>
-            <v-flex xs10 sm8 md6>
+            <v-flex lg8 xl6>
               <NewsItem :item="item" styling="margin: 20px" light color="rgba(255, 255, 255, 0.95)" raised hideImage/>
             </v-flex>
           </v-layout>
@@ -53,39 +53,97 @@ Vue.component("NewsItemsAsCarousel", {
 
     </v-carousel-item>
   </v-carousel>
-`,
-  computed: {
-    item_height: function() {
-      return this.windowHeight - 250;
-    }
-  },
-  data: function() {
-    return {
-      windowHeight: window.innerHeight
-    }
-  },
-  mounted() {
-    this.$nextTick(() => {
-      window.addEventListener("resize", this.onResize);
-    })
-  },
-  beforeDestroy() { 
-    window.removeEventListener("resize", this.onResize); 
-  },
-
-  methods: {  
-    onResize() {
-      this.windowHeight = window.innerHeight
-    }
-  }
+`
 });
 
-var Index = {
+
+Vue.component("HighlightedItem", {
   mixins: [ Content ],
+  props: {
+    "item"      : Object,
+    "clazz"     : String
+  },
+  
+  template: `
+<v-card v-if="item" :class="clazz" :to="item.goto">
+  <v-img :src="cdn(item.image)" aspect-ratio="1.75">
+    <v-container fill-height style="max-width:100%" width="100%">
+      <v-layout align-end>
+
+  <v-card color="rgba(255,255,255,0.95)" light flat tile :to="item.goto">
+    <v-card-text>
+      <h2>{{ item.title }}</h2>
+      <v-btn color="primary" class="white--text" :to="item.goto">
+        Shop nu
+        <v-icon right dark>shopping_cart</v-icon>
+      </v-btn>
+    </v-card-text>
+  </v-card>
+
+      </v-layout>
+    </v-container>
+  </v-img>
+</v-card>
+`
+});
+
+var FrontPage = {
   template : `
 <Page>
-  <NewsItemsAsCarousel class="hidden-sm-and-down"  :items="items"/>
-  <NewsItemsAsList     class="hidden-md-and-up"    :items="items"/>
+    <v-layout row wrap>
+
+      <!-- WELCOME -->
+
+      <v-flex xs12 md4 d-flex>
+        <v-sheet :class="margin + ' pa-3'" color="rgb(85,141,206,.10)">
+
+          <h2 style="margin-bottom:5px">Uniek en Persoonlijk</h2>
+
+          <p>
+  
+            Wat spreekt meer positiviteit uit dan een uniek en persoonlijk
+            cadeau? Dat is wat Nation of Positivity biedt: tal van kleine leuke
+            cadeautjes, allemaal uniek en gepersonaliseerd, bedoeld om jouw
+            positiviteit aan iemand anders te geven (of gewoon om zelf van te
+            genieten).
+  
+          </p>
+
+          <p style="margin-bottom:0px">
+
+            Met Nation of Positivity bied ik mijn atelier en creativiteit aan
+            in deze kleine, online shop. Met liefde gemaakt om met heel veel
+            liefde te kunnen geven. Zo zorgen we samen voor een beetje meer
+            positiviteit in de wereld.
+      
+          </p>
+
+          <v-img src="/app/static/images/christophe.png" width="75%" max-width="300px"/>
+
+        </v-sheet>
+      </v-flex>
+  
+     <!-- NEWS -->
+
+      <v-flex xs12 md8>
+        <v-sheet :class="margin">
+
+          <NewsItemsAsCarousel class="hidden-sm-and-down"  :items="items"/>
+          <NewsItemsAsList     class="hidden-md-and-up"    :items="items"/>
+
+        </v-sheet>
+      </v-flex>
+  
+    </v-layout>
+
+    <!-- HIGHLIGHTS -->
+
+    <v-layout row wrap>
+      <v-flex d-flex v-for="(item, i) in highlights" :key="i" xs12 sm6>
+        <HighlightedItem :item="item" :clazz="margin"/>
+      </v-flex>
+    </v-layout>
+
 </Page>
 `,
   navigation: {
@@ -93,13 +151,32 @@ var Index = {
     icon:    "home",
     text:    "Welkom",
     path:    "/",
-    index:   1
+    index:   2
   },
   computed: {
     items: function() {
       return store.getters.news_items
+    },
+    margin: function() {
+      return this.$vuetify.breakpoint.smAndDown ? "ma-0 mb-2" : "ma-2";
+    }
+  },
+  data: function() {
+    return {
+      highlights: [
+        {
+          title: "Holidays are Coming",
+          image: "images/products/holidays-are-coming/letter-art/demo.header.jpeg",
+          goto : "/shop#holidays-are-coming"
+        },
+        {
+          title: "Rock around the Clock",
+          image: "images/products/rock-around-the-clock/record-clock-with-picture/demo-rockstar.header.jpeg",
+          goto : "/shop#rock-around-the-clock"
+        }
+      ]
     }
   }
 };
 
-Navigation.add(Index);
+Navigation.add(FrontPage);
