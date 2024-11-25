@@ -287,7 +287,7 @@ Vue.component("ProductCard", {
           enabled: items.length > 1,
           navigateByImgClick: true,
           preload: [0,1],
-          arrowMarkup: '<i aria-hidden="true" class="v-icon material-icons theme--dark mfp-arrow-%dir%" style="position:absolute;opacity:0.65;margin: 0;top:50%;margin-top:-55px;padding:15px;font-size:46px;">chevron_%dir%</i>',
+          arrowMarkup: '<i aria-hidden="true" class="v-icon material-icons theme--dark mfp-arrow-%dir%" style="cursor:pointer;position:absolute;opacity:0.65;margin: 0;top:50%;margin-top:-55px;padding:15px;font-size:46px;">chevron_%dir%</i>',
           tPrev: 'Vorige (linker pijltoets)',
           tNext: 'Volgende (rechter pijltoets))',
           tCounter: '%curr% / %total%'
