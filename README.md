@@ -43,7 +43,6 @@
   
 ### Admin
 
-- [ ] add confirmation of actions (delete)
 - [ ] reset tracker url entry field when changing order
 
 ### Backend
@@ -63,6 +62,7 @@
 - [x] admin: selected order must be highlighted
 - [x] add status field as a column: dynamic based on *_at fields
 - [x] admin: add link to customer facing order page
+- [x] add confirmation of actions (delete)
 
 ### 20241125 ✅
 

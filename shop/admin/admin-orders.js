@@ -7,6 +7,7 @@ var OrderAdmin = {
                     actions="delete show|blue|receipt"
                     sortBy="created"
                     :enrich="add_status"
+                    :labels="model.labels"
                     @show="show">
 
       <v-tabs v-model="model.active">
@@ -143,7 +144,13 @@ var OrderAdmin = {
       model: {
         selected: {},
         active: null,
-        tracker: ""
+        tracker: "",
+        labels: {
+          "delete it"     : "Ben je zeker",
+          "delete item"   : "Wil je volgend item zeker verwijderen:",
+          "confirm delete": "Ja",
+          "cancel delete" : "Neen"
+        }
       },
       headers: [
         { text: "status",  align: "left",  sortable: false, value: "status"       },
