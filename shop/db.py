@@ -14,6 +14,7 @@ from datetime import datetime
 import pymongo
 from pageable_mongo import Pageable
 
+is_local = False
 DB_CONN = os.environ.get("MONGODB_URI", None)
 if not DB_CONN:
   DB_CONN = "mongodb://localhost:27017/nation"
@@ -23,6 +24,8 @@ if not DB_CONN:
  |_____ |_____| |_____  |     | |_____      |_____/ |_____]
                                                            
 """)
+  is_local = True
+
 DB_NAME = DB_CONN.split("/")[-1].split("?")[0]
 
 try:

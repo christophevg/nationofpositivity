@@ -128,5 +128,18 @@ if os.environ.get("ADMIN_MODE", "no") == "yes":
 # ensure everything else is caught with a 404 page
 server.register_component(f"404.js", HERE / "pages")
 
+# construct dynamic mode_message
+warning_message = []
+
+if db.is_local:
+  warning_message.append("De gegevens worden uit een test databank opgehaald.")
+
+if os.environ.get("FAKE_PAYMENTS", "no") == "yes":
+  warning_message.append("De integratie met de betaalpartner is niet operationeel.")
+
+if warning_message:
+  server.settings["mode"] = "test"
+  server.settings["mode_message"] = " ".join( warning_message )
+  
 server.log_routes()
 logger.info("✅ shop is ready")

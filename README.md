@@ -63,6 +63,7 @@
 - [x] add status field as a column: dynamic based on *_at fields
 - [x] admin: add link to customer facing order page
 - [x] add confirmation of actions (delete)
+- [x] add banners when using local db / fake payments
 
 ### 20241125 ✅
 
