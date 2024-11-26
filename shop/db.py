@@ -288,29 +288,88 @@ class Order(BaseObject):
     
       # validate order lines prices
       expected_total = 0
+      shipping = {}
       for line in order["lines"]:
+        # get fresh copy of product from db
         product = products.get(line["product"]["id"])
-        # TODO: recompute line options from product
-        options_price = sum([ option["cost"] for option in line["options"] ])
-        # unit cost
+
+        options_price = 0
+        for option in line["options"]:
+          expected_option_cost = next((
+            actual_option.get("cost",0) for actual_option in product.options 
+            if actual_option["model"] == option["option"]
+          ))
+          if option["cost"] != expected_option_cost:
+            logger.warn(f"{option['option']}: {option['cost']} != expected: {expected_option_cost}")
+            raise ValueError("incorrect option price detected")
+          options_price += option["cost"]
+
+        # check unit price
         if line["unit_price"] != product.unit_price + options_price:
           logger.warn(f"{line['product']['id']} = {line['unit_price']} != {product.unit_price}")
           raise ValueError("incorrect unit price detected")
+
         # line cost
         expected_line_total = (product.unit_price + options_price) * line["amount"]
-        expected_total += expected_line_total
         if line["line_total"] != expected_line_total:
           logger.warn(f"{line['product']['id']} = {line['line_total']} != {expected_line_total}")
           raise ValueError("incorrect line price detected")
 
+        # track shipping needs
+        group = product.shipping
+        try:
+          shipping[group] += line["amount"]
+        except KeyError:
+          shipping[group] = line["amount"]
+
+        expected_total += expected_line_total
+
       # validate totals
-      expected_total = round(expected_total,2)
-      if order["total"]["lines"] != expected_total:
+
+      # lines total
+      if order["total"]["lines"] != round(expected_total,2):
         logger.warn(f"{order['total']['lines']} != {expected_total}")
         raise ValueError("incorrect lines total detected")
       
-      # TODO validate grand, tax, shipping, payment totals
+      # shipping
+      gls_cost = { "XS": 5.60, "S": 6.60, "M": 7.60, "L": 9.30, "XL": 12.90 }
+      # { "XS" : 350,  "S"  : 500, "M"  : 650, "L"  : 800 }
+      gls_grouping = {
+        ""       : [ "XS", "S", "M", "L", "L", "L", "XL" ],
+        "record" : [ "S",  "S", "M", "M", "L", "L", "XL" ]
+      }
+      boxes = {}
+      for group, amount in shipping.items():
+        amount = 7 if amount > 7 else amount
+        box = gls_grouping[group][amount-1]
+        try:
+          boxes[box] += 1
+        except KeyError:
+          boxes[box] = 1
+      expected_shipping_total = sum([ amount * gls_cost[box] for box, amount in boxes.items() ])
+      if order["total"]["shipping"] != round(expected_shipping_total, 2):
+        logger.warn(f"shipping {order['total']['shipping']} != expected {expected_shipping_total}")
+        logger.warn(f"shipping: {shipping}")
+        logger.warn(f"boxes: {boxes}")
+        raise ValueError("incorrect shipping total detected")
       
+      # payment
+      expected_payment = 0 if order["payment_method"] == "overschrijving" else 0.39
+      if order["total"]["payment"] != expected_payment:
+        logger.warn(f"payment {order['total']['payment']} != expected {expected_payment}")
+
+      # grand
+      expected_grand_total = expected_total + expected_shipping_total + expected_payment
+      if order["total"]["grand"] != round(expected_grand_total, 2):
+        logger.warn(f"grand total: {order['total']['grand']} != {expected_grand_total}")
+        raise ValueError("incorrect grand total detected")
+    
+      # tax
+      expected_tax = expected_grand_total - (expected_grand_total / 1.21)
+      if order["total"]["tax"] != round(expected_tax, 2):
+        logger.warn(f"tax total: {order['total']['tax']} != {expected_tax}")
+        raise ValueError("incorrect tax total detected")
+
       # create
       return cls(**order, contact=contact)
     except Exception as ex:
