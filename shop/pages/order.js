@@ -1,8 +1,8 @@
 var Order = {
   template : `
 <Page>
-  <div v-if="model.order.created">
-    <h1>Jouw order van {{ model.order.created | formatDateTime }}</h1>
+  <div v-if="order.created">
+    <h1>Jouw order van {{ order.created | formatDateTime }}</h1>
 
     <p>
 
@@ -13,76 +13,56 @@ var Order = {
   
     </p>
 
-    <OrderOverview :order="model.order" with-extras/>
+    <OrderOverview :order="order" with-extras/>
       
     <div>
 
       <div class="mt-2 mb-2"><h2>Voortgang</h2></div>
   
-      <v-stepper :value="step">
+      <!-- VERTICAL -->
+  
+      <v-stepper :value="step" vertical v-show="$vuetify.breakpoint.smAndDown">
+
+         <template v-for="(step_config, n) in steps">
+            <v-stepper-step :step="n + 1"
+                            :key="n +'-step-vertical'"
+                            :complete="step-1 >= n"
+                            :complete-icon="step_config['completeIcon']"
+                            :color="step_config['color']"
+            >{{ step_config.title }}</v-stepper-step>
+
+            <v-stepper-content :key="n +'-info-vertical'" :step="n+1">
+              <div v-html="step_config.info"/>
+              <div v-if="step_config['dynamic']" v-html="dynamic(step_config['dynamic'])"/>
+            </v-stepper-content>
+          </template>
+
+      </v-stepper>
+  
+      <!-- HORIZONTAL -->
+
+      <v-stepper :value="step" v-show="$vuetify.breakpoint.mdAndUp">
 
         <v-stepper-header>
-          <v-stepper-step :complete="is_paid" :step="1">Jouw betaling</v-stepper-step>
-          <v-divider></v-divider>
+            
+         <template v-for="(step_config, n) in steps">
+            <v-stepper-step :step="n + 1"
+                            :key="n +'-step'"
+                            :complete="step-1 >= n"
+                            :complete-icon="step_config['completeIcon']"
+                            :color="step_config['color']"
+            >{{ step_config.title }}</v-stepper-step>
 
-          <v-stepper-step :complete="is_produced" :step="2">Ontwerp & Realisatie</v-stepper-step>
-          <v-divider></v-divider>
+            <v-divider v-if="n < steps.length-1" :key="n"/>
+          </template>
 
-          <v-stepper-step :complete="is_shipped" :step="3">Verzending</v-stepper-step>
-          <v-divider></v-divider>
-
-          <v-stepper-step :complete="is_delivered" complete-icon="favorite" color="success" :step="4">Jouw Positivity is er!</v-stepper-step>
         </v-stepper-header>
 
         <v-stepper-items>
-          <v-stepper-content :step="1">
-
-            We wachten nog even op bevestiging van je betaling en beginnen dan
-            snel aan jouw stukje positiviteit te werken!<br>
-  
-            Als je ons nog extra informatie of afbeeldingen moet bezorgen, kan
-            je dit doen door te antwoorden op de bevestigingsmail die je van
-            ons ontving.
-
+          <v-stepper-content v-for="(step_config, n) in steps" :key="n +'-info'" :step="n+1">
+            <div v-html="step_config.info"/>
+            <div v-if="step_config['dynamic']" v-html="dynamic(step_config['dynamic'])"/>
           </v-stepper-content>
-
-          <v-stepper-content :step="2">
-
-            We hebben jouw betaling goed ontvangen! Bedankt.<br>
-  
-            Als je ons nog extra informatie of afbeeldingen moet bezorgen, kan
-            je dit doen door te antwoorden op de bevestigingsmail die je van
-            ons ontving.
-
-            Als we alle informatie hebben starten we aan de realisatie van jouw
-            stukje positiviteit. Indien van toepassing, maken we eerst een
-            volledig ontwerp van de personalisatie en sturen je dit op. Na jouw
-            bevestiging starten we dan echt aan de realisatie.  
-
-          </v-stepper-content>
-
-          <v-stepper-content :step="3">
-
-            Hoera, jouw positiviteit is verzonden en komt jouw kant op.<br>
-      
-            <span v-if="model.order.shipment != ''">Je kan deze zending volgen
-            op <a :href="model.order.shipment" target="_blank">de track &amp;
-            trace pagina van de transportdienst</a>.</span>
-
-          </v-stepper-content>
-
-          <v-stepper-content :step="4">
-
-            We hebben bericht ontvangen van de transportdienst dat het bij jou
-            is toegekomen.<br>
-            
-            Veel plezier met jouw stukje positiviteit! ❤️<br>
-            
-            Laat ons weten wat je er van vindt! Een foto met tag op sociale
-            media appreciëren we ten zeerste!
-
-          </v-stepper-content>
-
         </v-stepper-items>
       </v-stepper>
 
@@ -108,38 +88,81 @@ var Order = {
     $.get({
       url: "/api/orders/" + this.$route.params.id,
       success: function(response) {
-        self.model.order = response;
+        self.order = response;
+        if(self.order.paid_at !="")      { self.step = 2; }
+        if(self.order.shipped_at !="")   { self.step = 3; }
+        if(self.order.delivered_at !="") { self.step = 4; }
       },
       error: function(response) {
-        self.model.order = response;
+        self.order = response;
       }
     });
   },
   computed: {
-    step: function() {
-      if(!this.is_paid)      { return 1; }
-      if(!this.is_shipped)   { return 2; }
-      if(!this.is_delivered) { return 3; }
-      return 4;
-    },
-    is_paid: function() {
-      return this.model.order.paid_at != "";
-    },
-    is_produced: function() {
-      return this.model.order.produced_at != "";
-    },
-    is_shipped: function() {
-      return this.model.order.shipped_at != "";
-    },
-    is_delivered: function() {
-      return this.model.order.delivered_at != "";
+    dynamic: function() {
+      return function(item) {
+        if(item == "tracking" && this.order.shipment !="") {
+          return `Je kan deze zending volgen
+        op <a href="${this.order.shipment}" target="_blank">de track &amp;
+        trace pagina van de transportdienst</a>.</span>`;
+        }
+        return "";
+      }
     }
   },
   data: function() {
     return {
-      model: {
-        order : {}
-      }
+      step  : 1,
+      order : {},
+      steps : [
+        {
+          title: "Jouw betaling",
+          info: `
+            We wachten nog even op bevestiging van je betaling en beginnen dan
+            snel aan jouw stukje positiviteit te werken!<br>
+  
+            Als je ons nog extra informatie of afbeeldingen moet bezorgen, kan
+            je dit doen door te antwoorden op de bevestigingsmail die je van
+            ons ontving.
+`
+        },
+        {
+          title: "Ontwerp & Realisatie",
+          info: `
+            We hebben jouw betaling goed ontvangen! Bedankt.<br>
+  
+            Als je ons nog extra informatie of afbeeldingen moet bezorgen, kan
+            je dit doen door te antwoorden op de bevestigingsmail die je van
+            ons ontving.
+
+            Als we alle informatie hebben starten we aan de realisatie van jouw
+            stukje positiviteit. Indien van toepassing, maken we eerst een
+            volledig ontwerp van de personalisatie en sturen je dit op. Na jouw
+            bevestiging starten we dan echt aan de realisatie.
+`
+        },
+        {
+          title: "Verzending",
+          info: `
+          Hoera, jouw positiviteit is verzonden en komt jouw kant op.<br>    
+`,
+          dynamic: "tracking"
+        },
+        {
+          title: "Jouw Positivity is er!",
+          info: `
+            We hebben bericht ontvangen van de transportdienst dat het bij jou
+            is toegekomen.<br>
+            
+            Veel plezier met jouw stukje positiviteit! ❤️<br>
+            
+            Laat ons weten wat je er van vindt! Een foto met tag op sociale
+            media appreciëren we ten zeerste!            
+`,
+          completeIcon: "favorite",
+          color: "success"
+        }
+      ]
     }
   }
 };

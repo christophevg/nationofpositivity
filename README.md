@@ -23,7 +23,6 @@
 
 ### Frontend
 
-- [ ] on mobile: progress stepper "looses" labels
 - [ ] collection section
 - [ ] separate collections from tags
 
@@ -64,6 +63,7 @@
 - [x] validate entire order at server side (db/Order)
 - [x] improved progress information on order page
 - [x] summary contact card isn't updated in order summary
+- [x] on mobile: progress stepper "looses" labels
 
 ### 20241125 ✅
 
