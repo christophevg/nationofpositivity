@@ -36,7 +36,18 @@ var Shop = {
   
             <!-- FILTERS -->
   
-            <v-chip v-for="tag in possible_filters" :key="tag"
+            <v-chip v-for="tag in possible_collections" :key="tag"
+                    :outline="!current_filters.includes(tag)"
+                    :close="current_filters.includes(tag)"
+                    :color="current_filters.includes(tag) ? 'rgb(85,141,206)' : 'grey'"
+                    :text-color="current_filters.includes(tag) ? 'white' : 'black'"
+                    @input="remove_filter(tag)" @click="add_filter(tag);"
+                    class="cursor-pointer"
+                    >{{ tag }}</v-chip>
+  
+            <br>
+  
+            <v-chip v-for="tag in possible_tags" :key="tag"
                     :outline="!current_filters.includes(tag)"
                     :close="current_filters.includes(tag)"
                     :color="current_filters.includes(tag) ? 'rgb(85,141,206)' : 'grey'"
@@ -102,8 +113,11 @@ var Shop = {
     searching: function() {
       return store.getters.searching;
     },
-    possible_filters: function() {
-      return store.getters.possible_filters;
+    possible_collections: function() {
+      return store.getters.possible_collections;
+    },
+    possible_tags: function() {
+      return store.getters.possible_tags;
     },
     current_filters: function() {
       return store.getters.current_filters;

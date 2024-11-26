@@ -1,5 +1,6 @@
 store.registerModule("products", {
   state: {
+    collections : [],
     searching: false,
     filters: [],
     possible_sorting: [
@@ -33,6 +34,9 @@ store.registerModule("products", {
         state.sorting = index;
       }
     },
+    collections: function(state, collections) {
+      state.collections = collections;
+    },
     products: function(state, products) {
       state.products = products;
       state.searching = false;
@@ -50,6 +54,23 @@ store.registerModule("products", {
         return [...new Set([...acc, ...product.tags])]
       }, []);
     },
+    collections: function(state) {
+      return state.collections;
+    },
+    possible_collections: function(state, getters) {
+      return getters.possible_filters.filter(function(filter) {
+        return getters.collections.find(function(collection){
+          return collection.title.toLowerCase() == filter;
+        });
+      });
+    },
+    possible_tags: function(state, getters) {
+      return getters.possible_filters.filter(function(filter) {
+        return ! getters.collections.find(function(collection){
+          return collection.title.toLowerCase() == filter;
+        });
+      });
+    },
     current_filters: function(state) {
       return state.filters;
     },
@@ -64,6 +85,17 @@ store.registerModule("products", {
     }
   },
   actions: {
+    load_collections: function(context) {
+      $.get({
+        url: "/api/collections",
+        success: function(response) {
+          context.commit("collections", response.content);
+        },
+        failure: function(response) {
+          // whoops ;-)
+        }
+      })
+    },
     add_filter: function(context, tag) {
       var filters = [...new Set([...context.getters.current_filters, ...[tag]])];
       context.dispatch("search", filters);
@@ -113,3 +145,4 @@ store.registerModule("products", {
   }
 });
 
+before_app_mount( function() { store.dispatch("load_collections"); } );

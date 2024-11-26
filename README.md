@@ -23,8 +23,9 @@
 
 ### Frontend
 
-- [ ] collection section
-- [ ] separate collections from tags
+- [ ] expand support for collections
+  - [ ] own section with introduction and more info
+  - [ ] reusable visual components
 
 - [ ] clean up stores
   - [ ] look into 2 remaining store subscriptions (fonts, contact)
@@ -46,6 +47,10 @@
 ### Backend
 
 ## Done
+
+### next
+
+- [x] separate collections from tags
 
 ### 20241126 ✅
 

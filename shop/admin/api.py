@@ -29,6 +29,19 @@ class NewsItem(Resource):
 
 server.api.add_resource(NewsItem, "/api/admin/news/<id>", endpoint="api-admin-newsitem")
 
+class Collections(Resource):
+  def post(self):
+    db.collections.create(**request.json)
+
+  def get(self):
+    return db.collections.find(_available=None, _findable=None, order="desc")
+
+  def delete(self):
+    id = request.args.get("id")
+    db.collections.delete(id)
+    
+server.api.add_resource(Collections, "/api/admin/collections", endpoint="api-admin-collections")
+
 class Products(Resource):
   def post(self):
     db.products.create(**request.json)

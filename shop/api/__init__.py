@@ -15,6 +15,12 @@ class News(Resource):
     
 server.api.add_resource(News, "/api/news", endpoint="api-news")
 
+class Collections(Resource):
+  def get(self):
+    return db.collections.find(**request.args, sort="title")
+    
+server.api.add_resource(Collections, "/api/collections", endpoint="api-collections")
+
 class Products(Resource):
   def get(self):
     return db.products.find(**request.args, sort="unit_price")

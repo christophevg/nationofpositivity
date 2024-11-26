@@ -7,6 +7,7 @@ HERE = Path(__file__).resolve().parent
 # register static pages
 for page in [
   "navigation",
+  "collections",
   "products",
   "orders",
   "news"

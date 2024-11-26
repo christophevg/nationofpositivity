@@ -402,3 +402,13 @@ class News(BaseObject):
   _available: bool = False
 
 news = FilteredCollection(db, "news", News)
+
+@dataclass
+class ProductCollection(BaseObject):
+  id    : str
+  title : str
+  
+  _available: bool = False
+  _findable : bool = False
+
+collections = FilteredCollection(db, "collections", ProductCollection)
