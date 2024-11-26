@@ -73,6 +73,15 @@ store.registerModule("contact", {
     contact_schema: function() {
       return contact_schema;
     },
+    contact: function(state) {
+      // need to create copy
+      // returning state doesn't seem to propagate property to Card property ?!
+      var c = {};
+      contact_schema.forEach(function(field){
+        c[field.model] = state[field.model];
+      });
+      return c;
+    },
     contact_is_valid: function(state) {
       var final_report = contact_schema.reduce(function(report, field) {
         if( field.validator ) {

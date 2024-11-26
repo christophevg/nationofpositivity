@@ -212,7 +212,7 @@ var Basket = {
       return this.basket.lines.length > 0;
     },
     contact: function() {
-      return store.state.contact;
+      return store.getters.contact;
     },
     contact_ok: function() {
       // store must always be valid, form also to be taken into account when
