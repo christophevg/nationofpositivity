@@ -72,7 +72,7 @@ store.registerModule("basket", {
     },
     shipping_boxes: function(state, getters) {
       // returns a list of box descriptions
-      // e.g. { format: "XS", cost: 5.60 }
+      // e.g. { format: "XS", amount: 2, cost: 5.60 }
 
       // step 1: sum amount/items per shipping group
       var groups = {};
