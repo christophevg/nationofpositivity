@@ -25,7 +25,7 @@ var Order = {
           <v-stepper-step :complete="is_paid" :step="1">Jouw betaling</v-stepper-step>
           <v-divider></v-divider>
 
-          <v-stepper-step :complete="is_produced" :step="2">Productie</v-stepper-step>
+          <v-stepper-step :complete="is_produced" :step="2">Ontwerp & Realisatie</v-stepper-step>
           <v-divider></v-divider>
 
           <v-stepper-step :complete="is_shipped" :step="3">Verzending</v-stepper-step>
@@ -37,30 +37,49 @@ var Order = {
         <v-stepper-items>
           <v-stepper-content :step="1">
 
-            Ik wacht nog even op bevestiging van je betaling en begin dan
-            snel aan jouw stukje positiviteit te werken!
+            We wachten nog even op bevestiging van je betaling en beginnen dan
+            snel aan jouw stukje positiviteit te werken!<br>
+  
+            Als je ons nog extra informatie of afbeeldingen moet bezorgen, kan
+            je dit doen door te antwoorden op de bevestigingsmail die je van
+            ons ontving.
 
           </v-stepper-content>
 
           <v-stepper-content :step="2">
 
-            Ik ben bezig om jouw stukje positiviteit zo snel mogelijk klaar te krijgen.
+            We hebben jouw betaling goed ontvangen! Bedankt.<br>
+  
+            Als je ons nog extra informatie of afbeeldingen moet bezorgen, kan
+            je dit doen door te antwoorden op de bevestigingsmail die je van
+            ons ontving.
+
+            Als we alle informatie hebben starten we aan de realisatie van jouw
+            stukje positiviteit. Indien van toepassing, maken we eerst een
+            volledig ontwerp van de personalisatie en sturen je dit op. Na jouw
+            bevestiging starten we dan echt aan de realisatie.  
 
           </v-stepper-content>
 
           <v-stepper-content :step="3">
 
-            Hoera, jouw positiviteit is verzonden en komt jouw kant op.
+            Hoera, jouw positiviteit is verzonden en komt jouw kant op.<br>
       
             <span v-if="model.order.shipment != ''">Je kan deze zending volgen
-            via <a :href="model.order.shipment" target="_blank">de tracker van de
-            courier</a>.</span>
+            op <a :href="model.order.shipment" target="_blank">de track &amp;
+            trace pagina van de transportdienst</a>.</span>
 
           </v-stepper-content>
 
           <v-stepper-content :step="4">
 
-            Veel plezier met jouw stukje positiviteit! ❤️
+            We hebben bericht ontvangen van de transportdienst dat het bij jou
+            is toegekomen.<br>
+            
+            Veel plezier met jouw stukje positiviteit! ❤️<br>
+            
+            Laat ons weten wat je er van vindt! Een foto met tag op sociale
+            media appreciëren we ten zeerste!
 
           </v-stepper-content>
 

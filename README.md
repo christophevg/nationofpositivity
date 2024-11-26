@@ -45,9 +45,6 @@
 
 ### Backend
 
-- [ ] send more emails (100/day free) - on every state change?
-- [ ] download payment history on state update and store locally?
-
 ## Done
 
 ### Next
@@ -64,6 +61,7 @@
 - [x] improved faq
 - [x] log db access
 - [x] validate entire order at server side (db/Order)
+- [x] improved progress information on order page
 
 ### 20241125 ✅
 
@@ -156,6 +154,10 @@
   => email als conversatie, order is zo eenvoudig mogelijke start
 - [ ] coupon support?
   => pricing is minimal
+- [ ] download payment history on state update and store locally?
+  => use mollie app if needed
+- [ ] send more emails (100/day free) - on every state change?
+  => reply manually == more personal
 
 ## MVP ✅
 
