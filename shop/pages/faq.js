@@ -51,17 +51,19 @@ var Faq = {
             worden, welke tekst je graag wil...)
               
             Sommige artikels bieden de mogelijkheid om een eigen foto of logo
-            toe te voegen. Deze bestanden kan je als antwoord op onze
-            bevestigingsmail naar ons toe zenden.
+            toe te voegen. Deze bestanden kan je als antwoord op de
+            bevestigingsmail naar ons sturen.
               
-            Nadat wij alle personalisaties aangebracht hebben sturen we je per
-            email een visualisatie toe hoe het resultaat er gaat uitzien. Je
-            kan dan eventueel nog één maal bijkomende instructies geven om de
-            "finishing touches" aan te brengen. Of je meldt ons gewoon dat het
-            ontwerp klaar is voor productie.
+            Op basis van al jouw wensen, maken we vervolgens een uniek en
+            persoonlijk ontwerp voor de personalisatie. Dit ontwerp sturen we
+            je per email op. Je kan dan eventueel nog één maal bijkomende
+            instructies geven om de "finishing touches" aan te brengen. Of je
+            meldt ons gewoon dat het ontwerp klaar is voor productie.
               
             De volgende stappen zijn dan nog: productie, verzending en
-            ontvangst van jouw stukje positiviteit bij jouw thuis.
+            ontvangst van jouw stukje positiviteit bij jou thuis. In de
+            bevestigingsmail bezorgen we je een persoonlijke link naar onze
+            website, waar je de voortgang kan opvolgen.
 
 `
           },
@@ -71,23 +73,30 @@ var Faq = {
             answer: `
             
             Vanaf het moment dat we jouw order ontvangen én we bevestiging van
-            betaling hebben, beginnen we zo snel mogelijk aan de
-            personalisatie. Als de personalisatie nog input van jou nodig heeft
+            betaling hebben, beginnen we zo snel mogelijk aan het ontwerp van
+            de personalisatie. Als we hiervoor nog input van jou nodig heeft
             (bv: een foto of logo), wachten we natuurlijk nog even op jouw
             mailtje.
             
-            De meeste personalisaties zijn klaar binnen een werkdag. Dan
-            wachten wij weer even op jouw feedback en/of bevestiging.
+            Het ontwerp van de meeste personalisaties is meestal klaar binnen
+            één à twee werkdagen. We sturen je het ontwerp per email op en
+            wachten even op jouw feedback en/of bevestiging.
             
-            Na ontvangst van de bevestiging, begint de productie. Ook deze is
-            meestal klaar binnen een werkdag. Echter, afhankelijk van het
-            aantal en de omvang van de orders die op een gegeven moment in
-            productie zijn, kan dit oplopen. We verwittigen je tijdig per email
-            indien dit een aanzienlijke vertraging met zich zou meebrengen.
+            Na ontvangst van die bevestiging, plannen we de realisatie in.
+            Afhankelijk van het artikel reken je voor de realisatie zelf best
+            een doorlooptijd van twee à drie dagen. Het aantal en de omvang van
+            de orders die op een gegeven moment in productie zijn kan hier
+            natuurlijk nog een impact op hebben. We verwittigen je tijdig per
+            email indien dit een aanzienlijke vertraging met zich zou
+            meebrengen.
             
-            Na productie verpakken we jouw aankoop en brengen die naar de
+            Na realisatie verpakken we jouw aankoop en brengen die naar de
             transportdienst. In normale omstandigheden zal deze jouw pakket
-            binnen 1 à 2 werkdagen aanbieden op jouw adres.
+            binnen twee à drie werkdagen aanbieden op jouw adres. In de
+            bevestigingsmail heb je een persoonlijke link naar de pagina met
+            betrekking tot jouw order. Daar vind je tevens een link naar de
+            "track & trace" module van de transportdienst. Zo kan je de weg van
+            jouw order perfect volgen tot aan jouw deur.
             
 `
           },
@@ -184,11 +193,19 @@ var Faq = {
             question: "Zijn mijn persoonsgegevens veilig?",
             answer: `
 
-              We doen er alles aan om jouw privégegevens ook echt privé te houden. We vragen gegevens van jou, zodat we je zo goed mogelijk kunnen helpen. Welke gegevens we vragen en waarvoor we ze gebruiken lees je hieronder. Ook zie je wat je rechten zijn, wie toegang heeft tot je data en hoe lang we je gegevens bewaren.
-            
-              Dit privacybeleid is voor het laatst gewijzigd op 28 oktober 2024.
-            
-            Volgens de privacywetgeving moeten we zeggen welke ‘juridische gronden’ we hebben om je gegevens te gebruiken. We hebben gegevens van je nodig vanwege de contractuele afspraken tussen jou en Nation of Positivity, zoals jouw aankoop van een product. Dit is het geval bij:
+            We doen er alles aan om jouw privégegevens ook echt privé te
+            houden. We vragen gegevens van jou, zodat we je zo goed mogelijk
+            kunnen helpen. Welke gegevens we vragen en waarvoor we ze gebruiken
+            lees je hieronder. Ook zie je wat je rechten zijn, wie toegang
+            heeft tot je data en hoe lang we je gegevens bewaren.
+          
+            Dit privacybeleid is voor het laatst gewijzigd op 28 oktober 2024.
+          
+            Volgens de privacywetgeving moeten we zeggen welke ‘juridische
+            gronden’ we hebben om je gegevens te gebruiken. We hebben gegevens
+            van je nodig vanwege de contractuele afspraken tussen jou en Nation
+            of Positivity, zoals jouw aankoop van een product. Dit is het geval
+            bij:
 
             <ul>
               <li>Bestellen</li>
@@ -196,22 +213,39 @@ var Faq = {
               <li>Retour</li>
               <li>Contact met ons</li>
             </ul>
-            
-            We geven je gegevens alleen door aan andere partijen als dat echt nodig is voor onze dienstverlening. Het betreft dan deze partijen: bezorgpartners en betaalpartners. Onze bezorgpartner moet tenslotte je bestelling afleveren op het juiste adres. In verdachte situaties zijn we verplicht om klantgegevens te delen met overheidsinstanties.
-            
-            De partijen die van ons toegang krijgen tot je gegevens, mogen deze alleen gebruiken om jou een dienst te leveren namens Nation of Positivity. Tenzij ze zelf verantwoordelijk zijn voor het verkrijgen en beschermen van je gegevens.
-            
+          
+            We geven je gegevens alleen door aan andere partijen als dat echt
+            nodig is voor onze dienstverlening. Het betreft dan deze partijen:
+            bezorgpartners en betaalpartners. Onze bezorgpartner moet tenslotte
+            je bestelling afleveren op het juiste adres. In verdachte situaties
+            zijn we verplicht om klantgegevens te delen met overheidsinstanties.
+          
+            De partijen die van ons toegang krijgen tot je gegevens, mogen deze
+            alleen gebruiken om jou een dienst te leveren namens Nation of
+            Positivity. Tenzij ze zelf verantwoordelijk zijn voor het
+            verkrijgen en beschermen van je gegevens.
+          
             We verkopen jouw gegevens nooit aan derden.
-            
-            We slaan je gegevens op in databases. We hanteren altijd strenge beveiligingsmaatregelen. Deze databases bevinden zich bunnen de Europese Unie.
-            
-            We bewaren en gebruiken jouw gegevens niet langer dan noodzakelijk. Daarna verwijderen we alle data die we van je hebben. Of gebruiken we jouw gegevens anoniem, omdat we bepaalde data nodig hebben voor interne analyses en rapportages zoals de waarde van je bestelling.
-            
-            Van de Belastingdienst moeten we onze administratie met jouw factuur-, betaal- en bestelgegevens 7 jaar bewaren.
-            
-            Gegevens die we gebruiken om fraude te voorkomen bewaren we heel lang. Niet leuk, wel nodig.
-            
-            Aankopen bij Nation of Positivity gebeuren ook niet met een account. We bewaren jouw persoonsgegevens dus niet. We registreren deze enkel als deel van een order.
+          
+            We slaan je gegevens op in databases. We hanteren altijd strenge
+            beveiligingsmaatregelen. Deze databases bevinden zich bunnen de
+            Europese Unie.
+          
+            We bewaren en gebruiken jouw gegevens niet langer dan noodzakelijk.
+            Daarna verwijderen we alle data die we van je hebben. Of gebruiken
+            we jouw gegevens anoniem, omdat we bepaalde data nodig hebben voor
+            interne analyses en rapportages zoals de waarde van je bestelling.
+          
+            Van de Belastingdienst moeten we onze administratie met jouw
+            factuur-, betaal- en bestelgegevens 7 jaar bewaren.
+          
+            Gegevens die we gebruiken om fraude te voorkomen bewaren we heel
+            lang. Niet leuk, wel nodig.
+          
+            Aankopen bij Nation of Positivity gebeuren ook niet met een
+            account. We bewaren jouw persoonsgegevens dus niet. We registreren
+            deze enkel als deel van een order.
+
 `
           },
           {
@@ -221,13 +255,13 @@ var Faq = {
     
             Neen, spijtig genoeg zijn er wel enkele beperkingen waar iedereen
             zich moet aan houden. In geval van normaal gebruik van de website
-            en mijn diensten, gaat dit nooit een probleem zijn. Echter, indien
-            ik onregelmatigheden vaststel (bv. je hebt geprutst met de website
-            en/of je order), je bestelt gepersonaliseerde artikels waarvan de
-            personalisatie niet in lijn is met de wetgeving en/of acceptabele
-            gebruiken en/of voorstellingen, behoud ik mij het recht om je order
-            te weigeren, waarbij ik reeds betaalde gelden gewoon zal terug
-            storten (minus een administratieve kost van 20 euro).
+            en onze diensten, gaat dit nooit een probleem zijn. Echter, indien
+            we onregelmatigheden vaststellen (bv. je hebt geprutst met de
+            website en/of je order), je bestelt gepersonaliseerde artikels
+            waarvan de personalisatie niet in lijn is met de wetgeving en/of
+            acceptabele gebruiken en/of voorstellingen, behouden we ons het
+            recht om je order te weigeren, waarbij reeds betaalde gelden terug
+            gestort worden minus een forfaitaire administratiekost van 20 euro.
             
 `
           },

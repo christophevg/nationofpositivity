@@ -63,6 +63,7 @@
 - [x] add confirmation of actions (delete)
 - [x] add banners when using local db / fake payments
 - [x] reset tracker url entry field when changing order
+- [x] improved faq
 
 ### 20241125 ✅
 
