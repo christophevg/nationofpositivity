@@ -47,7 +47,7 @@
 
 ## Done
 
-### Next
+### 20241126 ✅
 
 - [x] removed phone contact information
 - [x] watching contact property changes on ContactCard
@@ -64,7 +64,7 @@
 - [x] improved progress information on order page
 - [x] summary contact card isn't updated in order summary
 - [x] on mobile: progress stepper "looses" labels
-
+,
 ### 20241125 ✅
 
 - [x] create a more enriched frontpage (welcome text, highlights)
