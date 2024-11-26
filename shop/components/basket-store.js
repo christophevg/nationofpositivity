@@ -77,12 +77,14 @@ store.registerModule("basket", {
       // step 1: sum amount/items per shipping group
       var groups = {};
       getters.lines.forEach(function(line) {
-        if(line.product.shipping in groups) {
-          groups[line.product.shipping || ""] += line.amount;
+        var group = line.product.shipping || "";
+        if(group in groups) {
+          groups[group || ""] += line.amount;
         } else {
-          groups[line.product.shipping || ""] = line.amount;          
+          groups[group || ""] = line.amount;          
         }
       });
+
 
       // step 2: combine items per shipping groups into boxes
       var amounts = {};
