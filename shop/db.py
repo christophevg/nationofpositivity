@@ -44,6 +44,10 @@ class Collection():
     self._db                 = None
     self.db                  = db  # it needs name and updates collections
 
+  def log(self, action, *args):
+    args = ", ".join([str(arg) for arg in args])
+    logger.info(f"💾 {action} {self.name}: {args}")
+
   @property
   def db(self):
     return self._db
@@ -61,15 +65,15 @@ class Collection():
       doc = self.dataclass.create(**kwargs)
     else:
       doc = self.dataclass.create()
-    logger.debug(f"create {self.name} : {doc}")
+    self.log("create", doc)
     self.collection.insert_one(dataclasses.asdict(doc))
     return doc
 
   def get(self, id, more_filters=None, can_fail=False):
-    logger.debug(f"get {self.name} : {id} ")
     filters = {"id" : id}
     if more_filters:
       filters.update(more_filters)
+    self.log("get", filters)
     data = self.collection.find_one(filters, { "_id" : False })
     if data:
       data = self.dataclass.sanitize(data)
@@ -116,18 +120,18 @@ class Collection():
       "pageable"      : self.pageable_collection.pageable
     }
     
-    logger.debug(f"find {self.name} : {kwargs} = {len(self.pageable_collection)} results")
+    self.log("find", kwargs, f"{len(self.pageable_collection)} results")
     return results
 
   def update(self, id, **kwargs):
     kwargs["id"] = id
-    updated = self.dataclass.sanitize(kwargs)
-    updated.pop("id", None)
-    logger.debug(f"update {self.name}/{id} : {updated}")
-    self.collection.update_one({"id" : id}, { "$set" : updated })
+    update = self.dataclass.sanitize(kwargs)
+    update.pop("id", None)
+    self.log("update", id, update)
+    self.collection.update_one({"id" : id}, { "$set" : update })
 
   def delete(self, id):
-    logger.debug(f"delete {self.name}: {id}")
+    self.log("delete", id)
     self.collection.delete_one({"id" : id})
 
 class FilteredCollection(Collection):
@@ -190,6 +194,9 @@ class Product(BaseObject):
   options: List[Dict] = field(default_factory=list)
   specifications: Dict[str, str] = field(default_factory=dict)
   shipping : str = ""
+  
+  def __repr__(self):
+    return f"Product({self.id}, {self.title}, {self.unit_price})"
 
 products = FilteredCollection(db, "products", Product)
 
@@ -228,6 +235,9 @@ class Contact:
 
   company    : str = ""
   tax        : str = ""
+  
+  def __repr__(self):
+    return f"Contact({self.name})"
 
 def uid():
   def gen():
@@ -315,7 +325,7 @@ class Order(BaseObject):
     super().__post_init__()
 
   def __repr__(self):
-    return f"Order({self.id}, {len(self.lines)} items)"
+    return f"Order({self.id}, {self.contact}, {len(self.lines)} item{'s' if len(self.lines) > 1 else ''})"
   
   @property
   def requires_payment(self):

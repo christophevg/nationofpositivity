@@ -45,7 +45,6 @@
 
 ### Backend
 
-- [ ] log api calls
 - [ ] validate entire order at server side (db/Order)
 - [ ] send more emails (100/day free) - on every state change?
 - [ ] download payment history on state update and store locally?
@@ -64,6 +63,7 @@
 - [x] add banners when using local db / fake payments
 - [x] reset tracker url entry field when changing order
 - [x] improved faq
+- [x] log db access
 
 ### 20241125 ✅
 
