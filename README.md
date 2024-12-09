@@ -50,7 +50,7 @@
 
 ## Done
 
-### 20241209
+### 20241209 ✅
 
 - [x] separate collections from tags
 - [x] added TAX to online payment cost
