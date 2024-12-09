@@ -50,7 +50,7 @@ sync-from-production: export-production import-local
 
 sync-to-production: export-local import-production
 
-COLLECTIONS=products orders news
+COLLECTIONS=products orders news collections
 
 sync:
 	@for col in $(COLLECTIONS); do \
