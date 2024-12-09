@@ -354,7 +354,7 @@ class Order(BaseObject):
         raise ValueError("incorrect shipping total detected")
       
       # payment
-      expected_payment = 0 if order["payment_method"] == "overschrijving" else 0.39
+      expected_payment = 0 if order["payment_method"] == "overschrijving" else 0.47
       if order["total"]["payment"] != expected_payment:
         logger.warn(f"payment {order['total']['payment']} != expected {expected_payment}")
 

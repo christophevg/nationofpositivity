@@ -7,8 +7,10 @@
 ### Products
 
 - [ ] more collections
-  - [ ] collection: ... (duo tone tiles with pictures)
-  - [ ] collection: "Resin in the Woods" (custom coasters/cutting boards with resin in wood)
+  - [ ] "Too Toned Tiles" duo tone tiles with pictures
+  - [ ] "Resin in the Woods" custom coasters/cutting boards with resin in wood
+  - [ ] "Wood Talks" general purpose greeting cards
+  - [ ] "Mirror Mirror"
 - [ ] retake packaging pictures of garlands including wire
 - [ ] horizontal design greeting cards
 - [ ] 3D design greeting cards
@@ -48,9 +50,10 @@
 
 ## Done
 
-### next
+### 20241209
 
 - [x] separate collections from tags
+- [x] added TAX to online payment cost
 
 ### 20241126 ✅
 

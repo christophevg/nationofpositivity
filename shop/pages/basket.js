@@ -322,7 +322,7 @@ var Basket = {
             Je wordt na bevestiging van je order, doorgestuurd naar onze
             betaalpartner Mollie. Daar voer je de betaling via Bancontact online uit.<br>
       
-            Je betaalt een vaste online transactiekost van &euro; 0.39.
+            Je betaalt een vaste online transactiekost van &euro; 0.47.
 `
       },
       stage: 1,

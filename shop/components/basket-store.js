@@ -125,7 +125,7 @@ store.registerModule("basket", {
       return state.payment_method;
     },
     payment_total: function(state, getters) {
-      return state.payment_method == "overschrijving" ? 0 : 0.39;
+      return state.payment_method == "overschrijving" ? 0 : 0.47;
     },
     total: function(state, getters) {
       return getters.lines_total 

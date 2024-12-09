@@ -171,7 +171,7 @@ var Faq = {
             
             Je kan ook kiezen om online te betalen. We verwijzen je dan door
             naar onze betaalpartner, Mollie. Op dit moment voorzien we op die
-            manier Bancontact als optie en rekenen we &euro; 0.39
+            manier Bancontact als optie en rekenen we &euro; 0.47
             transactiekosten aan.
             
 `
