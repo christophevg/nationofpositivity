@@ -123,6 +123,25 @@ var Faq = {
 `
           },
           {
+            id: "variaties",
+            question: "Ik heb meerdere dezelfde houten artikels besteld, echter ze verschillen qua kleur.",
+            answer: `
+
+            Dat kan inderdaad. Hout is een natuurlijk product. Geen twee platen
+            zijn hetzelfde en verschillende eigenschappen spelen een rol in hoe
+            het resultaat er zal uitzien. Kleur en algemeen uitzicht wordt
+            bepaald door de plaatselijke hardheid van het hout, alsook de
+            structuur van de nerven.
+            
+            Dit is volgens ons wat houten artikels nét ook zo uniek en
+            persoonlijk maakt. Natuurlijk kijken we de platen steeds goed na op
+            technische kwaliteit. Voor het overige, beslist het lot welke plaat
+            gebruikt wordt voor jouw bestelling. Net zo eerlijk én spannend
+            tegelijkertijd.
+
+`
+            },
+          {
             id: "errors",
             question: "Help! Ik krijg foutboodschappen. Wat moet ik doen?",
             answer: `

@@ -6,22 +6,21 @@
 
 ### Products
 
+- [ ] horizontal design greeting cards
 - [ ] more collections
   - [ ] "Too Toned Tiles" duo tone tiles with pictures
   - [ ] "Resin in the Woods" custom coasters/cutting boards with resin in wood
   - [ ] "Wood Talks" general purpose greeting cards
   - [ ] "Mirror Mirror"
 - [ ] retake packaging pictures of garlands including wire
-- [ ] horizontal design greeting cards
-- [ ] 3D design greeting cards
 - [ ] more letter-art designs: ball
+- [ ] 3D design greeting cards
 
 ### Ops
 
 - [ ] send out mailing?
 - [ ] start mailing list?
 - [ ] Chokotoff
-- [ ] thank you letter for HaC
 
 ### Frontend
 
@@ -54,6 +53,7 @@
 
 - [x] separate collections from tags
 - [x] added TAX to online payment cost
+- [x] thank you letter for HaC
 
 ### 20241126 ✅
 
