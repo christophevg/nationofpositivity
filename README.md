@@ -53,7 +53,7 @@
 
 ## Done
 
-### 20241211
+### 20241211 ✅
 
 - [x] Chokotoff
 - [x] added warning message for local CDN
