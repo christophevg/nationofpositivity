@@ -7,20 +7,25 @@
 ### Products
 
 - [ ] horizontal design greeting cards
+- [ ] gewone lege bal
+- [ ] more letter-art designs: ball
 - [ ] more collections
-  - [ ] "Too Toned Tiles" duo tone tiles with pictures
+  - [ ] "Around the World" tiles, MDF, plexi silhouettes of cities/countries
   - [ ] "Resin in the Woods" custom coasters/cutting boards with resin in wood
   - [ ] "Wood Talks" general purpose greeting cards
   - [ ] "Mirror Mirror"
 - [ ] retake packaging pictures of garlands including wire
-- [ ] more letter-art designs: ball
 - [ ] 3D design greeting cards
+- [ ] future (season) themes
+  - [ ] "Love is in the Air" Valentine
+  - [ ] Easter
+  - [ ] Summer Holidays
+  - [ ] Birthday
 
 ### Ops
 
 - [ ] send out mailing?
 - [ ] start mailing list?
-- [ ] Chokotoff
 
 ### Frontend
 
@@ -49,6 +54,9 @@
 
 ## Done
 
+### Next
+
+- [x] Chokotoff
 ### 20241209 ✅
 
 - [x] separate collections from tags
