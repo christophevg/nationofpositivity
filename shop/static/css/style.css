@@ -51,3 +51,9 @@ tr.selected-row td {
 tr.selected-row:hover td {
   color: black;
 }
+
+
+/* override to accommodate larger pictures in styles selector */
+.v-list--three-line .v-list__tile {
+  height: 264px;
+}

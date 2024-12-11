@@ -6,21 +6,21 @@
 
 ### Products
 
-- [ ] horizontal design greeting cards
 - [ ] gewone lege bal
 - [ ] more letter-art designs: ball
+- [ ] retake packaging pictures of garlands including wire
 - [ ] more collections
   - [ ] "Around the World" tiles, MDF, plexi silhouettes of cities/countries
   - [ ] "Resin in the Woods" custom coasters/cutting boards with resin in wood
   - [ ] "Wood Talks" general purpose greeting cards
   - [ ] "Mirror Mirror"
-- [ ] retake packaging pictures of garlands including wire
 - [ ] 3D design greeting cards
 - [ ] future (season) themes
   - [ ] "Love is in the Air" Valentine
   - [ ] Easter
   - [ ] Summer Holidays
   - [ ] Birthday
+  - [ ] Baby
 
 ### Ops
 
@@ -41,7 +41,6 @@
 - [ ] improve+add loading pages
 - [ ] improve placeholder while loading (look into lazy prop)
 
-- [ ] create visual lookup for designs (cfr fonts)
 - [ ] consider: compile javascript into single minimised file?
 - [ ] more shipping options?
   - [ ] delivery to ParcelShop (https://gls-group.com/BE/en/depot-parcelshop/)
@@ -54,10 +53,14 @@
 
 ## Done
 
-### Next
+### 20241211
 
 - [x] Chokotoff
 - [x] added warning message for local CDN
+- [x] added text style selection (field and dialog cfr fonts)
+- [x] horizontal design greeting cards
+- [x] new santa design and mix design 
+
 ### 20241209 ✅
 
 - [x] separate collections from tags

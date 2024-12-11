@@ -97,7 +97,7 @@ server.register_component("jquery.magnific-popup.min.js", STATIC / "js")
 COMPONENTS = HERE / "components"
 
 for component in [
-  "cdn", "fonts",
+  "cdn", "fonts", "styles",
   "ajax",
   "moment", "moment-timezone", "filters",
   "logo", "page",

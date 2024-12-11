@@ -12,6 +12,7 @@ Vue.component("Page", {
   </div>
   
   <FontSelectionDialog/>
+  <StyleSelectionDialog/>
   
   <v-footer dark height="auto">
     <v-card class="flex" flat tile>
