@@ -134,6 +134,9 @@ warning_messages = []
 if server.settings["mode_message"]:
   warning_messages.append(server.settings["mode_message"])
 
+if server.settings["cdn"][:16] == "http://localhost":
+  warning_messages.append("Het lokale CDN wordt gebruitk.")
+
 if db.is_local:
   warning_messages.append("De gegevens worden uit een test databank opgehaald.")
 

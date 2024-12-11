@@ -57,6 +57,7 @@
 ### Next
 
 - [x] Chokotoff
+- [x] added warning message for local CDN
 ### 20241209 ✅
 
 - [x] separate collections from tags
