@@ -11,7 +11,8 @@ var OrderAdmin = {
                     @show="show">
 
       <v-tabs v-model="model.active">
-        <v-tab key="overview">Order</v-tab>
+        <v-tab key="overview">Overview</v-tab>
+        <v-tab key="specs">Specs</v-tab>
         <v-tab key="payment">Payment</v-tab>
         <v-tab key="shipping">Shipping</v-tab>
         <v-tab key="contact">Contact</v-tab>
@@ -19,6 +20,20 @@ var OrderAdmin = {
 
         <v-tab-item key="overview">
           <OrderOverview :order="model.selected" with-extras/>
+        </v-tab-item>
+
+        <v-tab-item key="overview">
+          <h1>Order: {{ model.selected.id }}</h1>
+          <div v-for="line, index in model.selected.lines" :key="index">
+            <h2>{{ line.amount }} x {{ line.product.title }}</h2>
+            <table cellspacing="10" cellpadding="10">
+            <tr v-for="option, index in line.options" :key="index">
+              <th>{{ option.option }}</th>
+              <td><pre>{{ option.choice }}</pre></td>
+            </tr>
+            </table>
+          </div>
+          
         </v-tab-item>
 
         <v-tab-item key="payment">
