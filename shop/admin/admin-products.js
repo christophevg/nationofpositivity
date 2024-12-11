@@ -150,7 +150,7 @@ var ProductAdmin = {
             type       : "textArea",
             label      : "Description",
             model      : "description",
-            max        : 1000,
+            max        : 2000,
             rows       : 5
           },
           {
