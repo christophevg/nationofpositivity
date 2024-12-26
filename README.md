@@ -6,24 +6,32 @@
 
 ### Products
 
-- [ ] gewone lege bal
 - [ ] more letter-art designs: ball
 - [ ] retake packaging pictures of garlands including wire
 - [ ] more collections
   - [ ] "Around the World" tiles, MDF, plexi silhouettes of cities/countries
   - [ ] "Resin in the Woods" custom coasters/cutting boards with resin in wood
-  - [ ] "Wood Talks" general purpose greeting cards
+  - [ ] "Message in Wood" general purpose greeting cards
+    -> probably not possible, due to no 10+2 set size for "one-off cards" :-(
   - [ ] "Mirror Mirror"
 - [ ] 3D design greeting cards
 - [ ] future (season) themes
   - [ ] "Love is in the Air" Valentine
   - [ ] Easter
   - [ ] Summer Holidays
+    - [ ] cross-pollination: "Around the World" -> "Message in Woods"
+          (travel postcards)
   - [ ] Birthday
   - [ ] Baby
+- [ ] wood signage/corporate identity/... packages
+  - [ ] business card
+  - [ ] sign
+  - [ ] ...
 
 ### Ops
 
+- [ ] pricing: "20%" material loss
+- [ ] future: add wooden thank you card
 - [ ] send out mailing?
 - [ ] start mailing list?
 
@@ -59,7 +67,8 @@
 - [x] added warning message for local CDN
 - [x] added text style selection (field and dialog cfr fonts)
 - [x] horizontal design greeting cards
-- [x] new santa design and mix design 
+- [x] new santa design and mix design
+- [x] gewone lege bal
 
 ### 20241209 ✅
 
