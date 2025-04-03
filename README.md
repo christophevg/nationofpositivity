@@ -6,23 +6,21 @@
 
 ### Products
 
-- [ ] more letter-art designs: ball
-- [ ] retake packaging pictures of garlands including wire
 - [ ] more collections
+  - [ ] "Wood Words" general purpose greeting cards
+    - [ ] 3D design greeting cards
+    - [ ] Birthday
+    - [ ] Baby
+    - [ ] future (season) themes
+      - [ ] Summer Holidays
+        - [ ] cross-pollination: "Around the World" -> "Wood Words"
+              (travel postcards)
+    - [ ] next season
+      - [ ] more letter-art designs: ball
+      - [ ] retake packaging pictures of garlands including wire
   - [ ] "Around the World" tiles, MDF, plexi silhouettes of cities/countries
   - [ ] "Resin in the Woods" custom coasters/cutting boards with resin in wood
-  - [ ] "Message in Wood" general purpose greeting cards
-    -> probably not possible, due to no 10+2 set size for "one-off cards" :-(
   - [ ] "Mirror Mirror"
-- [ ] 3D design greeting cards
-- [ ] future (season) themes
-  - [ ] "Love is in the Air" Valentine
-  - [ ] Easter
-  - [ ] Summer Holidays
-    - [ ] cross-pollination: "Around the World" -> "Message in Woods"
-          (travel postcards)
-  - [ ] Birthday
-  - [ ] Baby
 - [ ] wood signage/corporate identity/... packages
   - [ ] business card
   - [ ] sign
@@ -31,11 +29,13 @@
 ### Ops
 
 - [ ] pricing: "20%" material loss
-- [ ] future: add wooden thank you card
+- [ ] future: add wooden thank you card - season greetings in credit card format
 - [ ] send out mailing?
-- [ ] start mailing list?
+  - [ ] start mailing list?
 
 ### Frontend
+
+- [ ] 2024-2025 copyright
 
 - [ ] expand support for collections
   - [ ] own section with introduction and more info
@@ -50,8 +50,11 @@
 - [ ] improve placeholder while loading (look into lazy prop)
 
 - [ ] consider: compile javascript into single minimised file?
-- [ ] more shipping options?
+
+- [ ] more shipping options ! <- EU law!
   - [ ] delivery to ParcelShop (https://gls-group.com/BE/en/depot-parcelshop/)
+  - [ ] pick-up
+  
 - [ ] more payment options?
   - [ ] Visa, Mastercard (% payment cost)
   
