@@ -35,7 +35,7 @@
 
 ### Frontend
 
-- [ ] 2024-2025 copyright
+- [x] 2024-2025 copyright
 
 - [ ] expand support for collections
   - [ ] own section with introduction and more info
