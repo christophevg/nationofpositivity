@@ -165,9 +165,9 @@ var FrontPage = {
     return {
       highlights: [
         {
-          title: "Holidays are Coming",
-          image: "images/products/holidays-are-coming/letter-art/demo.header.jpeg",
-          goto : "/shop#holidays-are-coming"
+          title: "Wood Words",
+          image: "images/products/wood-words/collection.header.jpeg",
+          goto : "/shop#wood-words"
         },
         {
           title: "Rock around the Clock",
