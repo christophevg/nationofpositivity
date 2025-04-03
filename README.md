@@ -6,18 +6,15 @@
 
 ### Products
 
+- [ ] "Wood Words"
+  - [ ] future (season) themes
+    - [ ] Summer Holidays
+      - [ ] cross-pollination: "Around the World" -> "Wood Words"
+            (travel postcards)
+  - [ ] next season
+    - [ ] more letter-art designs: ball
+    - [ ] retake packaging pictures of garlands including wire
 - [ ] more collections
-  - [ ] "Wood Words" general purpose greeting cards
-    - [ ] 3D design greeting cards
-    - [ ] Birthday
-    - [ ] Baby
-    - [ ] future (season) themes
-      - [ ] Summer Holidays
-        - [ ] cross-pollination: "Around the World" -> "Wood Words"
-              (travel postcards)
-    - [ ] next season
-      - [ ] more letter-art designs: ball
-      - [ ] retake packaging pictures of garlands including wire
   - [ ] "Around the World" tiles, MDF, plexi silhouettes of cities/countries
   - [ ] "Resin in the Woods" custom coasters/cutting boards with resin in wood
   - [ ] "Mirror Mirror"
@@ -28,14 +25,11 @@
 
 ### Ops
 
-- [ ] pricing: "20%" material loss
 - [ ] future: add wooden thank you card - season greetings in credit card format
 - [ ] send out mailing?
   - [ ] start mailing list?
 
 ### Frontend
-
-- [x] 2024-2025 copyright
 
 - [ ] expand support for collections
   - [ ] own section with introduction and more info
@@ -63,6 +57,15 @@
 ### Backend
 
 ## Done
+
+### 20250403 ✅
+
+- [x] 2024-2025 copyright
+- [x] pricing: "20%" material loss
+- [x] launch "Wood Words" general purpose greeting cards
+  - [x] 3D design greeting cards
+  - [x] Birthday
+  - [x] Baby
 
 ### 20241211 ✅
 
