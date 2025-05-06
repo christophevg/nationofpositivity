@@ -7,6 +7,7 @@
 ### Products
 
 - [ ] "Wood Words"
+  - [ ] create additional picture for news or highlight
   - [ ] future (season) themes
     - [ ] Summer Holidays
       - [ ] cross-pollination: "Around the World" -> "Wood Words"
@@ -52,6 +53,9 @@
 - [ ] more payment options?
   - [ ] Visa, Mastercard (% payment cost)
   
+- [ ] make highlights configurable (no need for deployment)
+      implement as option on collections admin page (x highlight + image)
+
 ### Admin
 
 ### Backend
