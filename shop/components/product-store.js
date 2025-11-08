@@ -71,6 +71,11 @@ store.registerModule("products", {
         });
       });
     },
+    highlight_collections: function(state, getters) {
+      return getters.collections.filter(function(collection) {
+        return collection.highlight == true;
+      })
+    },
     current_filters: function(state) {
       return state.filters;
     },
@@ -139,7 +144,7 @@ store.registerModule("products", {
           error: function(response) {
             context.commit("selected", response);
           }
-        }); 
+        });
       }
     }
   }

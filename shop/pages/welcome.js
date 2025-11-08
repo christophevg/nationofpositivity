@@ -9,7 +9,7 @@ Vue.component("NewsItem", {
     "light"     : Boolean,
     "raised"    : Boolean
   },
-  
+
   template: `
 <v-card v-if="item" :class="clazz" :style="styling" :color="color" :light="light" :raised="raised">
   <v-img :src="cdn(item.image)" aspect-ratio="1.75" v-if="!hideImage"/>
@@ -63,14 +63,14 @@ Vue.component("HighlightedItem", {
     "item"      : Object,
     "clazz"     : String
   },
-  
+
   template: `
 <v-card v-if="item" :class="clazz" :to="item.goto">
-  <v-img :src="cdn(item.image)" aspect-ratio="1.75">
+  <v-img :src="cdn(item.highlight_image)" aspect-ratio="1.75">
     <v-container fill-height style="max-width:100%" width="100%">
       <v-layout align-end>
 
-  <v-card color="rgba(255,255,255,0.95)" light flat tile :to="item.goto">
+  <v-card color="rgba(255,255,255,0.95)" light flat tile :to="'shop#'+item.id">
     <v-card-text>
       <h2>{{ item.title }}</h2>
       <v-btn color="primary" class="white--text" :to="item.goto">
@@ -100,13 +100,13 @@ var FrontPage = {
           <h2 style="margin-bottom:5px">Uniek en Persoonlijk</h2>
 
           <p>
-  
+
             Wat spreekt meer positiviteit uit dan een uniek en persoonlijk
             cadeau? Dat is wat Nation of Positivity biedt: tal van kleine leuke
             cadeautjes, allemaal uniek en gepersonaliseerd, bedoeld om jouw
             positiviteit aan iemand anders te geven (of gewoon om zelf van te
             genieten).
-  
+
           </p>
 
           <p style="margin-bottom:0px">
@@ -115,14 +115,14 @@ var FrontPage = {
             in deze kleine, online shop. Met liefde gemaakt om met heel veel
             liefde te kunnen geven. Zo zorgen we samen voor een beetje meer
             positiviteit in de wereld.
-      
+
           </p>
 
           <v-img src="/app/static/images/christophe.png" width="75%" max-width="300px"/>
 
         </v-sheet>
       </v-flex>
-  
+
      <!-- NEWS -->
 
       <v-flex xs12 md8>
@@ -133,13 +133,13 @@ var FrontPage = {
 
         </v-sheet>
       </v-flex>
-  
+
     </v-layout>
 
     <!-- HIGHLIGHTS -->
 
     <v-layout row wrap>
-      <v-flex d-flex v-for="(item, i) in highlights" :key="i" xs12 sm6>
+      <v-flex d-flex v-for="(item, i) in highlights" :key="i" xs12 sm6 md4>
         <HighlightedItem :item="item" :clazz="margin"/>
       </v-flex>
     </v-layout>
@@ -155,26 +155,13 @@ var FrontPage = {
   },
   computed: {
     items: function() {
-      return store.getters.news_items
+      return store.getters.news_items;
     },
     margin: function() {
       return this.$vuetify.breakpoint.smAndDown ? "ma-0 mb-2" : "ma-2";
-    }
-  },
-  data: function() {
-    return {
-      highlights: [
-        {
-          title: "Wood Words",
-          image: "images/products/wood-words/collection.header.jpeg",
-          goto : "/shop#wood-words"
-        },
-        {
-          title: "Rock around the Clock",
-          image: "images/products/rock-around-the-clock/record-clock-with-picture/demo-rockstar.header.jpeg",
-          goto : "/shop#rock-around-the-clock"
-        }
-      ]
+    },
+    highlights: function() {
+      return store.getters.highlight_collections;
     }
   }
 };

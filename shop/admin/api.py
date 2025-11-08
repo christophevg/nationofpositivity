@@ -18,7 +18,7 @@ class NewsItems(Resource):
   def delete(self):
     id = request.args.get("id")
     db.news.delete(id)
-    
+
 server.api.add_resource(NewsItems, "/api/admin/news", endpoint="api-admin-newsitems")
 
 class NewsItem(Resource):
@@ -39,8 +39,16 @@ class Collections(Resource):
   def delete(self):
     id = request.args.get("id")
     db.collections.delete(id)
-    
+
 server.api.add_resource(Collections, "/api/admin/collections", endpoint="api-admin-collections")
+
+class Collection(Resource):
+  def put(self, id):
+    update = request.json
+    update.pop("id", None)
+    db.collections.update(id, **update)
+
+server.api.add_resource(Collection, "/api/admin/collections/<id>", endpoint="api-admin-collection")
 
 class Products(Resource):
   def post(self):
@@ -52,7 +60,7 @@ class Products(Resource):
   def delete(self):
     id = request.args.get("id")
     db.products.delete(id)
-    
+
 server.api.add_resource(Products, "/api/admin/products", endpoint="api-admin-products")
 
 class Product(Resource):
@@ -70,7 +78,7 @@ class Orders(Resource):
   def delete(self):
     id = request.args["id"]
     db.orders.delete(id)
-    
+
 server.api.add_resource(Orders, "/api/admin/orders", endpoint="api-admin-orders")
 
 class Order(Resource):

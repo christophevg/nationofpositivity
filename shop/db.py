@@ -19,10 +19,10 @@ DB_CONN = os.environ.get("MONGODB_URI", None)
 if not DB_CONN:
   DB_CONN = "mongodb://localhost:27017/nation"
   logger.warn("""
-         _____  _______ _______             ______  ______ 
+         _____  _______ _______             ______  ______
  |      |     | |       |_____| |           |     \\ |_____]
  |_____ |_____| |_____  |     | |_____      |_____/ |_____]
-                                                           
+
 """)
   is_local = True
 
@@ -51,13 +51,13 @@ class Collection():
   @property
   def db(self):
     return self._db
-  
+
   @db.setter
   def db(self, new_db):
     self._db                 = new_db
     self.collection          = self.db[self.name]
     self.pageable_collection = Pageable(self.db)[self.name]
-  
+
   def create(self, doc=None, **kwargs):
     if doc:
       doc = self.dataclass.create(**doc)
@@ -90,7 +90,7 @@ class Collection():
       field.name : field.type
       for field in dataclasses.fields(self.dataclass)
     }
-    
+
     # construct filters from additional kwargs
     # by default simply turn it into a regexp
     # in case the targetted field is a list, check for inclusion
@@ -114,12 +114,12 @@ class Collection():
     self.pageable_collection.skip(int(start))
     self.pageable_collection.limit(int(limit))
 
-    results = { 
+    results = {
       "content"       : list(self.pageable_collection),
       "totalElements" : len(self.pageable_collection),
       "pageable"      : self.pageable_collection.pageable
     }
-    
+
     self.log("find", kwargs, f"{len(self.pageable_collection)} results")
     return results
 
@@ -140,7 +140,7 @@ class FilteredCollection(Collection):
     if not _available is None:
       filters["_available"] = _available
     return super().get(id, more_filters=filters)
-    
+
   def find(self, _available=True, _findable=True, **kwargs):
     filters = {}
     if not _available is None:
@@ -154,7 +154,7 @@ class BaseObject:
   @classmethod
   def create(cls, **kwargs):
     return cls(**kwargs)
-  
+
   @classmethod
   def sanitize(cls, args):
     # first filter only acceptable fields
@@ -165,13 +165,13 @@ class BaseObject:
     # next ensure all basic types are converted to their correct type
     for field in dataclasses.fields(cls):
       if field.type in [ int, float, str ] and field.name in args:
-        args[field.name] = field.type(args[field.name]) 
+        args[field.name] = field.type(args[field.name])
 
     return args
 
   def asdict(self):
     return dataclasses.asdict(self)
-    
+
   def __post_init__(self):
     # ensure all basic types are converted to their correct type
     for field in dataclasses.fields(self):
@@ -194,7 +194,7 @@ class Product(BaseObject):
   options: List[Dict] = field(default_factory=list)
   specifications: Dict[str, str] = field(default_factory=dict)
   shipping : str = ""
-  
+
   def __repr__(self):
     return f"Product({self.id}, {self.title}, {self.unit_price})"
 
@@ -212,13 +212,13 @@ class OrderLine:
   amount: int
   unit_price: float
   line_total: float
-  
+
   options: List[Option] = field(default_factory=list)
-  
+
   def __post_init__(self):
     self.product = Product(**self.product)
     self.options = [ Option(**option) for option in self.options ]
-  
+
   @property
   def total(self):
     return self.line_total
@@ -235,7 +235,7 @@ class Contact:
 
   company    : str = ""
   tax        : str = ""
-  
+
   def __repr__(self):
     return f"Contact({self.name})"
 
@@ -251,7 +251,7 @@ def uid():
       return option
     else:
       logger.debug(f"{option} exists")
-  
+
   raise ValueException("could not generate id")
 
 @dataclass
@@ -285,7 +285,7 @@ class Order(BaseObject):
     try:
       order   = kwargs["order"]
       contact = kwargs["contact"]
-    
+
       # validate order lines prices
       expected_total = 0
       shipping = {}
@@ -296,7 +296,7 @@ class Order(BaseObject):
         options_price = 0
         for option in line["options"]:
           expected_option_cost = next((
-            actual_option.get("cost",0) for actual_option in product.options 
+            actual_option.get("cost",0) for actual_option in product.options
             if actual_option["model"] == option["option"]
           ))
           if option["cost"] != expected_option_cost:
@@ -330,7 +330,7 @@ class Order(BaseObject):
       if order["total"]["lines"] != round(expected_total,2):
         logger.warn(f"{order['total']['lines']} != {expected_total}")
         raise ValueError("incorrect lines total detected")
-      
+
       # shipping
       gls_cost = { "XS": 5.60, "S": 6.60, "M": 7.60, "L": 9.30, "XL": 12.90 }
       # { "XS" : 350,  "S"  : 500, "M"  : 650, "L"  : 800 }
@@ -352,7 +352,7 @@ class Order(BaseObject):
         logger.warn(f"shipping: {shipping}")
         logger.warn(f"boxes: {boxes}")
         raise ValueError("incorrect shipping total detected")
-      
+
       # payment
       expected_payment = 0 if order["payment_method"] == "overschrijving" else 0.47
       if order["total"]["payment"] != expected_payment:
@@ -363,7 +363,7 @@ class Order(BaseObject):
       if order["total"]["grand"] != round(expected_grand_total, 2):
         logger.warn(f"grand total: {order['total']['grand']} != {expected_grand_total}")
         raise ValueError("incorrect grand total detected")
-    
+
       # tax
       expected_tax = expected_grand_total - (expected_grand_total / 1.21)
       if order["total"]["tax"] != round(expected_tax, 2):
@@ -375,7 +375,7 @@ class Order(BaseObject):
     except Exception as ex:
       logger.exception(ex)
       raise ValueError("Sorry, er ging iets mis. Controleer je mandje en probeer opnieuw.")
-    
+
   def __post_init__(self):
     # further unmarshall nested dicts into objects
     self.lines    = [ OrderLine(**line) for line in self.lines ]
@@ -385,7 +385,7 @@ class Order(BaseObject):
 
   def __repr__(self):
     return f"Order({self.id}, {self.contact}, {len(self.lines)} item{'s' if len(self.lines) > 1 else ''})"
-  
+
   @property
   def requires_payment(self):
     return self.total.payment > 0
@@ -407,8 +407,11 @@ news = FilteredCollection(db, "news", News)
 class ProductCollection(BaseObject):
   id    : str
   title : str
-  
+
   _available: bool = False
   _findable : bool = False
+
+  highlight       : bool = False
+  highlight_image : str  = None
 
 collections = FilteredCollection(db, "collections", ProductCollection)

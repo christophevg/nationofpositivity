@@ -45,7 +45,7 @@ var CollectionAdmin = {
         },
         function(response) {
           console_warn(response);
-        }        
+        }
       );
     },
     submit: function() {
@@ -91,7 +91,30 @@ var CollectionAdmin = {
             inputType  : "text",
             label      : "Title",
             model      : "title"
-          }
+          },
+          {
+            type       : "checkbox",
+            label      : "Highlight",
+            model      : "highlight"
+          },
+          {
+             type: "vueMultiSelect",
+             model: "highlight_image",
+             label: "Highlight Image",
+             placeholder: "",
+             required: false,
+             selectOptions: {
+               allowEmpty: false,
+               multiple: false,
+               searchable: true,
+               taggable: true,
+               tagPlaceholder: "voeg toe...",
+               onNewTag: function(newTag, id, options, value){
+                 value.push(newTag);
+               }
+             },
+             values: store.getters.images()
+           }
         ]
       },
       formOptions: {

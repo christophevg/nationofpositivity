@@ -49,18 +49,21 @@
 - [ ] more shipping options ! <- EU law!
   - [ ] delivery to ParcelShop (https://gls-group.com/BE/en/depot-parcelshop/)
   - [ ] pick-up
-  
+
 - [ ] more payment options?
   - [ ] Visa, Mastercard (% payment cost)
-  
-- [ ] make highlights configurable (no need for deployment)
-      implement as option on collections admin page (x highlight + image)
 
 ### Admin
 
 ### Backend
 
 ## Done
+
+### 20251108
+
+- [x] re-activate Holidays are Coming collection
+- [x] make highlights configurable (no need for deployment)
+      implement as option on collections admin page (x highlight + image)
 
 ### 20250403 ✅
 
