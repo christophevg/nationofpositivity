@@ -59,7 +59,7 @@
 
 ## Done
 
-### 20251108
+### 20251108 ✅
 
 - [x] re-activate Holidays are Coming collection
 - [x] make highlights configurable (no need for deployment)
