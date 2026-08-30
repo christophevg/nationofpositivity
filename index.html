@@ -1,0 +1,1239 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
+
+    <title>Nation of Positivity</title>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="/static/html5shiv.min.js"></script>
+      <script src="/static/respond.min.js"></script>
+    <![endif]-->
+
+    <link href="/static/css/vuetify.min.css" rel="stylesheet" />
+    <link href="/static/css/vfg.css" rel="stylesheet" />
+    <link href="/static/css/style.css" rel="stylesheet" />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/static/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/static/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/static/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/static/favicon/site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="/static/favicon/safari-pinned-tab.svg"
+      color="#5bbad5"
+    />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="white" />
+
+    <meta name="title" property="og:type" content="website" />
+    <meta name="title" property="og:title" content="Nation of Positivity" />
+    <meta name="author" property="og:author" content="Christophe VG" />
+    <meta
+      name="description"
+      property="og:description"
+      content="Geef het geschenk van positiviteit."
+    />
+    <meta name="url" property="og:url" content="//nationofpositivity.com" />
+    <meta
+      name="image"
+      property="og:image"
+      content="https://cdn.nationofpositivity.com/assets/images/socials/positivity-boy-arcade-logo-1200x630.png"
+    />
+    <style type="text/css">
+      .notifications {
+        display: block;
+        position: fixed;
+        z-index: 5000;
+      }
+
+      .notification-wrapper {
+        display: block;
+        overflow: hidden;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      .notification {
+        display: block;
+        box-sizing: border-box;
+        background: #fff;
+        text-align: left;
+      }
+
+      .notification-title {
+        font-weight: 600;
+      }
+
+      .vue-notification {
+        font-size: 12px;
+        padding: 10px;
+        margin: 0 5px 5px;
+        color: #fff;
+        background: #44a4fc;
+        border-left: 5px solid #187fe7;
+      }
+
+      .vue-notification.warn {
+        background: #ffb648;
+        border-left-color: #f48a06;
+      }
+
+      .vue-notification.error {
+        background: #e54d42;
+        border-left-color: #b82e24;
+      }
+
+      .vue-notification.success {
+        background: #68cd86;
+        border-left-color: #42a85f;
+      }
+
+      .vn-fade-enter-active,
+      .vn-fade-leave-active,
+      .vn-fade-move {
+        transition: all 0.5s;
+      }
+
+      .vn-fade-enter,
+      .vn-fade-leave-to {
+        opacity: 0;
+      }
+    </style>
+    <style type="text/css">
+      /* Chart.js */
+      @-webkit-keyframes chartjs-render-animation {
+        from {
+          opacity: 0.99;
+        }
+
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes chartjs-render-animation {
+        from {
+          opacity: 0.99;
+        }
+
+        to {
+          opacity: 1;
+        }
+      }
+
+      .chartjs-render-monitor {
+        -webkit-animation: chartjs-render-animation 0.001s;
+        animation: chartjs-render-animation 0.001s;
+      }
+    </style>
+    <style type="text/css" id="vuetify-theme-stylesheet">
+      a {
+        color: #1976d2;
+      }
+
+      .primary {
+        background-color: #1976d2 !important;
+        border-color: #1976d2 !important;
+      }
+
+      .primary--text {
+        color: #1976d2 !important;
+        caret-color: #1976d2 !important;
+      }
+
+      .primary.lighten-5 {
+        background-color: #c7fdff !important;
+        border-color: #c7fdff !important;
+      }
+
+      .primary--text.text--lighten-5 {
+        color: #c7fdff !important;
+        caret-color: #c7fdff !important;
+      }
+
+      .primary.lighten-4 {
+        background-color: #a8e0ff !important;
+        border-color: #a8e0ff !important;
+      }
+
+      .primary--text.text--lighten-4 {
+        color: #a8e0ff !important;
+        caret-color: #a8e0ff !important;
+      }
+
+      .primary.lighten-3 {
+        background-color: #8ac5ff !important;
+        border-color: #8ac5ff !important;
+      }
+
+      .primary--text.text--lighten-3 {
+        color: #8ac5ff !important;
+        caret-color: #8ac5ff !important;
+      }
+
+      .primary.lighten-2 {
+        background-color: #6aaaff !important;
+        border-color: #6aaaff !important;
+      }
+
+      .primary--text.text--lighten-2 {
+        color: #6aaaff !important;
+        caret-color: #6aaaff !important;
+      }
+
+      .primary.lighten-1 {
+        background-color: #488fef !important;
+        border-color: #488fef !important;
+      }
+
+      .primary--text.text--lighten-1 {
+        color: #488fef !important;
+        caret-color: #488fef !important;
+      }
+
+      .primary.darken-1 {
+        background-color: #005eb6 !important;
+        border-color: #005eb6 !important;
+      }
+
+      .primary--text.text--darken-1 {
+        color: #005eb6 !important;
+        caret-color: #005eb6 !important;
+      }
+
+      .primary.darken-2 {
+        background-color: #00479b !important;
+        border-color: #00479b !important;
+      }
+
+      .primary--text.text--darken-2 {
+        color: #00479b !important;
+        caret-color: #00479b !important;
+      }
+
+      .primary.darken-3 {
+        background-color: #003180 !important;
+        border-color: #003180 !important;
+      }
+
+      .primary--text.text--darken-3 {
+        color: #003180 !important;
+        caret-color: #003180 !important;
+      }
+
+      .primary.darken-4 {
+        background-color: #001e67 !important;
+        border-color: #001e67 !important;
+      }
+
+      .primary--text.text--darken-4 {
+        color: #001e67 !important;
+        caret-color: #001e67 !important;
+      }
+
+      .secondary {
+        background-color: #424242 !important;
+        border-color: #424242 !important;
+      }
+
+      .secondary--text {
+        color: #424242 !important;
+        caret-color: #424242 !important;
+      }
+
+      .secondary.lighten-5 {
+        background-color: #c1c1c1 !important;
+        border-color: #c1c1c1 !important;
+      }
+
+      .secondary--text.text--lighten-5 {
+        color: #c1c1c1 !important;
+        caret-color: #c1c1c1 !important;
+      }
+
+      .secondary.lighten-4 {
+        background-color: #a6a6a6 !important;
+        border-color: #a6a6a6 !important;
+      }
+
+      .secondary--text.text--lighten-4 {
+        color: #a6a6a6 !important;
+        caret-color: #a6a6a6 !important;
+      }
+
+      .secondary.lighten-3 {
+        background-color: #8b8b8b !important;
+        border-color: #8b8b8b !important;
+      }
+
+      .secondary--text.text--lighten-3 {
+        color: #8b8b8b !important;
+        caret-color: #8b8b8b !important;
+      }
+
+      .secondary.lighten-2 {
+        background-color: #727272 !important;
+        border-color: #727272 !important;
+      }
+
+      .secondary--text.text--lighten-2 {
+        color: #727272 !important;
+        caret-color: #727272 !important;
+      }
+
+      .secondary.lighten-1 {
+        background-color: #595959 !important;
+        border-color: #595959 !important;
+      }
+
+      .secondary--text.text--lighten-1 {
+        color: #595959 !important;
+        caret-color: #595959 !important;
+      }
+
+      .secondary.darken-1 {
+        background-color: #2c2c2c !important;
+        border-color: #2c2c2c !important;
+      }
+
+      .secondary--text.text--darken-1 {
+        color: #2c2c2c !important;
+        caret-color: #2c2c2c !important;
+      }
+
+      .secondary.darken-2 {
+        background-color: #171717 !important;
+        border-color: #171717 !important;
+      }
+
+      .secondary--text.text--darken-2 {
+        color: #171717 !important;
+        caret-color: #171717 !important;
+      }
+
+      .secondary.darken-3 {
+        background-color: #000000 !important;
+        border-color: #000000 !important;
+      }
+
+      .secondary--text.text--darken-3 {
+        color: #000000 !important;
+        caret-color: #000000 !important;
+      }
+
+      .secondary.darken-4 {
+        background-color: #000000 !important;
+        border-color: #000000 !important;
+      }
+
+      .secondary--text.text--darken-4 {
+        color: #000000 !important;
+        caret-color: #000000 !important;
+      }
+
+      .accent {
+        background-color: #82b1ff !important;
+        border-color: #82b1ff !important;
+      }
+
+      .accent--text {
+        color: #82b1ff !important;
+        caret-color: #82b1ff !important;
+      }
+
+      .accent.lighten-5 {
+        background-color: #ffffff !important;
+        border-color: #ffffff !important;
+      }
+
+      .accent--text.text--lighten-5 {
+        color: #ffffff !important;
+        caret-color: #ffffff !important;
+      }
+
+      .accent.lighten-4 {
+        background-color: #f8ffff !important;
+        border-color: #f8ffff !important;
+      }
+
+      .accent--text.text--lighten-4 {
+        color: #f8ffff !important;
+        caret-color: #f8ffff !important;
+      }
+
+      .accent.lighten-3 {
+        background-color: #daffff !important;
+        border-color: #daffff !important;
+      }
+
+      .accent--text.text--lighten-3 {
+        color: #daffff !important;
+        caret-color: #daffff !important;
+      }
+
+      .accent.lighten-2 {
+        background-color: #bce8ff !important;
+        border-color: #bce8ff !important;
+      }
+
+      .accent--text.text--lighten-2 {
+        color: #bce8ff !important;
+        caret-color: #bce8ff !important;
+      }
+
+      .accent.lighten-1 {
+        background-color: #9fccff !important;
+        border-color: #9fccff !important;
+      }
+
+      .accent--text.text--lighten-1 {
+        color: #9fccff !important;
+        caret-color: #9fccff !important;
+      }
+
+      .accent.darken-1 {
+        background-color: #6596e2 !important;
+        border-color: #6596e2 !important;
+      }
+
+      .accent--text.text--darken-1 {
+        color: #6596e2 !important;
+        caret-color: #6596e2 !important;
+      }
+
+      .accent.darken-2 {
+        background-color: #467dc6 !important;
+        border-color: #467dc6 !important;
+      }
+
+      .accent--text.text--darken-2 {
+        color: #467dc6 !important;
+        caret-color: #467dc6 !important;
+      }
+
+      .accent.darken-3 {
+        background-color: #2364aa !important;
+        border-color: #2364aa !important;
+      }
+
+      .accent--text.text--darken-3 {
+        color: #2364aa !important;
+        caret-color: #2364aa !important;
+      }
+
+      .accent.darken-4 {
+        background-color: #004c90 !important;
+        border-color: #004c90 !important;
+      }
+
+      .accent--text.text--darken-4 {
+        color: #004c90 !important;
+        caret-color: #004c90 !important;
+      }
+
+      .error {
+        background-color: #ff5252 !important;
+        border-color: #ff5252 !important;
+      }
+
+      .error--text {
+        color: #ff5252 !important;
+        caret-color: #ff5252 !important;
+      }
+
+      .error.lighten-5 {
+        background-color: #ffe4d5 !important;
+        border-color: #ffe4d5 !important;
+      }
+
+      .error--text.text--lighten-5 {
+        color: #ffe4d5 !important;
+        caret-color: #ffe4d5 !important;
+      }
+
+      .error.lighten-4 {
+        background-color: #ffc6b9 !important;
+        border-color: #ffc6b9 !important;
+      }
+
+      .error--text.text--lighten-4 {
+        color: #ffc6b9 !important;
+        caret-color: #ffc6b9 !important;
+      }
+
+      .error.lighten-3 {
+        background-color: #ffa99e !important;
+        border-color: #ffa99e !important;
+      }
+
+      .error--text.text--lighten-3 {
+        color: #ffa99e !important;
+        caret-color: #ffa99e !important;
+      }
+
+      .error.lighten-2 {
+        background-color: #ff8c84 !important;
+        border-color: #ff8c84 !important;
+      }
+
+      .error--text.text--lighten-2 {
+        color: #ff8c84 !important;
+        caret-color: #ff8c84 !important;
+      }
+
+      .error.lighten-1 {
+        background-color: #ff6f6a !important;
+        border-color: #ff6f6a !important;
+      }
+
+      .error--text.text--lighten-1 {
+        color: #ff6f6a !important;
+        caret-color: #ff6f6a !important;
+      }
+
+      .error.darken-1 {
+        background-color: #df323b !important;
+        border-color: #df323b !important;
+      }
+
+      .error--text.text--darken-1 {
+        color: #df323b !important;
+        caret-color: #df323b !important;
+      }
+
+      .error.darken-2 {
+        background-color: #bf0025 !important;
+        border-color: #bf0025 !important;
+      }
+
+      .error--text.text--darken-2 {
+        color: #bf0025 !important;
+        caret-color: #bf0025 !important;
+      }
+
+      .error.darken-3 {
+        background-color: #9f0010 !important;
+        border-color: #9f0010 !important;
+      }
+
+      .error--text.text--darken-3 {
+        color: #9f0010 !important;
+        caret-color: #9f0010 !important;
+      }
+
+      .error.darken-4 {
+        background-color: #800000 !important;
+        border-color: #800000 !important;
+      }
+
+      .error--text.text--darken-4 {
+        color: #800000 !important;
+        caret-color: #800000 !important;
+      }
+
+      .info {
+        background-color: #2196f3 !important;
+        border-color: #2196f3 !important;
+      }
+
+      .info--text {
+        color: #2196f3 !important;
+        caret-color: #2196f3 !important;
+      }
+
+      .info.lighten-5 {
+        background-color: #d4ffff !important;
+        border-color: #d4ffff !important;
+      }
+
+      .info--text.text--lighten-5 {
+        color: #d4ffff !important;
+        caret-color: #d4ffff !important;
+      }
+
+      .info.lighten-4 {
+        background-color: #b5ffff !important;
+        border-color: #b5ffff !important;
+      }
+
+      .info--text.text--lighten-4 {
+        color: #b5ffff !important;
+        caret-color: #b5ffff !important;
+      }
+
+      .info.lighten-3 {
+        background-color: #95e8ff !important;
+        border-color: #95e8ff !important;
+      }
+
+      .info--text.text--lighten-3 {
+        color: #95e8ff !important;
+        caret-color: #95e8ff !important;
+      }
+
+      .info.lighten-2 {
+        background-color: #75ccff !important;
+        border-color: #75ccff !important;
+      }
+
+      .info--text.text--lighten-2 {
+        color: #75ccff !important;
+        caret-color: #75ccff !important;
+      }
+
+      .info.lighten-1 {
+        background-color: #51b0ff !important;
+        border-color: #51b0ff !important;
+      }
+
+      .info--text.text--lighten-1 {
+        color: #51b0ff !important;
+        caret-color: #51b0ff !important;
+      }
+
+      .info.darken-1 {
+        background-color: #007cd6 !important;
+        border-color: #007cd6 !important;
+      }
+
+      .info--text.text--darken-1 {
+        color: #007cd6 !important;
+        caret-color: #007cd6 !important;
+      }
+
+      .info.darken-2 {
+        background-color: #0064ba !important;
+        border-color: #0064ba !important;
+      }
+
+      .info--text.text--darken-2 {
+        color: #0064ba !important;
+        caret-color: #0064ba !important;
+      }
+
+      .info.darken-3 {
+        background-color: #004d9f !important;
+        border-color: #004d9f !important;
+      }
+
+      .info--text.text--darken-3 {
+        color: #004d9f !important;
+        caret-color: #004d9f !important;
+      }
+
+      .info.darken-4 {
+        background-color: #003784 !important;
+        border-color: #003784 !important;
+      }
+
+      .info--text.text--darken-4 {
+        color: #003784 !important;
+        caret-color: #003784 !important;
+      }
+
+      .success {
+        background-color: #4caf50 !important;
+        border-color: #4caf50 !important;
+      }
+
+      .success--text {
+        color: #4caf50 !important;
+        caret-color: #4caf50 !important;
+      }
+
+      .success.lighten-5 {
+        background-color: #dcffd6 !important;
+        border-color: #dcffd6 !important;
+      }
+
+      .success--text.text--lighten-5 {
+        color: #dcffd6 !important;
+        caret-color: #dcffd6 !important;
+      }
+
+      .success.lighten-4 {
+        background-color: #beffba !important;
+        border-color: #beffba !important;
+      }
+
+      .success--text.text--lighten-4 {
+        color: #beffba !important;
+        caret-color: #beffba !important;
+      }
+
+      .success.lighten-3 {
+        background-color: #a2ff9e !important;
+        border-color: #a2ff9e !important;
+      }
+
+      .success--text.text--lighten-3 {
+        color: #a2ff9e !important;
+        caret-color: #a2ff9e !important;
+      }
+
+      .success.lighten-2 {
+        background-color: #85e783 !important;
+        border-color: #85e783 !important;
+      }
+
+      .success--text.text--lighten-2 {
+        color: #85e783 !important;
+        caret-color: #85e783 !important;
+      }
+
+      .success.lighten-1 {
+        background-color: #69cb69 !important;
+        border-color: #69cb69 !important;
+      }
+
+      .success--text.text--lighten-1 {
+        color: #69cb69 !important;
+        caret-color: #69cb69 !important;
+      }
+
+      .success.darken-1 {
+        background-color: #2d9437 !important;
+        border-color: #2d9437 !important;
+      }
+
+      .success--text.text--darken-1 {
+        color: #2d9437 !important;
+        caret-color: #2d9437 !important;
+      }
+
+      .success.darken-2 {
+        background-color: #00791e !important;
+        border-color: #00791e !important;
+      }
+
+      .success--text.text--darken-2 {
+        color: #00791e !important;
+        caret-color: #00791e !important;
+      }
+
+      .success.darken-3 {
+        background-color: #006000 !important;
+        border-color: #006000 !important;
+      }
+
+      .success--text.text--darken-3 {
+        color: #006000 !important;
+        caret-color: #006000 !important;
+      }
+
+      .success.darken-4 {
+        background-color: #004700 !important;
+        border-color: #004700 !important;
+      }
+
+      .success--text.text--darken-4 {
+        color: #004700 !important;
+        caret-color: #004700 !important;
+      }
+
+      .warning {
+        background-color: #fb8c00 !important;
+        border-color: #fb8c00 !important;
+      }
+
+      .warning--text {
+        color: #fb8c00 !important;
+        caret-color: #fb8c00 !important;
+      }
+
+      .warning.lighten-5 {
+        background-color: #ffff9e !important;
+        border-color: #ffff9e !important;
+      }
+
+      .warning--text.text--lighten-5 {
+        color: #ffff9e !important;
+        caret-color: #ffff9e !important;
+      }
+
+      .warning.lighten-4 {
+        background-color: #fffb82 !important;
+        border-color: #fffb82 !important;
+      }
+
+      .warning--text.text--lighten-4 {
+        color: #fffb82 !important;
+        caret-color: #fffb82 !important;
+      }
+
+      .warning.lighten-3 {
+        background-color: #ffdf67 !important;
+        border-color: #ffdf67 !important;
+      }
+
+      .warning--text.text--lighten-3 {
+        color: #ffdf67 !important;
+        caret-color: #ffdf67 !important;
+      }
+
+      .warning.lighten-2 {
+        background-color: #ffc24b !important;
+        border-color: #ffc24b !important;
+      }
+
+      .warning--text.text--lighten-2 {
+        color: #ffc24b !important;
+        caret-color: #ffc24b !important;
+      }
+
+      .warning.lighten-1 {
+        background-color: #ffa72d !important;
+        border-color: #ffa72d !important;
+      }
+
+      .warning--text.text--lighten-1 {
+        color: #ffa72d !important;
+        caret-color: #ffa72d !important;
+      }
+
+      .warning.darken-1 {
+        background-color: #db7200 !important;
+        border-color: #db7200 !important;
+      }
+
+      .warning--text.text--darken-1 {
+        color: #db7200 !important;
+        caret-color: #db7200 !important;
+      }
+
+      .warning.darken-2 {
+        background-color: #bb5900 !important;
+        border-color: #bb5900 !important;
+      }
+
+      .warning--text.text--darken-2 {
+        color: #bb5900 !important;
+        caret-color: #bb5900 !important;
+      }
+
+      .warning.darken-3 {
+        background-color: #9d4000 !important;
+        border-color: #9d4000 !important;
+      }
+
+      .warning--text.text--darken-3 {
+        color: #9d4000 !important;
+        caret-color: #9d4000 !important;
+      }
+
+      .warning.darken-4 {
+        background-color: #802700 !important;
+        border-color: #802700 !important;
+      }
+
+      .warning--text.text--darken-4 {
+        color: #802700 !important;
+        caret-color: #802700 !important;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div data-app="true" class="application theme--light" id="app">
+        <nav
+          class="v-toolbar v-toolbar--clipped v-toolbar--fixed theme--light white"
+          data-booted="true"
+          style="
+            margin-top: 0px;
+            padding-right: 0px;
+            padding-left: 0px;
+            transform: translateY(0px);
+          "
+        >
+          <div class="v-toolbar__content" style="height: 64px">
+            <div
+              class="v-toolbar__title ml-0 pl-3"
+              style="width: 300px; min-width: 250px"
+            >
+              <button
+                type="button"
+                class="v-toolbar__side-icon v-btn v-btn--icon theme--light"
+              >
+                <div class="v-btn__content">
+                  <svg
+                    width="62.119827mm"
+                    height="71.228737mm"
+                    viewBox="0 0 62.119829 71.228737"
+                    version="1.1"
+                    id="svg1"
+                    xml:space="preserve"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:svg="http://www.w3.org/2000/svg"
+                  >
+                    <defs id="defs1">
+                      <clipPath clipPathUnits="userSpaceOnUse" id="clipPath1">
+                        <ellipse
+                          id="circle1"
+                          cx="36.71405"
+                          cy="34.552231"
+                          rx="25.649794"
+                          ry="26.565947"
+                          style="
+                            fill: rgb(255, 28, 255);
+                            fill-opacity: 0.248276;
+                            stroke: none;
+                            stroke-width: 0.205403;
+                            stroke-linecap: round;
+                            stroke-linejoin: round;
+                          "
+                        ></ellipse>
+                      </clipPath>
+                    </defs>
+                    <g
+                      id="layer1"
+                      transform="matrix(1.3972183,0,0,1.3490338,-20.237629,-11.221748)"
+                      clip-path="url(#clipPath1)"
+                    >
+                      <path
+                        d="m 55.619013,60.72796 c 0,0 1.076599,-8.50441 -5.96924,-9.98312 -8.136687,-1.64485 -9.399165,-3.01859 -4.795441,-7.95801 4.187615,-3.70443 4.500405,-9.35565 4.00829,-13.32036 -0.283063,-2.28049 -1.548223,-5.36668 -2.835915,-7.13086 -2.629174,-3.60205 -5.482861,-3.9956 -9.030596,-4.03843 -5.57292,0.15908 -7.44515,2.25614 -9.316983,4.11863 -1.291937,1.76107 -2.552852,4.85037 -2.835915,7.13086 -0.492115,3.96471 -0.179325,9.61593 4.00829,13.32036 4.890703,5.02287 3.538293,6.34394 -4.795441,7.95801 -7.045839,1.47871 -5.96924,10.2001 -5.96924,10.2001 12.512264,0.30573 25.020604,0.0934 37.532195,-0.0802 z"
+                        id="path5"
+                        style="
+                          fill: rgb(64, 143, 212);
+                          fill-opacity: 1;
+                          stroke: none;
+                          stroke-width: 0.264583px;
+                          stroke-linecap: butt;
+                          stroke-linejoin: miter;
+                          stroke-opacity: 1;
+                        "
+                      ></path>
+                      <path
+                        d="m 36.882304,30.01325 c 1.130599,-1.9499 1.928779,-1.88391 2.825885,-1.79421 0.897107,0.0897 1.928148,0.50493 1.914035,2.28762 -0.01114,1.40728 -0.486413,1.77879 -0.927219,2.28762 -1.611416,1.86008 -3.811808,3.34905 -3.811808,3.34905 -0.762716,-0.5177 -2.322696,-1.69691 -3.875101,-3.36386 -0.457923,-0.49171 -0.895355,-0.86318 -0.892984,-2.2705 0.003,-1.78269 0.982693,-2.21503 1.8798,-2.30474 0.897106,-0.0897 1.695286,-0.15569 2.825885,1.79421 z"
+                        id="path7"
+                        style="
+                          fill: rgb(255, 255, 255);
+                          fill-opacity: 1;
+                          stroke: none;
+                          stroke-width: 0.264583px;
+                          stroke-linecap: butt;
+                          stroke-linejoin: miter;
+                          stroke-opacity: 1;
+                        "
+                      ></path>
+                      <path
+                        d="m 21.242187,31.703125 -5.892578,0.107422 a 0.88249999,0.88249999 0 0 0 -0.865234,0.898437 0.88249999,0.88249999 0 0 0 0.898438,0.867188 l 5.890624,-0.107422 a 0.88249999,0.88249999 0 0 0 0.867188,-0.898438 0.88249999,0.88249999 0 0 0 -0.898438,-0.867187 z"
+                        id="path8"
+                        style="
+                          color: rgb(0, 0, 0);
+                          fill: rgb(64, 143, 212);
+                          stroke-linecap: round;
+                        "
+                      ></path>
+                      <path
+                        d="m 17.177734,21.289062 a 0.88249999,0.88249999 0 0 0 -1.140625,0.50586 0.88249999,0.88249999 0 0 0 0.50586,1.140625 l 5.5,2.117187 a 0.88249999,0.88249999 0 0 0 1.140625,-0.505859 0.88249999,0.88249999 0 0 0 -0.507813,-1.140625 z"
+                        id="path8-5"
+                        style="
+                          color: rgb(0, 0, 0);
+                          fill: rgb(64, 143, 212);
+                          stroke-linecap: round;
+                        "
+                      ></path>
+                      <path
+                        d="m 25.035156,11.402344 a 0.88249999,0.88249999 0 0 0 -0.238281,1.224609 l 3.289062,4.888672 a 0.88249999,0.88249999 0 0 0 1.22461,0.240234 0.88249999,0.88249999 0 0 0 0.240234,-1.224609 l -3.291015,-4.888672 a 0.88249999,0.88249999 0 0 0 -1.22461,-0.240234 z"
+                        id="path9"
+                        style="
+                          color: rgb(0, 0, 0);
+                          fill: rgb(64, 143, 212);
+                          stroke-linecap: round;
+                        "
+                      ></path>
+                      <path
+                        d="m 37.546875,8.3183594 a 0.88249999,0.88249999 0 0 0 -0.882813,0.8808594 l -0.0059,5.8925782 a 0.88249999,0.88249999 0 0 0 0.880859,0.884766 0.88249999,0.88249999 0 0 0 0.882813,-0.882813 l 0.0059,-5.8925781 A 0.88249999,0.88249999 0 0 0 37.546875,8.3183594 Z"
+                        id="path9-8"
+                        style="
+                          color: rgb(0, 0, 0);
+                          fill: rgb(64, 143, 212);
+                          stroke-linecap: round;
+                        "
+                      ></path>
+                      <path
+                        d="m 50.207031,12.009766 a 0.88249999,0.88249999 0 0 0 -1.234375,0.193359 l -3.46875,4.763672 a 0.88249999,0.88249999 0 0 0 0.195313,1.232422 0.88249999,0.88249999 0 0 0 1.232422,-0.19336 l 3.46875,-4.763671 a 0.88249999,0.88249999 0 0 0 -0.19336,-1.232422 z"
+                        id="path9-8-6"
+                        style="
+                          color: rgb(0, 0, 0);
+                          fill: rgb(64, 143, 212);
+                          stroke-linecap: round;
+                        "
+                      ></path>
+                      <path
+                        d="m 56.0625,21.146484 -5.464844,2.201172 a 0.88249999,0.88249999 0 0 0 -0.490234,1.148438 0.88249999,0.88249999 0 0 0 1.148437,0.488281 l 5.466797,-2.201172 A 0.88249999,0.88249999 0 0 0 57.210937,21.634766 0.88249999,0.88249999 0 0 0 56.0625,21.146484 Z"
+                        id="path9-8-6-2"
+                        style="
+                          color: rgb(0, 0, 0);
+                          fill: rgb(64, 143, 212);
+                          stroke-linecap: round;
+                        "
+                      ></path>
+                      <path
+                        d="m 58.03125,31.632812 -5.890625,0.201172 a 0.88249999,0.88249999 0 0 0 -0.851563,0.91211 0.88249999,0.88249999 0 0 0 0.91211,0.851562 l 5.888672,-0.199219 a 0.88249999,0.88249999 0 0 0 0.853515,-0.912109 0.88249999,0.88249999 0 0 0 -0.912109,-0.853516 z"
+                        id="path9-8-6-2-5"
+                        style="
+                          color: rgb(0, 0, 0);
+                          fill: rgb(64, 143, 212);
+                          stroke-linecap: round;
+                        "
+                      ></path>
+                    </g>
+                  </svg>
+                </div>
+              </button>
+              <span>Nation of Positivity</span>
+            </div>
+          </div>
+        </nav>
+        <main class="v-content" data-booted="true" style="padding: 64px 0px 0px 0px">
+          <div class="v-content__wrap">
+            <div class="content-wrapper">
+              <div>
+                <div class="v-alert success" style="display: none">
+                  <i
+                    aria-hidden="true"
+                    class="v-icon material-icons theme--light v-alert__icon"
+                    >check_circle</i
+                  >
+                  <div>
+                    <span>OK</span>
+                  </div>
+                  <a class="v-alert__dismissible">
+                    <i
+                      aria-hidden="true"
+                      class="v-icon v-icon--right material-icons theme--light"
+                      >cancel</i
+                    >
+                  </a>
+                </div>
+                <div style="padding: 0px; margin-bottom: 15px">
+                  <div class="layout row wrap">
+                    <div class="flex xs12 md4 d-flex">
+                      <div
+                        class="v-sheet theme--light ma-2 pa-3"
+                        style="
+                          background-color: rgba(85, 141, 206, 0.1);
+                          border-color: rgba(85, 141, 206, 0.1);
+                        "
+                      >
+                        <h2 style="margin-bottom: 5px">Uniek en Persoonlijk</h2>
+                        <p>
+                          Wat spreekt meer positiviteit uit dan een uniek en persoonlijk
+                          cadeau? Dat is wat Nation of Positivity bood: tal van kleine
+                          leuke cadeautjes, allemaal uniek en gepersonaliseerd, bedoeld
+                          om jouw positiviteit aan iemand anders te geven (of gewoon om
+                          zelf van te genieten).
+                        </p>
+                        <p style="margin-bottom: 0px">
+                          Met Nation of Positivity bood ik mijn atelier en creativiteit
+                          aan in deze kleine, online shop. Met liefde gemaakt om met
+                          heel veel liefde te kunnen geven. Zo zorgen we samen voor een
+                          beetje meer positiviteit in de wereld.
+                        </p>
+                        <div
+                          class="v-responsive v-image"
+                          style="max-width: 300px; width: 75%"
+                        >
+                          <div
+                            class="v-responsive__sizer"
+                            style="padding-bottom: 41.519926%"
+                          ></div>
+                          <div
+                            class="v-image__image v-image__image--cover"
+                            style="
+                              background-image: url(/static/images/christophe.png);
+                              background-position: center center;
+                            "
+                          ></div>
+                          <div class="v-responsive__content"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flex xs12 md8">
+                      <div class="v-sheet theme--light ma-2">
+                        <div
+                          class="v-window v-carousel hidden-sm-and-down"
+                          id="carousel-container"
+                          style="height: 600px"
+                        >
+                          <div class="v-window__container" style="height: 600px">
+                            <div class="v-window-item" style="">
+                              <div
+                                class="v-responsive v-image v-carousel__item"
+                                style="height: 600px"
+                              >
+                                <div
+                                  class="v-responsive__sizer"
+                                  style="padding-bottom: 75%"
+                                ></div>
+                                <div
+                                  class="v-image__image v-image__image--cover"
+                                  style="
+                                    background-image: url(/static/images/bedankt.jpeg);
+                                    background-position: center center;
+                                  "
+                                ></div>
+                                <div class="v-responsive__content">
+                                  <div
+                                    class="container fill-height width"
+                                    style="max-width: 100%"
+                                  >
+                                    <div class="layout align-end justify-end">
+                                      <div class="flex lg8 xl6">
+                                        <div
+                                          class="v-card v-sheet theme--light"
+                                          style="
+                                            background-color: rgba(255, 255, 255, 0.95);
+                                            border-color: rgba(255, 255, 255, 0.95);
+                                            margin: 20px;
+                                          "
+                                        >
+                                          <!---->
+                                          <div class="v-card__text">
+                                            <div>
+                                              <h3 class="headline mb-0">
+                                                Aan iedereen die Nation of Positivity een warm hart toedroeg: Een dikke merci!
+                                              </h3>
+                                              <h2 class="">
+                                                <i
+                                                  aria-hidden="true"
+                                                  class="v-icon material-icons theme--light"
+                                                  >event</i
+                                                >
+                                                &nbsp;&nbsp;30 augustus 2026
+                                              </h2>
+                                              <div style="padding-top: 10px">
+                                                <p>
+                                                  Het waren twee heel toffe jaren, met enorm veel leuke geschenken, kaarten, attenties,... die ik voor jullie mocht maken. Het was een eer en genoegen. 🥰
+                                                </p>
+                                                <p>
+                                                  De wereld stond ondertussen niet stil en zo veranderen ook de regels waar zelfs een kleine persoonlijke webshop moet voldoen. Voorlopig heb ik niet de mogelijkheid om hier snel aan te beantwoorden.
+                                                </p>
+                                                <p>
+                                                  Vandaag sluit de webshop van Nation of Positivity misschien zijn deuren, de deur van mijn atelier blijft open. Bedankt aan iedereen om samen wat extra positiviteit de wereld in te sturen. Altijd welkom! 🙌
+                                                </p>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="flex xs12 hidden-md-and-up">
+                          <div class="v-card v-sheet theme--light mb-3">
+                            <div class="v-responsive v-image">
+                              <div
+                                class="v-responsive__sizer"
+                                style="padding-bottom: 57.142857%"
+                              ></div>
+                              <div
+                                class="v-image__image v-image__image--cover"
+                                style="
+                                  background-image: url(/static/images/bedankt.jpeg);
+                                  background-position: center center;
+                                "
+                              ></div>
+                              <div class="v-responsive__content"></div>
+                            </div>
+                            <div class="v-card__text">
+                              <div>
+                                <h3 class="headline mb-0">
+                                  Aan iedereen die Nation of Positivity een warm hart toedroeg: Een dikke merci!
+                                </h3>
+                                <h2 class="">
+                                  <i
+                                    aria-hidden="true"
+                                    class="v-icon material-icons theme--light"
+                                    >event</i
+                                  >
+                                  &nbsp;&nbsp;30 augustus 2026
+                                </h2>
+                                <div style="padding-top: 10px">
+                                  <p>
+                                    Het waren twee heel toffe jaren, met enorm veel leuke geschenken, kaarten, attenties,... die ik voor jullie mocht maken. Het was een eer en genoegen. 🥰
+                                  </p>
+                                  <p>
+                                    De wereld stond ondertussen niet stil en zo veranderen ook de regels waar zelfs een kleine persoonlijke webshop moet voldoen. Voorlopig heb ik niet de mogelijkheid om hier snel aan te beantwoorden.
+                                  </p>
+                                  <p>
+                                    Vandaag sluit de webshop van Nation of Positivity misschien zijn deuren, de deur van mijn atelier blijft open. Bedankt aan iedereen om samen wat extra positiviteit de wereld in te sturen. Altijd welkom! 🙌
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!---->
+                <!---->
+                <footer class="v-footer theme--dark" style="height: auto">
+                  <div
+                    class="flex v-card v-card--flat v-sheet v-sheet--tile theme--dark"
+                  >
+                    <div class="v-card__actions grey darken-3 justify-center">
+                      <p style="text-align: center">
+                        ©2024-2026 —
+                        <strong>Nation of Positivity</strong>
+                        -
+                        <strong>
+                          <a
+                            href="https://homemadebycvg.com"
+                            target="_blank"
+                            style="color: white"
+                            >homemade by CVG</a
+                          >
+                        </strong>
+                        - supported by
+                        <strong>
+                          <a
+                            href="https://2know.be"
+                            target="_blank"
+                            style="color: white"
+                            >2Know</a
+                          >
+                        </strong>
+                        - BE0865.835.163
+                      </p>
+                    </div>
+                  </div>
+                </footer>
+              </div>
+              <div class="notifications" style="width: 300px; bottom: 0px; right: 0px">
+                <span></span>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+  </body>
+</html>
